@@ -1,4 +1,6 @@
 #!/bin/bash
 
-cp ~/.oh-my-zsh/custom/*.zsh ./
+SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
+
+cp ~/.oh-my-zsh/custom/*.zsh $SCRIPT_DIR/
 
