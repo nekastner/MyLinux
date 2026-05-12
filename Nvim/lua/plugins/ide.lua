@@ -22,7 +22,7 @@ return {
     'saghen/blink.cmp',
     version = '*',
     opts = {
-      keymap = { 
+      keymap = {
         preset = 'super-tab',
         ['<CR>'] = { 'accept', 'fallback' },
         ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
@@ -58,7 +58,7 @@ return {
         vim.lsp.config(server_name, {
           capabilities = capabilities,
         })
-        
+
         vim.lsp.enable(server_name)
       end
 
@@ -67,3 +67,4 @@ return {
     end,
   },
 }
+
