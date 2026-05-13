@@ -149,18 +149,12 @@
         "parallel_downloads": 5
     },
     "profile_config": {
-        "gfx_driver": "All open-source",
-        "greeter": "sddm",
+        "gfx_driver": null,
+        "greeter": null,
         "profile": {
-            "custom_settings": {
-                "Hyprland": {
-                    "seat_access": "polkit"
-                }
-            },
-            "details": [
-                "Hyprland"
-            ],
-            "main": "Desktop"
+            "custom_settings": {},
+            "details": [],
+            "main": "Minimal"
         }
     },
     "script": null,
