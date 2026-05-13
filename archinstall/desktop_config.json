@@ -142,7 +142,22 @@
     },
     "ntp": true,
     "packages": [
-        "archinstall"
+        "archinstall",
+        "base-devel",
+        "elisa",
+        "git",
+        "jdk-openjdk",
+        "loupe",
+        "nano",
+        "neovim",
+        "nodejs",
+        "npm",
+        "rustup",
+        "vlc",
+        "bat",
+        "ripgrep",
+        "sbctl",
+        "cpupower"
     ],
     "pacman_config": {
         "color": true,
