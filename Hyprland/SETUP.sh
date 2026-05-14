@@ -8,3 +8,6 @@ ln -sf "$SCRIPT_DIR/hyprlock.conf" ~/.config/hypr/hyprlock.conf
 ln -sf "$SCRIPT_DIR/hyprlock-bg.png" ~/.config/hypr/hyprlock-bg.png
 ln -sf "$SCRIPT_DIR/waybar.conf" ~/.config/waybar/config
 
+cp "$SCRIPT_DIR/hyprpaper-bg.png" ~/.config/hypr/hyprpaper-bg.png
+cp "$SCRIPT_DIR/hyprlock-bg.png" ~/.config/hypr/hyprlock-bg.png
+
