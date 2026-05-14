@@ -148,6 +148,7 @@
         "cpupower",
         "elisa",
         "git",
+        "github-cli",
         "hyprlauncher",
         "hyprlock",
         "hyprsunset",
@@ -161,7 +162,7 @@
         "rustup",
         "sbctl",
         "vlc",
-        "github-cli"
+        "waybar"
     ],
     "pacman_config": {
         "color": true,
