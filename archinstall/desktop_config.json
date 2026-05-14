@@ -144,6 +144,8 @@
     "packages": [
         "archinstall",
         "base-devel",
+        "bat",
+        "cpupower",
         "elisa",
         "git",
         "jdk-openjdk",
@@ -152,12 +154,13 @@
         "neovim",
         "nodejs",
         "npm",
-        "rustup",
-        "vlc",
-        "bat",
         "ripgrep",
+        "rustup",
         "sbctl",
-        "cpupower"
+        "vlc",
+        "hyprlock",
+        "hyprsunset",
+        "hyprlauncher"
     ],
     "pacman_config": {
         "color": true,
