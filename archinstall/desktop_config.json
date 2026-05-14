@@ -162,7 +162,8 @@
         "rustup",
         "sbctl",
         "vlc",
-        "waybar"
+        "waybar",
+        "hyprpaper"
     ],
     "pacman_config": {
         "color": true,
