@@ -151,6 +151,7 @@
         "github-cli",
         "hyprlauncher",
         "hyprlock",
+        "hyprpaper",
         "hyprsunset",
         "jdk-openjdk",
         "loupe",
@@ -163,7 +164,7 @@
         "sbctl",
         "vlc",
         "waybar",
-        "hyprpaper"
+        "brightnessctl"
     ],
     "pacman_config": {
         "color": true,
