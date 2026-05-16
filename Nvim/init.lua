@@ -2,7 +2,7 @@
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
   vim.fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable", lazypath })
 end
 
@@ -17,8 +17,8 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 
 -- tabs
-vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
+vim.opt.shiftwidth = vim.opt.tabstop:get()
 vim.opt.expandtab = false
 
 -- shell commands
