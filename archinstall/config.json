@@ -145,6 +145,7 @@
         "archinstall",
         "base-devel",
         "bat",
+        "brightnessctl",
         "cpupower",
         "elisa",
         "git",
@@ -164,7 +165,7 @@
         "sbctl",
         "vlc",
         "waybar",
-        "brightnessctl"
+        "gnome-disk-utility"
     ],
     "pacman_config": {
         "color": true,
