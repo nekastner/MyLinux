@@ -150,6 +150,7 @@
         "elisa",
         "git",
         "github-cli",
+        "gnome-disk-utility",
         "hyprlauncher",
         "hyprlock",
         "hyprpaper",
@@ -165,7 +166,9 @@
         "sbctl",
         "vlc",
         "waybar",
-        "gnome-disk-utility"
+        "kvantum",
+        "qt5ct",
+        "qt6ct"
     ],
     "pacman_config": {
         "color": true,
