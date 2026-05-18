@@ -6,6 +6,9 @@
         "bluetooth_config": {
             "enabled": false
         },
+        "firewall_config": {
+            "firewall": "ufw"
+        },
         "print_service_config": {
             "enabled": true
         }
