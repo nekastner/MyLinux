@@ -1,7 +1,7 @@
 alias sudo="sudo "
 
 alias clr="clear"
-alias now="date +\"%Y-%m-%d %H:%M:%S%nweek: %V  |  day: %u\""
+alias now="date +\"%Y/%m/%d %H:%M:%S%n week: %V | day: %u \""
 
 alias py="python"
 
