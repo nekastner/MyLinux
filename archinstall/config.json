@@ -154,6 +154,8 @@
         "git",
         "github-cli",
         "gnome-disk-utility",
+        "hunspell-de",
+        "hunspell-en_us",
         "hyprlauncher",
         "hyprlock",
         "hyprpaper",
@@ -172,8 +174,8 @@
         "sbctl",
         "vlc",
         "waybar",
-        "hunspell-de",
-        "hunspell-en_us"
+        "man-db",
+        "man-pages"
     ],
     "pacman_config": {
         "color": true,
