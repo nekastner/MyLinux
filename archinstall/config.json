@@ -176,6 +176,7 @@
         "waybar",
         "man-db",
         "man-pages"
+        "wf-recorder"
     ],
     "pacman_config": {
         "color": true,
