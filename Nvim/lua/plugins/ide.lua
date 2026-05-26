@@ -6,7 +6,7 @@ return {
 		build = ":TSUpdate",
 		event = { "BufReadPost", "BufNewFile" },
 		opts = {
-	    	ensure_installed = { "lua", "python", "javascript", "typescript", "java", "markdown", "inline },
+	    	ensure_installed = { "lua", "python", "javascript", "typescript", "java", "markdown", "inline" },
 	    	highlight = { enable = true },
 		},
 		config = function(_, opts)
