@@ -1,6 +1,7 @@
-#!/binbash
+#!/bin/bash
 
 SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
 
-ln -sf "$SCRIPT_DIR" ~/.config/nvim
+rm -rf "$HOME/.config/nivm"
+ln -snf "$SCRIPT_DIR/nvim" "$HOME/.config/nvim"
 
