@@ -1,5 +1,6 @@
 alias sudo="sudo "
 
+alias src="source $HOME/.zshrc"
 alias clr="clear"
 alias now="date +\"%Y/%m/%d %H:%M:%S%n week: %V | day: %u \""
 
