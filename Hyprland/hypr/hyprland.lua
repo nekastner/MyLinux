@@ -273,7 +273,7 @@ hl.config({
         },
     },
     animations = {
-        enabled = "yes, please :)",
+        enabled = true,
     },
     master = {
         new_status = "master",
