@@ -175,7 +175,7 @@
         "vlc",
         "waybar",
         "man-db",
-        "man-pages"
+        "man-pages",
         "wf-recorder"
     ],
     "pacman_config": {
