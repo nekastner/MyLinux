@@ -163,6 +163,8 @@
         "jdk-openjdk",
         "kvantum",
         "loupe",
+        "man-db",
+        "man-pages",
         "nano",
         "neovim",
         "nodejs",
@@ -174,9 +176,12 @@
         "sbctl",
         "vlc",
         "waybar",
-        "man-db",
-        "man-pages",
-        "wf-recorder"
+        "wf-recorder",
+        "wakeonlan",
+        "dvdbackup",
+        "libdvdcss",
+        "libdvdnav",
+        "libdvdread"
     ],
     "pacman_config": {
         "color": true,
