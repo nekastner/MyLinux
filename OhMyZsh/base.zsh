@@ -1,4 +1,7 @@
 alias sudo='sudo '
+unalias mkdir 2> /dev/null
+unalias cp 2> /dev/null
+unalias mv 2> /dev/null
 
 alias src="source $HOME/.zshrc"
 alias clr='clear'
