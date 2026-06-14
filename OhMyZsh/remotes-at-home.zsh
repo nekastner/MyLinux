@@ -1,6 +1,6 @@
 # raspi
-alias rpi-ssh='ssh user@raspi'
-alias rpi-smb='smbclient //raspi/SmbShare -U user'
+alias rpi-ssh='ssh user@rpi'
+alias rpi-smb='smbclient //rpi/SmbShare -U user'
 
 # nas01
 alias nas01-wol='wakeonlan 90:09:D0:00:06:22'
