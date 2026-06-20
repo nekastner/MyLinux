@@ -1,1 +1,1 @@
-alias cp_imgs='sudo rsync -rtx --inplace --delete --progress'
+alias cp-imgs='sudo rsync -rtx --inplace --delete --progress'
