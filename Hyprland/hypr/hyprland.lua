@@ -22,11 +22,11 @@ hl.monitor({
     scale = monitorScale,
 })
 
-hl.curve("easeOutQuint", { type = "bezier", points = { { 0.23, 1 }, { 0.32, 1 } } })
-hl.curve("easeInOutCubic", { type = "bezier", points = { { 0.65, 0.05 }, { 0.36, 1 } } })
-hl.curve("linear", { type = "bezier", points = { { 0, 0 }, { 1, 1 } } })
-hl.curve("almostLinear", { type = "bezier", points = { { 0.5, 0.5 }, { 0.75, 1 } } })
-hl.curve("quick", { type = "bezier", points = { { 0.15, 0 }, { 0.1, 1 } } })
+hl.curve("easeOutQuint",	{ type = "bezier", points = { { 0.23, 1 },		{ 0.32, 1 } } })
+hl.curve("easeInOutCubic",	{ type = "bezier", points = { { 0.65, 0.05 },	{ 0.36, 1 } } })
+hl.curve("linear",			{ type = "bezier", points = { { 0, 0 },			{ 1, 1 } } })
+hl.curve("almostLinear",	{ type = "bezier", points = { { 0.5, 0.5 },		{ 0.75, 1 } } })
+hl.curve("quick",			{ type = "bezier", points = { { 0.15, 0 },		{ 0.1, 1 } } })
 
 hl.animation({
     leaf = "global",
@@ -244,10 +244,10 @@ hl.window_rule({
 hl.config({
     general = {
         gaps_in = 5,
-        gaps_out = 20,
-        border_size = 2,
+        gaps_out = 10,
+        border_size = 1,
         col = {
-            active_border = { colors = { "rgba(33ccffee)", "rgba(00ff99ee)" }, angle = 45 },
+            active_border = { colors = { "rgba(ffffffff)", "rgba(ffffffff)" }, angle = 0 },
             inactive_border = "rgba(595959aa)",
         },
         resize_on_border = true,
