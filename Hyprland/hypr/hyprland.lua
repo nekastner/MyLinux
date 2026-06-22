@@ -255,8 +255,8 @@ hl.config({
         layout = "master",
     },
     decoration = {
-        rounding = 10,
-        rounding_power = 2,
+        rounding = 5,
+        rounding_power = 1,
         active_opacity = 1.0,
         inactive_opacity = 1.0,
         shadow = {
