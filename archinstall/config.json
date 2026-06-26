@@ -150,6 +150,7 @@
         "bat",
         "brightnessctl",
         "cpupower",
+        "dvdbackup",
         "elisa",
         "git",
         "github-cli",
@@ -162,6 +163,9 @@
         "hyprsunset",
         "jdk-openjdk",
         "kvantum",
+        "libdvdcss",
+        "libdvdnav",
+        "libdvdread",
         "loupe",
         "man-db",
         "man-pages",
@@ -175,13 +179,10 @@
         "rustup",
         "sbctl",
         "vlc",
+        "wakeonlan",
         "waybar",
         "wf-recorder",
-        "wakeonlan",
-        "dvdbackup",
-        "libdvdcss",
-        "libdvdnav",
-        "libdvdread"
+        "hardinfo2"
     ],
     "pacman_config": {
         "color": true,
