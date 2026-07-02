@@ -12,7 +12,7 @@ fpath=(/usr/share/zsh/site-functions $fpath)
 ZSH_THEME="simple"
 
 # oh-my-zsh plugins
-plugins=(git)
+plugins=(git rust)
 
 # load oh-my-zsh
 source $ZSH/oh-my-zsh.sh
@@ -35,3 +35,5 @@ CASE_SENSITIVE="false"
 HYPHEN_INSENSITIVE="true"
 ENABLE_CORRECTION="true"
 HIST_STAMPS="yyyy-mm-dd"
+
+. "$HOME/.cargo/env"
