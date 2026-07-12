@@ -36,4 +36,6 @@ HYPHEN_INSENSITIVE="true"
 ENABLE_CORRECTION="true"
 HIST_STAMPS="yyyy-mm-dd"
 
-. "$HOME/.cargo/env"
+if [[ -f "$HOME/.cargo/env" ]]; then
+	. "$HOME/.cargo/env"
+fi
