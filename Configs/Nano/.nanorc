@@ -1,0 +1,10 @@
+include "/usr/share/nano/*.nanorc"
+
+set linenumbers
+set tabsize 4
+set softwrap
+set indicator
+set constantshow
+set tabstospaces
+
+bind ^H chopwordleft main
