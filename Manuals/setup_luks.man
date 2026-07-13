@@ -1,0 +1,6 @@
+fdisk /dev/<medium>
+  g n t w
+
+sudo cryptsetup luksFormat /dev/<medium>
+sudo cryptsetup open /dev/<medium> <name>
+sudo mkfs.btrfs -L <label> /dev/mapper/<name>
