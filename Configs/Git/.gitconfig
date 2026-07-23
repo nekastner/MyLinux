@@ -1,0 +1,9 @@
+[user]
+	email = elias@kastner-home.com
+	name = Noah Elias Kastner
+[pull]
+	ff = only
+[init]
+	defaultBranch = main
+[core]
+	editor = nvim
