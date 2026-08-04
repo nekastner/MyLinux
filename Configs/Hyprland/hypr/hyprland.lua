@@ -2,7 +2,7 @@ local terminal = "kitty"
 local menu = "hyprlauncher"
 local file_explorer = "dolphin"
 
-local colorTemperature = 4000
+local colorTemperature = 45555500
 local monitorScale = 1.0
 
 hl.env("XCURSOR_SIZE", 24)
