@@ -1,0 +1,7 @@
+[Service]
+
+ExecStartPre=/usr/sbin/ufw allow 4950/udp
+ExecStartPre=/usr/sbin/ufw allow 4955/udp
+
+ExecStopPost=/usr/sbin/ufw delete allow 4950/udp
+ExecStopPost=/usr/sbin/ufw delete allow 4955/udp
