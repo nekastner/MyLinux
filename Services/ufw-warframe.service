@@ -1,7 +1,17 @@
+[Unit]
+Description=Open ports for Warframe on ufw
+After=network.target ufw.service
+Wants=network-online.target
+
 [Service]
+Type=oneshot
+RemainAfterExit=yes
 
-ExecStartPre=/usr/sbin/ufw allow 4950/udp
-ExecStartPre=/usr/sbin/ufw allow 4955/udp
+ExecStart=/usr/sbin/ufw allow 4950/udp
+ExecStart=/usr/sbin/ufw allow 4955/udp
 
-ExecStopPost=/usr/sbin/ufw delete allow 4950/udp
-ExecStopPost=/usr/sbin/ufw delete allow 4955/udp
+ExecStop=/usr/sbin/ufw delete allow 4950/udp
+ExecStop=/usr/sbin/ufw delete allow 4955/udp
+
+[Install]
+WantedBy=multi-user.target
