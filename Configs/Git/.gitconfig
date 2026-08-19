@@ -8,7 +8,7 @@
 [core]
 	editor = nvim
 [alias]
-	clean-ignore = !git rm -r --cached . && git add .
+	recache = !git rm -r --cached . && git add --all
 [credential "https://github.com"]
 	helper = 
 	helper = !/usr/bin/gh auth git-credential
