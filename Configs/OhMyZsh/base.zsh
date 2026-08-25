@@ -23,7 +23,7 @@ vpy() {
   local python_args=("${@:2}")
 
   [[ -x "$venv_dir/bin/python" ]] || {
-    echo "Python venv not found: $venv_dir/bin/python" >&2
+    print "Python venv not found: $venv_dir/bin/python" >&2
     return 1
   }
 
@@ -36,7 +36,7 @@ vpip() {
   local python_args=("${@:2}")
 
   [[ -x "$venv_dir/bin/python" ]] || {
-    echo "Python venv not found: $venv_dir/bin/python" >&2
+    print "Python venv not found: $venv_dir/bin/python" >&2
     return 1
   }
 
