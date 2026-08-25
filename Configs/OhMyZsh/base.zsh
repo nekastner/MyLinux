@@ -13,11 +13,32 @@ alias py-venv="python -m venv"
 alias vpy='.venv/bin/python'
 alias vpip='.venv/bin/python -m pip'
 
-alias mnt-crpt='(){ sudo cryptsetup open "$1" "$2" && sudo mount "/dev/mapper/$2" "$3"; }'
-
 bindkey '^[[1;5C' forward-word
 bindkey '^[[1;5D' backward-word
 bindkey '^H' backward-kill-word
 bindkey '\e[3~' delete-char
 bindkey '\e[3;5~' kill-word
+
+mnt-crpt() {
+
+  local device=$1
+  local mapper=$2
+  local mountpoint=$3
+
+  (( $# == 3 )) || {
+    print "Usage: mnt-crpt <device> <mapper-name> <mountpoint>"
+    return 1
+  }
+
+  sudo cryptsetup open "$device" "$mapper" || return
+
+  sudo mount "/dev/mapper/$mapper" "$mountpoint" || {
+    sudo cryptsetup close "$mapper"
+    return 1
+  }
+
+  print "Mounted $device -> $mountpoint"
+}
+
+
 
