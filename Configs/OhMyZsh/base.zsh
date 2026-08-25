@@ -38,7 +38,7 @@ vpip() {
   vpy "$venv_dir" -m pip "${pip_args[@]}"
 }
 
-mnt-crpt() {
+mnt_crpt() {
 
   local device=$1
   local mapper=$2
