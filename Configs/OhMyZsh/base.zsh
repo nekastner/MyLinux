@@ -10,14 +10,38 @@ alias now='date +"%Y/%m/%d %H:%M:%S%n week: %V | day: %u "'
 alias py='python'
 alias pip='python -m pip'
 alias py-venv="python -m venv"
-alias vpy='.venv/bin/python'
-alias vpip='.venv/bin/python -m pip'
 
 bindkey '^[[1;5C' forward-word
 bindkey '^[[1;5D' backward-word
 bindkey '^H' backward-kill-word
 bindkey '\e[3~' delete-char
 bindkey '\e[3;5~' kill-word
+
+vpy() {
+
+  local venv_dir="$1"
+  local python_args=("${@:2}")
+
+  [[ -x "$venv_dir/bin/python" ]] || {
+    echo "Python venv not found: $venv_dir/bin/python" >&2
+    return 1
+  }
+
+  "$venv_dir/bin/python" "${python_args[@]}"
+}
+
+vpip() {
+
+  local venv_dir="$1"
+  local python_args=("${@:2}")
+
+  [[ -x "$venv_dir/bin/python" ]] || {
+    echo "Python venv not found: $venv_dir/bin/python" >&2
+    return 1
+  }
+
+  "$venv_dir/bin/python" -m pip "${python_args[@]}"
+}
 
 mnt-crpt() {
 
