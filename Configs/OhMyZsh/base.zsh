@@ -33,14 +33,9 @@ vpy() {
 vpip() {
 
   local venv_dir="$1"
-  local python_args=("${@:2}")
+  local pip_args=("${@:2}")
 
-  [[ -x "$venv_dir/bin/python" ]] || {
-    print "Python venv not found: $venv_dir/bin/python" >&2
-    return 1
-  }
-
-  "$venv_dir/bin/python" -m pip "${python_args[@]}"
+  vpy "$venv_dir" -m pip "${pip_args[@]}"
 }
 
 mnt-crpt() {
