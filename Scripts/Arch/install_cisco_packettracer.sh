@@ -1,7 +1,7 @@
 #!/bin/bash
 
 GIT_REPO_URL="https://aur.archlinux.org/packettracer.git"
-TEMP_PATH="$HOME/.install_cisco_packettracer_temp"
+TEMP_PATH="$HOME/CISCO_PACKETTRACER_INSTALL_TEMP_DIR"
 INSTALL_PATH="/usr/lib/packettracer"
 
 mkdir -p "$TEMP_PATH"
