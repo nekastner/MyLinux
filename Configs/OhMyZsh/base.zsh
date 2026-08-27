@@ -19,45 +19,42 @@ bindkey '\e[3;5~' kill-word
 
 vpy() {
 
-  local venv_dir="$1"
-  local python_args=("${@:2}")
+    local venv_dir="$1"
+    local python_args=("${@:2}")
 
-  [[ -x "$venv_dir/bin/python" ]] || {
-    print "Python venv not found: $venv_dir/bin/python" >&2
-    return 1
-  }
+    [[ -x "$venv_dir/bin/python" ]] || {
+        print "Python venv not found: $venv_dir/bin/python" >&2
+        return 1
+    }
 
-  "$venv_dir/bin/python" "${python_args[@]}"
+    "$venv_dir/bin/python" "${python_args[@]}"
 }
 
 vpip() {
 
-  local venv_dir="$1"
-  local pip_args=("${@:2}")
+    local venv_dir="$1"
+    local pip_args=("${@:2}")
 
-  vpy "$venv_dir" -m pip "${pip_args[@]}"
+    vpy "$venv_dir" -m pip "${pip_args[@]}"
 }
 
 mnt_crpt() {
 
-  local device=$1
-  local mapper=$2
-  local mountpoint=$3
+    local device=$1
+    local mapper=$2
+    local mountpoint=$3
 
-  (( $# == 3 )) || {
-    print "Usage: mnt-crpt <device> <mapper-name> <mountpoint>"
-    return 1
-  }
+    (( $# == 3 )) || {
+        print "Usage: mnt-crpt <device> <mapper-name> <mountpoint>"
+        return 1
+    }
 
-  sudo cryptsetup open "$device" "$mapper" || return
+    sudo cryptsetup open "$device" "$mapper" || return
 
-  sudo mount "/dev/mapper/$mapper" "$mountpoint" || {
-    sudo cryptsetup close "$mapper"
-    return 1
-  }
+    sudo mount "/dev/mapper/$mapper" "$mountpoint" || {
+        sudo cryptsetup close "$mapper"
+        return 1
+    }
 
-  print "Mounted $device -> $mountpoint"
+    print "Mounted $device -> $mountpoint"
 }
-
-
-
