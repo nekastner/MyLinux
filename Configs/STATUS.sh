@@ -9,10 +9,10 @@ is_linked()
 
 	if [[ -L "$TARGET" && "$(realpath "$TARGET")" = "$SOURCE" ]];
 	then
-		echo "'$TARGET' is linked."
+		echo "'$TARGET' is linked to '$SOURCE'."
 		return 0
 	else
-		echo "'$TARGET' is NOT linked."
+		echo "'$TARGET' is NOT linked to '$SOURCE'."
 		return 1
 	fi
 }
@@ -24,10 +24,10 @@ has_same_content()
 
 	if cmp --silent "$SOURCE" "$TARGET";
 	then
-		echo "'$TARGET' is up to date."
+		echo "'$TARGET' is up to date with '$SOURCE'."
 		return 0
 	else
-		echo "'$TARGET' is NOT up to date."
+		echo "'$TARGET' is NOT up to date with '$SOURCE'."
 		return 1
 	fi
 }
