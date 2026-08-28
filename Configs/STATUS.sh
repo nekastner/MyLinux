@@ -2,6 +2,10 @@
 
 CONFIGS_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+NEUTRAL='\033[0m'
+
 is_linked()
 {
 	local SOURCE=$1
@@ -9,10 +13,10 @@ is_linked()
 
 	if [[ -L "$TARGET" && "$(realpath "$TARGET")" = "$SOURCE" ]];
 	then
-		echo "'$TARGET' is linked to '$SOURCE'."
+		printf "[ ${GREEN}LINKED${NEUTRAL} ] %-50s -> %s\n" "$TARGET" "$SOURCE"
 		return 0
 	else
-		echo "'$TARGET' is NOT linked to '$SOURCE'."
+		printf "[ ${RED}LINKED${NEUTRAL} ] %-50s -> %s\n" "$TARGET" "$SOURCE"
 		return 1
 	fi
 }
@@ -24,10 +28,10 @@ has_same_content()
 
 	if cmp --silent "$SOURCE" "$TARGET";
 	then
-		echo "'$TARGET' is up to date with '$SOURCE'."
+		printf "[ ${GREEN}EQUAL${NEUTRAL}  ] %-50s -> %s\n" "$TARGET" "$SOURCE"
 		return 0
 	else
-		echo "'$TARGET' is NOT up to date with '$SOURCE'."
+		printf "[ ${RED}EQUAL${NEUTRAL}  ] %-50s -> %s\n" "$TARGET" "$SOURCE"
 		return 1
 	fi
 }
