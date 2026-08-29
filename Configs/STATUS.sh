@@ -21,7 +21,7 @@ is_linked()
 	local SOURCE=$1
 	local TARGET=$2
 
-	if [[ ! -L "$TARGET" || ! "$(realpath "$TARGET")" = "$SOURCE" ]];
+	if [[ ! -e "$TARGET" || ! -L "$TARGET" || ! "$(realpath "$TARGET")" = "$SOURCE" ]];
 	then
 		pprint "$RED" "LINKED" "$SOURCE" "$TARGET"
 		return 1
