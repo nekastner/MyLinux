@@ -23,42 +23,42 @@ _COLOR_NEUTRAL='\033[0m'
 
 vpy()
 {
-    local venv_dir="$1"
-    local python_args=("${@:2}")
+	local venv_dir="$1"
+	local python_args=("${@:2}")
 
-    [[ -x "$venv_dir/bin/python" ]] || {
-        printf "${_COLOR_RED}Python venv not found: $venv_dir/bin/python${_COLOR_NEUTRAL}"
-        return 1
-    }
+	[[ -x "$venv_dir/bin/python" ]] || {
+		printf "${_COLOR_RED}Python venv not found: $venv_dir/bin/python${_COLOR_NEUTRAL}"
+		return 1
+	}
 
-    "$venv_dir/bin/python" "${python_args[@]}"
+	"$venv_dir/bin/python" "${python_args[@]}"
 }
 
 vpip()
 {
-    local venv_dir="$1"
-    local pip_args=("${@:2}")
+	local venv_dir="$1"
+	local pip_args=("${@:2}")
 
-    vpy "$venv_dir" -m pip "${pip_args[@]}"
+	vpy "$venv_dir" -m pip "${pip_args[@]}"
 }
 
 mnt_crpt()
 {
-    local device=$1
-    local mapper=$2
-    local mountpoint=$3
+	local device=$1
+	local mapper=$2
+	local mountpoint=$3
 
-    [[ $# == 3 ]] || {
-        printf "${_COLOR_RED}Usage: mnt-crpt <device> <mapper> <mountpoint>${_COLOR_NEUTRAL}"
-        return 1
-    }
+	[[ $# == 3 ]] || {
+		printf "${_COLOR_RED}Usage: mnt-crpt <device> <mapper> <mountpoint>${_COLOR_NEUTRAL}"
+		return 1
+	}
 
-    sudo cryptsetup open "$device" "$mapper" || return
+	sudo cryptsetup open "$device" "$mapper" || return
 
-    sudo mount "$mapper" "$mountpoint" || {
-        sudo cryptsetup close "$mapper"
-        return 1
-    }
+	sudo mount "$mapper" "$mountpoint" || {
+		sudo cryptsetup close "$mapper"
+		return 1
+	}
 
-    printf "Mounted '$device' ('$mapper') to '$mountpoint'."
+	printf "Mounted '$device' ('$mapper') to '$mountpoint'."
 }
