@@ -1,7 +1,10 @@
 #!/bin/bash
-set -euo pipefail
 
 CONFIGS_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+NEUTRAL='\033[0m'
 
 sudo -v
 
@@ -23,25 +26,26 @@ link() {
 		read -rp "Overwrite '$TARGET' by '$SOURCE'? [y/N] " user_confirmation < /dev/tty
 		if [[ ! "$user_confirmation" =~ ^[yY]$ ]];
 		then
-			echo "Aborted overwriting '$TARGET' by '$SOURCE'."
+			printf "${RED}Aborted overwriting '$TARGET' by '$SOURCE'.${NEUTRAL}\n"
 			return 1
 		fi	
-		echo "'$TARGET' will become overwritten..."
+		printf "'$TARGET' will become overwritten...\n"
 		$EXEC rm -rf "$TARGET"
 	else
 		if [[ "$MODE" == 'ln' ]];
 		then
-			read -rp "Link '$SOURCE' to '$TARGET'? [y/N] " user_confirmation < /dev/tty
+			read -rp "$Link '$SOURCE' to '$TARGET'? [y/N] " user_confirmation < /dev/tty
 			if [[ ! "$user_confirmation" =~	^[yY]$ ]];
 			then
-				echo "Aborted linking '$SOURCE' to '$TARGET'."
+				printf "${RED}Aborted linking '$SOURCE' to '$TARGET'.${NEUTRAL}\n"
 				return 1
 			fi
-		elif [[ "$MODE" == 'cp' ]]
+		elif [[ "$MODE" == 'cp' ]];
+		then
 			read -rp "Copy '$SOURCE' to '$TARGET'? [y/N] " user_confirmation < /dev/tty
 			if [[ ! "$user_confirmation" =~	^[yY]$ ]];
 			then
-				echo "Aborted copying '$SOURCE' to '$TARGET'."
+				printf "${RED}Aborted copying '$SOURCE' to '$TARGET'.${NEUTRAL}\n"
 				return 1
 			fi
 		fi
@@ -52,11 +56,11 @@ link() {
 	if [[ "$MODE" == 'ln' ]];
 	then
 		$EXEC ln -sf "$SOURCE" "$TARGET"
-		echo "Linked '$SOURCE' to '$TARGET'."
+		printf "${GREEN}Linked '$SOURCE' to '$TARGET'.${NEUTRAL}\n"
 	elif [[ "$MODE" == 'cp' ]];
 	then
 		$EXEC cp -rf "$SOURCE" "$TARGET"
-		echo "Copied '$SOURCE' to '$TARGET'."
+		printf "${GREEN}Copied '$SOURCE' to '$TARGET'.${NEUTRAL}\n"
 	fi
 
 	if [[ ! "$TARGET" =~ ^/home/ ]];
