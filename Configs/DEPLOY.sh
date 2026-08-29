@@ -13,42 +13,68 @@ link() {
 	local MODE=$3
 
 	local EXEC=""
-	if [[ ! -w "$TARGET_DIR" ]] || { [[ -e "$TARGET" || -L "$TARGET" ]] && [[ ! -w "$TARGET" ]]; }; then
+	if [[ ! -w "$TARGET_DIR" ]] || { [[ -e "$TARGET" || -L "$TARGET" ]] && [[ ! -w "$TARGET" ]]; };
+	then
 		[[ "$EUID" -ne 0 ]] && EXEC="sudo"
 	fi
 
-	if [[ -e "$TARGET" || -L "$TARGET" ]]; then
-		read -rp "Overwrite '$TARGET'? [y/N] " user_confirmation < /dev/tty
-		if [[ ! "$user_confirmation" =~ ^[yY]$ ]]; then
-			echo "Aborted overwriting '$TARGET'."
-			return 0
+	if [[ -e "$TARGET" || -L "$TARGET" ]];
+	then
+		read -rp "Overwrite '$TARGET' by '$SOURCE'? [y/N] " user_confirmation < /dev/tty
+		if [[ ! "$user_confirmation" =~ ^[yY]$ ]];
+		then
+			echo "Aborted overwriting '$TARGET' by '$SOURCE'."
+			return 1
 		fi	
 		echo "'$TARGET' will become overwritten..."
 		$EXEC rm -rf "$TARGET"
+	else
+		if [[ "$MODE" == 'ln' ]];
+		then
+			read -rp "Link '$SOURCE' to '$TARGET'? [y/N] " user_confirmation < /dev/tty
+			if [[ ! "$user_confirmation" =~	^[yY]$ ]];
+			then
+				echo "Aborted linking '$SOURCE' to '$TARGET'."
+				return 1
+			fi
+		elif [[ "$MODE" == 'cp' ]]
+			read -rp "Copy '$SOURCE' to '$TARGET'? [y/N] " user_confirmation < /dev/tty
+			if [[ ! "$user_confirmation" =~	^[yY]$ ]];
+			then
+				echo "Aborted copying '$SOURCE' to '$TARGET'."
+				return 1
+			fi
+		fi
 	fi
 
 	$EXEC mkdir -p "$TARGET_DIR"
 
-	if [[ "$MODE" == 'ln' ]]; then
+	if [[ "$MODE" == 'ln' ]];
+	then
 		$EXEC ln -sf "$SOURCE" "$TARGET"
 		echo "Linked '$SOURCE' to '$TARGET'."
-	elif [[ "$MODE" == 'cp' ]]; then
+	elif [[ "$MODE" == 'cp' ]];
+	then
 		$EXEC cp -rf "$SOURCE" "$TARGET"
 		echo "Copied '$SOURCE' to '$TARGET'."
 	fi
 
-	if [[ ! "$TARGET" =~ ^/home/ ]]; then
+	if [[ ! "$TARGET" =~ ^/home/ ]];
+	then
 		$EXEC chown -R root:root "$TARGET"
 	fi
+
+	return 0
 }
 
 #				SOURCE											TARGET									MODE
 link			"$CONFIGS_DIR/Refind/refind.conf"				"/boot/EFI/refind/refind.conf"			'cp'
 link			"$CONFIGS_DIR/Refind/background.png"			"/boot/EFI/refind/background.png"		'cp'
 link			"$CONFIGS_DIR/KernelPresets/linux.preset"		"/etc/mkinitcpio.d/linux.preset"		'cp'
-link			"$CONFIGS_DIR/KernelPresets/zen-linux.preset"	"/etc/mkinitcpio.d/zen-linux.preset"	'cp'
+link			"$CONFIGS_DIR/KernelPresets/linux-zen.preset"	"/etc/mkinitcpio.d/linux-zen.preset"	'cp'
 link			"$CONFIGS_DIR/OhMyZsh/.zshrc"					"$HOME/.zshrc"							'ln'
-for config in	"$CONFIGS_DIR/OhMyZsh/"*; do
+for config in	"$CONFIGS_DIR/OhMyZsh/"*;
+do
     [[ -e "$config" ]] || continue
     name=$(basename "$config")
 	link		"$config"										"$HOME/.oh-my-zsh/custom/$name"			'ln'
@@ -62,7 +88,7 @@ link			"$CONFIGS_DIR/Samba/user_specific"				"/etc/samba/user_specific"				'ln'
 link			"$CONFIGS_DIR/Nginx/nginx.conf"					"/etc/nginx/nginx.conf"					'ln'
 link			"$CONFIGS_DIR/Nginx/sites-available"			"/etc/nginx/sites-available"			'ln'
 link			"$CONFIGS_DIR/Sddm/sddm.conf"					"/etc/sddm.conf"						'ln'
-link			"$CONFIGS_DIR/Sddm/themes"						"/usr/share/sddm/themes"				'ln'
+link			"$CONFIGS_DIR/Sddm/themes"						"/usr/share/sddm/themes"				'cp'
 link			"$CONFIGS_DIR/Hyprland/hypr"					"$HOME/.config/hypr"					'ln'
 link			"$CONFIGS_DIR/Hyprland/waybar"					"$HOME/.config/waybar"					'ln'
 link			"$CONFIGS_DIR/MimeAppList/mimeapps.list"		"$HOME/.config/mimeapps.list"			'ln'
