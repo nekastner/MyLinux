@@ -96,6 +96,6 @@ link			"$CONFIGS_DIR/Sddm/themes"						"/usr/share/sddm/themes"				'cp'
 link			"$CONFIGS_DIR/Hyprland/hypr"					"$HOME/.config/hypr"					'ln'
 link			"$CONFIGS_DIR/Hyprland/waybar"					"$HOME/.config/waybar"					'ln'
 link			"$CONFIGS_DIR/MimeAppList/mimeapps.list"		"$HOME/.config/mimeapps.list"			'ln'
-link			"$CONFIGS_DIR/MangoHud/Mangohud"				"$HOME/.config/Mangohud"				'ln'
+link			"$CONFIGS_DIR/MangoHud"							"$HOME/.config/Mangohud"				'ln'
 
 exit 0
