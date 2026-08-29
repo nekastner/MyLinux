@@ -37,7 +37,7 @@ has_same_content()
 	local SOURCE=$1
 	local TARGET=$2
 
-	if ! cmp --silent "$SOURCE" "$TARGET";
+	if [[ ! -e "$TARGET" ]] || ! cmp --silent "$SOURCE" "$TARGET";
 	then
 		pprint "$RED" "EQUAL " "$SOURCE" "$TARGET"
 		return 1
@@ -51,7 +51,7 @@ is_same_structure()
 	local SOURCE=$1
 	local TARGET=$2
 
-	if ! diff -qrr "$SOURCE" "$TARGET" >/dev/null 2>&1;
+	if [[ ! -e "$TARGET" ]] || ! diff -qrr "$SOURCE" "$TARGET" >/dev/null 2>&1;
 	then
 		pprint "$RED" "EQUAL " "$SOURCE" "$TARGET"
 		return 1

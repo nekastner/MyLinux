@@ -15,13 +15,35 @@ link() {
 	local TARGET_DIR=$(dirname "$TARGET")
 	local MODE=$3
 
+	if [[ -e "$TARGET" ]];
+	then
+		if [[ "$MODE" == 'ln' ]];
+		then
+			# if target already linked to source
+			if [[ -L "$TARGET" && "$(realpath "$TARGET")" = "$SOURCE" ]];
+			then
+				return 0;
+			fi
+		elif [[ "$MODE" == 'cp' ]];
+		then
+			# if target is already equal to source
+			if cmp --silent "$SOURCE" "$TARGET";
+			then
+				return 0;
+			elif diff -qrr "$SOURCE" "$TARGET" >/dev/null 2>&1;
+			then
+				return 0;
+			fi
+		fi
+	fi
+
 	local EXEC=""
 	if [[ ! -w "$TARGET_DIR" ]] || { [[ -e "$TARGET" || -L "$TARGET" ]] && [[ ! -w "$TARGET" ]]; };
 	then
 		[[ "$EUID" -ne 0 ]] && EXEC="sudo"
 	fi
 
-	if [[ -e "$TARGET" || -L "$TARGET" ]];
+	if [[ -e "$TARGET" ]];
 	then
 		read -rp "Overwrite '$TARGET' by '$SOURCE'? [y/N] " user_confirmation < /dev/tty
 		if [[ ! "$user_confirmation" =~ ^[yY]$ ]];
@@ -34,7 +56,7 @@ link() {
 	else
 		if [[ "$MODE" == 'ln' ]];
 		then
-			read -rp "$Link '$SOURCE' to '$TARGET'? [y/N] " user_confirmation < /dev/tty
+			read -rp "Link '$SOURCE' to '$TARGET'? [y/N] " user_confirmation < /dev/tty
 			if [[ ! "$user_confirmation" =~	^[yY]$ ]];
 			then
 				printf "${RED}Aborted linking '$SOURCE' to '$TARGET'.${NEUTRAL}\n"
@@ -93,9 +115,9 @@ link			"$CONFIGS_DIR/Nginx/nginx.conf"					"/etc/nginx/nginx.conf"					'ln'
 link			"$CONFIGS_DIR/Nginx/sites-available"			"/etc/nginx/sites-available"			'ln'
 link			"$CONFIGS_DIR/Sddm/sddm.conf"					"/etc/sddm.conf"						'ln'
 link			"$CONFIGS_DIR/Sddm/themes"						"/usr/share/sddm/themes"				'cp'
-link			"$CONFIGS_DIR/Hyprland/hypr"					"$HOME/.config/hypr"					'ln'
-link			"$CONFIGS_DIR/Hyprland/waybar"					"$HOME/.config/waybar"					'ln'
-link			"$CONFIGS_DIR/MimeAppList/mimeapps.list"		"$HOME/.config/mimeapps.list"			'ln'
-link			"$CONFIGS_DIR/MangoHud"							"$HOME/.config/Mangohud"				'ln'
+link			"$CONFIGS_DIR/Hyprland"							"$HOME/.config/hypr"					'ln'
+link			"$CONFIGS_DIR/Waybar"							"$HOME/.config/waybar"					'ln'
+link			"$CONFIGS_DIR/MimeAppsList/mimeapps.list"		"$HOME/.config/mimeapps.list"			'ln'
+link			"$CONFIGS_DIR/MangoHud"							"$HOME/.config/MangoHud"				'ln'
 
 exit 0
