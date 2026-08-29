@@ -27,10 +27,10 @@ link() {
 		elif [[ "$MODE" == 'cp' ]];
 		then
 			# if target is already equal to source
-			if cmp --silent "$SOURCE" "$TARGET";
+			if [[ ! -d "$TARGET" ]] && cmp --silent "$SOURCE" "$TARGET";
 			then
 				return 0;
-			elif diff -qrr "$SOURCE" "$TARGET" >/dev/null 2>&1;
+			elif [[ -d "$TARGET" ]] && diff -qrr "$SOURCE" "$TARGET" >/dev/null 2>&1;
 			then
 				return 0;
 			fi
