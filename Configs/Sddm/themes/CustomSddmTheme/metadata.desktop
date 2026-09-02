@@ -1,8 +1,0 @@
-[SddmGreeterTheme]
-Name=Custom Login
-Description=A custom Login
-Author=Noah Elias Kastner
-Type=sddm-theme
-MainScript=Main.qml
-Email=elias@kastner-home.com
-QtVersion=6
