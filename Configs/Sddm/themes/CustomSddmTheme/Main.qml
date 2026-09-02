@@ -8,86 +8,94 @@ Rectangle
 	height: 480
 	color: "#000000"
 
+	state: "usernameInput"
+
+	states:
+	[
+		State
+		{
+			name: "usernameInput"
+			PropertyChanges
+			{
+				target: userHint
+				text: "Username"
+			}
+			PropertyChanges
+			{
+				target: userInput
+				placeholderText: "username...";
+				echoMode: TextInput.Normal;
+			}
+		},
+		State
+		{
+			name: "passwordInput"
+			PropertyChanges
+			{
+				target: userHint
+				text: "Password"
+			}
+			PropertyChanges
+			{
+				target: userInput
+				placeholderText: "password...";
+				echoMode: TextInput.Password;
+			}
+		},
+		State
+		{
+			name: "tryLogin"
+			PropertyChanges
+			{
+				target: userHint
+				text: ""
+			}
+			PropertyChanges
+			{
+				target: userInput
+				placeholderText: "";
+				echoMode: TextInput.Normal;
+			}
+		}
+	]
+
 	Column
 	{
 		anchors.centerIn: parent
 
-		TextField
+		spacing: 5
+
+		UserHint
+		{
+			id: userHint
+		}
+
+		UserInput
 		{
 			id: userInput
-
-			width: 500
-			placeholderTextColor: "#000000"
-
 			focus: true
-
-			horizontalAlignment: TextInput.AlignHCenter
-			verticalAlignment: TextInput.AlignVCenter
-
-			property string username: ""
-			property string password: ""
-
-			state: "usernameInput"
-
-			states:
-			[
-				State
-				{
-					name: "usernameInput"
-					PropertyChanges
-					{
-						target: userInput;
-						placeholderText: "username...";
-						text: "";
-						echoMode: TextInput.Normal;
-					}
-				},
-				State
-				{
-					name: "passwordInput"
-					PropertyChanges
-					{
-						target: userInput;
-						placeholderText: "password...";
-						text: "";
-						echoMode: TextInput.Password;
-					}
-				},
-				State
-				{
-					name: "tryLogin"
-					PropertyChanges
-					{
-						target: userInput;
-						placeholderText: "";
-						text: "";
-						echoMode: TextInput.Normal;
-					}
-				}
-			]
-
-			onAccepted: evaluateUserInput()
 		}
+
 	}
 
 	function evaluateUserInput()
 	{
-		if (userInput.state === "usernameInput")
+		if (root.state === "usernameInput")
 		{
 			userInput.username = userInput.text
-			userInput.state = "passwordInput"
+			root.state = "passwordInput"
 		}
-		else if (userInput.state === "passwordInput")
+		else if (root.state === "passwordInput")
 		{
 			userInput.password = userInput.text
-			userInput.state = "tryLogin"
+			root.state = "tryLogin"
 		}
 
 		userInput.text = ""
 
-		if (userInput.state === "tryLogin")
+		if (root.state === "tryLogin")
 		{
-			sddm.login(root.username, root.password, sessionModel.lastIndex)
+			sddm.login(userInput.username, userInput.password, sessionModel.lastIndex)
 		}
 	}
 
@@ -96,7 +104,9 @@ Rectangle
 		target: sddm
 		function onLoginFailed()
 		{
-			userInnut.state = "usernameInput"
+			root.state = "usernameInput"
+			userInput.text = ""
+			userInputBackground.border.color = "#ff0000"
 		}
 	}
 }
