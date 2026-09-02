@@ -8,7 +8,7 @@ NEUTRAL='\033[0m'
 
 sudo -v
 
-link() {
+deploy() {
 
 	local SOURCE=$1
 	local TARGET=$2
@@ -94,30 +94,28 @@ link() {
 }
 
 #				SOURCE											TARGET									MODE
-link			"$CONFIGS_DIR/Refind/refind.conf"				"/boot/EFI/refind/refind.conf"			'cp'
-link			"$CONFIGS_DIR/Refind/background.png"			"/boot/EFI/refind/background.png"		'cp'
-link			"$CONFIGS_DIR/KernelPresets/linux.preset"		"/etc/mkinitcpio.d/linux.preset"		'cp'
-link			"$CONFIGS_DIR/KernelPresets/linux-zen.preset"	"/etc/mkinitcpio.d/linux-zen.preset"	'cp'
-link			"$CONFIGS_DIR/OhMyZsh/.zshrc"					"$HOME/.zshrc"							'ln'
+deploy			"$CONFIGS_DIR/Refind/refind.conf"				"/boot/EFI/refind/refind.conf"			'cp'
+deploy			"$CONFIGS_DIR/Refind/background.png"			"/boot/EFI/refind/background.png"		'cp'
+deploy			"$CONFIGS_DIR/KernelPresets/linux.preset"		"/etc/mkinitcpio.d/linux.preset"		'cp'
+deploy			"$CONFIGS_DIR/KernelPresets/linux-zen.preset"	"/etc/mkinitcpio.d/linux-zen.preset"	'cp'
+deploy			"$CONFIGS_DIR/OhMyZsh/.zshrc"					"$HOME/.zshrc"							'ln'
 for config in	"$CONFIGS_DIR/OhMyZsh/"*;
 do
     [[ -e "$config" ]] || continue
-    name=$(basename "$config")
-	link		"$config"										"$HOME/.oh-my-zsh/custom/$name"			'ln'
+    config_name=$(basename "$config")
+	deploy		"$config"										"$HOME/.oh-my-zsh/custom/$config_name"			'ln'
 done
-link			"$CONFIGS_DIR/Git/.gitconfig"					"$HOME/.gitconfig"						'ln'
-link			"$CONFIGS_DIR/Nvim"								"$HOME/.config/nvim"					'ln'
-link			"$CONFIGS_DIR/Vim/.vimrc"						"$HOME/.vimrc"							'ln'
-link			"$CONFIGS_DIR/Nano/.nanorc"						"$HOME/.nanorc"							'ln'
-link			"$CONFIGS_DIR/Samba/smb.conf"					"/etc/samba/smb.conf"					'ln'
-link			"$CONFIGS_DIR/Samba/user_specific"				"/etc/samba/user_specific"				'ln'
-link			"$CONFIGS_DIR/Nginx/nginx.conf"					"/etc/nginx/nginx.conf"					'ln'
-link			"$CONFIGS_DIR/Nginx/sites-available"			"/etc/nginx/sites-available"			'ln'
-link			"$CONFIGS_DIR/Sddm/sddm.conf"					"/etc/sddm.conf"						'ln'
-link			"$CONFIGS_DIR/Sddm/themes"						"/usr/share/sddm/themes"				'cp'
-link			"$CONFIGS_DIR/Hyprland"							"$HOME/.config/hypr"					'ln'
-link			"$CONFIGS_DIR/Waybar"							"$HOME/.config/waybar"					'ln'
-link			"$CONFIGS_DIR/MimeAppsList/mimeapps.list"		"$HOME/.config/mimeapps.list"			'ln'
-link			"$CONFIGS_DIR/MangoHud"							"$HOME/.config/MangoHud"				'ln'
+deploy			"$CONFIGS_DIR/Git/.gitconfig"					"$HOME/.gitconfig"						'ln'
+deploy			"$CONFIGS_DIR/Nvim"								"$HOME/.config/nvim"					'ln'
+deploy			"$CONFIGS_DIR/Vim/.vimrc"						"$HOME/.vimrc"							'ln'
+deploy			"$CONFIGS_DIR/Nano/.nanorc"						"$HOME/.nanorc"							'ln'
+deploy			"$CONFIGS_DIR/Samba/smb.conf"					"/etc/samba/smb.conf"					'ln'
+deploy			"$CONFIGS_DIR/Samba/user_specific"				"/etc/samba/user_specific"				'ln'
+deploy			"$CONFIGS_DIR/Nginx/nginx.conf"					"/etc/nginx/nginx.conf"					'ln'
+deploy			"$CONFIGS_DIR/Nginx/sites-available"			"/etc/nginx/sites-available"			'ln'
+deploy			"$CONFIGS_DIR/Hyprland"							"$HOME/.config/hypr"					'ln'
+deploy			"$CONFIGS_DIR/Waybar"							"$HOME/.config/waybar"					'ln'
+deploy			"$CONFIGS_DIR/MimeAppsList/mimeapps.list"		"$HOME/.config/mimeapps.list"			'ln'
+deploy			"$CONFIGS_DIR/MangoHud"							"$HOME/.config/MangoHud"				'ln'
 
 exit 0

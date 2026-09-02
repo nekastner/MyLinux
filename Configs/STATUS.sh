@@ -100,10 +100,6 @@ is_linked			"$CONFIGS_DIR/Samba/user_specific"				"/etc/samba/user_specific"
 is_linked			"$CONFIGS_DIR/Nginx/nginx.conf"					"/etc/nginx/nginx.conf"
 is_linked			"$CONFIGS_DIR/Nginx/sites-available"			"/etc/nginx/sites-available"
 
-# sddm
-is_linked			"$CONFIGS_DIR/Sddm/sddm.conf"					"/etc/sddm.conf"
-is_same_structure	"$CONFIGS_DIR/Sddm/themes"						"/usr/share/sddm/themes"
-
 # hyprland
 is_linked			"$CONFIGS_DIR/Hyprland"							"$HOME/.config/hypr"
 
