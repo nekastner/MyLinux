@@ -17,9 +17,10 @@ bindkey '^H' backward-kill-word
 bindkey '\e[3~' delete-char
 bindkey '\e[3;5~' kill-word
 
-_COLOR_GREEN='\033[0;32m'
-_COLOR_RED='\033[0;31m'
 _COLOR_NEUTRAL='\033[0m'
+_COLOR_RED='\033[0;31m'
+_COLOR_GREEN='\033[0;32m'
+_COLOR_YELLOW='\033[0;33'
 
 vpy()
 {
@@ -45,20 +46,27 @@ vpip()
 mnt_crpt()
 {
 	local device=$1
-	local mapper=$2
+	local mapper_name=$2
 	local mountpoint=$3
+	local mapper="/dev/mapper/$mapper_name"
 
 	[[ $# == 3 ]] || {
-		printf "${_COLOR_RED}Usage: mnt-crpt <device> <mapper> <mountpoint>${_COLOR_NEUTRAL}"
+		printf "${_COLOR_RED}Usage: mnt-crpt <device> <mapper name> <mountpoint>${_COLOR_NEUTRAL}"
 		return 1
 	}
 
-	sudo cryptsetup open "$device" "$mapper" || return
+	sudo cryptsetup open "$device" "$mapper_name" || {
+		printf "${_COLOR_RED}ERROR ==> Unable to open '$device'!${_COLOR_NEUTRAL}"
+		return 1
+	}
 
-	sudo mount "$mapper" "$mountpoint" || {
+	sudo mount /dev/mapper/"$mapper_name" "$mountpoint" || {
+		printf "${_COLOR_RED}ERROR ==> Unable to mount '$mapper'!${_COLOR_NEUTRAL}"
+		printf "${_COLOR_YELLOW}Undoing cryptsetup for '$mapper' ('$device')...${_COLOR_NEUTRAL}"
 		sudo cryptsetup close "$mapper"
 		return 1
 	}
 
-	printf "Mounted '$device' ('$mapper') to '$mountpoint'."
+	printf "${_COLOR_GREEN}Mounted '$device' ('$mapper') to '$mountpoint'."
+	return 0
 }
