@@ -1,5 +1,7 @@
 #!/bin/bash
 
+EXIT_CODE=0
+
 CONFIGS_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 GREEN='\033[0;32m'
@@ -24,6 +26,7 @@ is_linked()
 	if [[ ! -e "$TARGET" || ! -L "$TARGET" || ! "$(realpath "$TARGET")" = "$SOURCE" ]];
 	then
 		pprint "$RED" "LINKED" "$SOURCE" "$TARGET"
+		EXIT_CODE=1
 		return 1
 	fi
 
@@ -40,6 +43,7 @@ has_same_content()
 	if [[ ! -e "$TARGET" ]] || ! cmp --silent "$SOURCE" "$TARGET";
 	then
 		pprint "$RED" "EQUAL " "$SOURCE" "$TARGET"
+		EXIT_CODE=1
 		return 1
 	fi
 	pprint "$GREEN" "EQUAL " "$SOURCE" "$TARGET"
@@ -54,6 +58,7 @@ is_same_structure()
 	if [[ ! -e "$TARGET" ]] || ! diff -qrr "$SOURCE" "$TARGET" >/dev/null 2>&1;
 	then
 		pprint "$RED" "EQUAL " "$SOURCE" "$TARGET"
+		EXIT_CODE=1
 		return 1
 	fi
 	pprint "$GREEN" "EQUAL " "$SOURCE" "$TARGET"
@@ -111,3 +116,5 @@ is_linked			"$CONFIGS_DIR/MimeAppsList/mimeapps.list"		"$HOME/.config/mimeapps.l
 
 # mango hud
 is_linked			"$CONFIGS_DIR/MangoHud"							"$HOME/.config/MangoHud"
+
+exit "$EXIT_CODE"
