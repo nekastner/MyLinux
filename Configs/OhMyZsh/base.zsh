@@ -8,7 +8,9 @@ alias clr='clear'
 alias now='date +"%Y/%m/%d %H:%M:%S%n week: %V | day: %u "'
 
 alias py='python'
-alias py-venv="python -m venv"
+alias py-venv='python -m venv'
+alias vpip='vpy -m pip'
+alias vpy-x2c='vpy -m pyx2cscope'
 
 bindkey '^[[1;5C' forward-word
 bindkey '^[[1;5D' backward-word
@@ -32,14 +34,6 @@ vpy()
 	}
 
 	"$venv_dir/bin/python" "${python_args[@]}"
-}
-
-vpip()
-{
-	local venv_dir="$1"
-	local pip_args=("${@:2}")
-
-	vpy "$venv_dir" -m pip "${pip_args[@]}"
 }
 
 mnt_crpt()
