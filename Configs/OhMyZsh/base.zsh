@@ -8,9 +8,6 @@ alias clr='clear'
 alias now='date +"%Y/%m/%d %H:%M:%S%n week: %V | day: %u "'
 
 alias py='python'
-alias py-venv='python -m venv'
-alias vpip='vpy -m pip'
-alias vpy-x2c='vpy -m pyx2cscope'
 
 bindkey '^[[1;5C' forward-word
 bindkey '^[[1;5D' backward-word
@@ -18,22 +15,40 @@ bindkey '^H' backward-kill-word
 bindkey '\e[3~' delete-char
 bindkey '\e[3;5~' kill-word
 
-_COLOR_NEUTRAL='\033[0m'
-_COLOR_RED='\033[0;31m'
-_COLOR_GREEN='\033[0;32m'
-_COLOR_YELLOW='\033[0;33'
-
 vpy()
 {
-	local venv_dir="$1"
+	local venv_name="$1"
 	local python_args=("${@:2}")
 
-	[[ -x "$venv_dir/bin/python" ]] || {
-		printf "${_COLOR_RED}Python venv not found: $venv_dir/bin/python${_COLOR_NEUTRAL}"
+	if [[ ! -x "$venv_name/bin/python" ]];
+	then
+		echo "ERROR ==> Python venv not found: '$venv_name/bin/python'" >&2
 		return 1
-	}
+	fi
 
-	"$venv_dir/bin/python" "${python_args[@]}"
+	"$venv_name/bin/python" "${python_args[@]}"
+}
+
+vpip()
+{
+	local venv_name="$1"
+	local pip_args=("${@:2}")
+	
+	vpy "$venv_name" -m pip "${pip_args[@]}"
+}
+
+vx2c()
+{
+	if (($# != 1));
+	then
+		echo "ERROR ==> Wrong amount of parameters!" >&2
+		echo "Hint: vx2c <venv name>"
+		return 1
+	fi
+
+	local venv_name="$1"
+
+	vpy "$venv_name" -m pyx2cscope
 }
 
 mnt_crpt()
@@ -43,23 +58,27 @@ mnt_crpt()
 	local mountpoint=$3
 	local mapper="/dev/mapper/$mapper_name"
 
-	[[ $# == 3 ]] || {
-		printf "${_COLOR_RED}Usage: mnt-crpt <device> <mapper name> <mountpoint>${_COLOR_NEUTRAL}"
+	if (($# != 3));
+	then
+		echo "ERROR ==> Wrong amount of parameters!" >&2
+		echo "Hint: mnt-crpt <device> <mapper name> <mountpoint>"
 		return 1
-	}
+	fi
 
-	sudo cryptsetup open "$device" "$mapper_name" || {
-		printf "${_COLOR_RED}ERROR ==> Unable to open '$device'!${_COLOR_NEUTRAL}"
+	if ! sudo cryptsetup open "$device" "$mapper_name";
+	then
+		echo "ERROR ==> Unable to open '$device'!" >&2
 		return 1
-	}
+	fi
 
-	sudo mount /dev/mapper/"$mapper_name" "$mountpoint" || {
-		printf "${_COLOR_RED}ERROR ==> Unable to mount '$mapper'!${_COLOR_NEUTRAL}"
-		printf "${_COLOR_YELLOW}Undoing cryptsetup for '$mapper' ('$device')...${_COLOR_NEUTRAL}"
+	if ! sudo mount /dev/mapper/"$mapper_name" "$mountpoint";
+	then
+		echo "ERROR ==> Unable to mount '$mapper'!" >&2
+		echo "Undoing cryptsetup for '$mapper' ('$device')..."
 		sudo cryptsetup close "$mapper"
 		return 1
-	}
+	fi
 
-	printf "${_COLOR_GREEN}Mounted '$device' ('$mapper') to '$mountpoint'."
+	echo "Mounted '$device' ('$mapper') to '$mountpoint'."
 	return 0
 }
