@@ -8,7 +8,6 @@ alias clr='clear'
 alias now='date +"%Y/%m/%d %H:%M:%S%n week: %V | day: %u "'
 
 alias py='python'
-alias pip='python -m pip'
 alias py-venv="python -m venv"
 
 bindkey '^[[1;5C' forward-word
