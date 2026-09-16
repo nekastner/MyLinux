@@ -27,7 +27,7 @@ wifi_con()
 	fi
 
 	local ifname=$1
-	lcoal ssid=$2
+	local ssid=$2
 
-	sudo nmcli --ask device wifi connect "$ssid" ifname "ifname"
+	sudo nmcli --ask device wifi connect "$ssid" ifname "$ifname"
 }
