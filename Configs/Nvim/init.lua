@@ -10,25 +10,8 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins")
 
--- style and behaviour settings
-
--- line numbers
-vim.opt.number = true
-vim.opt.relativenumber = true
-
--- tabs
-local tabsize = 4
-vim.opt.tabstop = tabsize
-vim.opt.softtabstop = tabsize
-vim.opt.shiftwidth = tabsize
-vim.opt.expandtab = false
-
--- shell commands
-vim.opt.shell = "zsh"
-vim.opt.shellcmdflag = "-ic"
-
--- load project related configs
-vim.opt.exrc = true
+require("configs.options")
+require("configs.keymaps")
 
 vim.api.nvim_create_autocmd("FileType", {
 
