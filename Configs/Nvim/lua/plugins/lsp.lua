@@ -12,11 +12,21 @@ return {
 
     	require("mason").setup()
     	require("mason-lspconfig").setup({
-			ensure_installed = { "pyright", "ts_ls", "lua_ls", "tailwindcss", "cssls", "marksman" }
+			ensure_installed = { "clangd", "pyright", "ts_ls", "lua_ls", "tailwindcss", "cssls", "marksman" }
     	})
 
     	local capabilities = require('blink.cmp').get_lsp_capabilities()
     	local configs = {
+
+			clangd = {
+				cmd = {
+					"clangd",
+					"--background-index",
+					"--clang-tidy",
+					"--completion-style=detailed",
+					"--header-insertion=iwyu",
+				},
+			},
 
 			pyright = {},
 
