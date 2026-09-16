@@ -51,7 +51,8 @@ vx2c()
 	vpy "$venv_name" -m pyx2cscope
 }
 
-mnt_crpt()
+alias mnt-crypt='mnt_crypt'
+mnt_cyrpt()
 {
 	local device=$1
 	local mapper_name=$2
