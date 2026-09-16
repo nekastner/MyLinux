@@ -12,7 +12,7 @@ return {
 
     	require("mason").setup()
     	require("mason-lspconfig").setup({
-			ensure_installed = { "clangd", "pyright", "ts_ls", "lua_ls", "tailwindcss", "cssls", "marksman" }
+			ensure_installed = { "clangd", "pyright", "ts_ls", "lua_ls", "tailwindcss", "cssls", "marksman", "rust_analyzer" }
     	})
 
     	local capabilities = require('blink.cmp').get_lsp_capabilities()
@@ -49,6 +49,8 @@ return {
 					},
 	    		},
 			},
+
+			rust_analyzer = {},
 
 		}
 
