@@ -3,5 +3,15 @@ alias waybar-reload="pkill -USR2 waybar"
 alias to-clipboard='to_clipboard'
 to_clipboard()
 {
-	cat $1 | wl-copy
+	if [[ $# != 1 ]];
+	then
+		echo "ERROR ==> Wrong usage!" >&2
+		echo "Parameters: <file name>"
+		return 1
+	fi
+
+	local file_name=$1
+
+	cat "$file_name" | wl-copy
+	return 0
 }
