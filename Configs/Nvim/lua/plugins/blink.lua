@@ -7,8 +7,11 @@ return {
 
 		keymap = {
 			preset = 'super-tab',
-			['<CR>'] = { 'accept', 'fallback' },
-			['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
+
+			['<C-CR>'] = { 'show', 'fallback', mode = {'n', 'i'} },
+			['<CR>'] = { 'accept', 'fallback', mode = {'n', 'i'} },
+			['<C-space>'] = { 'show_documentation', 'fallback', mode = {'n', 'i'} },
+			['<C-e>'] = { 'hide', 'hide_documentation', 'fallback', mode = { 'n', 'i' } },
 		},
 
 		completion = {
