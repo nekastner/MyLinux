@@ -17,14 +17,14 @@ bindkey '\e[3;5~' kill-word
 
 vpy()
 {
-	local venv_name="$1"
-	local python_args=("${@:2}")
-
 	if [[ ! -x "$venv_name/bin/python" ]];
 	then
 		echo "ERROR ==> Python venv not found: '$venv_name/bin/python'" >&2
 		return 1
 	fi
+
+	local venv_name="$1"
+	local python_args=("${@:2}")
 
 	"$venv_name/bin/python" "${python_args[@]}"
 }
@@ -41,8 +41,8 @@ vx2c()
 {
 	if (($# != 1));
 	then
-		echo "ERROR ==> Wrong amount of parameters!" >&2
-		echo "Hint: vx2c <venv name>"
+		echo "ERROR ==> Wrong usage!" >&2
+		echo "Parameters: <venv name>"
 		return 1
 	fi
 
@@ -54,17 +54,17 @@ vx2c()
 alias mnt-crypt='mnt_crypt'
 mnt_cyrpt()
 {
-	local device=$1
-	local mapper_name=$2
-	local mountpoint=$3
-	local mapper="/dev/mapper/$mapper_name"
-
 	if (($# != 3));
 	then
 		echo "ERROR ==> Wrong amount of parameters!" >&2
 		echo "Hint: mnt-crpt <device> <mapper name> <mountpoint>"
 		return 1
 	fi
+
+	local device=$1
+	local mapper_name=$2
+	local mountpoint=$3
+	local mapper="/dev/mapper/$mapper_name"
 
 	if ! sudo cryptsetup open "$device" "$mapper_name";
 	then
