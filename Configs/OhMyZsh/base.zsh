@@ -17,22 +17,22 @@ bindkey '\e[3;5~' kill-word
 
 vpy()
 {
+	local venv_name=$1
+	local python_args=${@:2}
+
 	if [[ ! -x "$venv_name/bin/python" ]];
 	then
 		echo "ERROR ==> Python venv not found: '$venv_name/bin/python'" >&2
 		return 1
 	fi
 
-	local venv_name="$1"
-	local python_args=("${@:2}")
-
 	"$venv_name/bin/python" "${python_args[@]}"
 }
 
 vpip()
 {
-	local venv_name="$1"
-	local pip_args=("${@:2}")
+	local venv_name=$1
+	local pip_args=${@:2}
 	
 	vpy "$venv_name" -m pip "${pip_args[@]}"
 }
@@ -46,7 +46,7 @@ vx2c()
 		return 1
 	fi
 
-	local venv_name="$1"
+	local venv_name=$1
 
 	vpy "$venv_name" -m pyx2cscope
 }
@@ -56,8 +56,8 @@ mnt_cyrpt()
 {
 	if (($# != 3));
 	then
-		echo "ERROR ==> Wrong amount of parameters!" >&2
-		echo "Hint: mnt-crpt <device> <mapper name> <mountpoint>"
+		echo "ERROR ==> Wrong usage!" >&2
+		echo "Parameters: <device> <mapper name> <mountpoint>"
 		return 1
 	fi
 
@@ -81,5 +81,4 @@ mnt_cyrpt()
 	fi
 
 	echo "Mounted '$device' ('$mapper') to '$mountpoint'."
-	return 0
 }
