@@ -2,9 +2,10 @@
 
 CONFIGS_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
-GREEN='\033[0;32m'
-RED='\033[0;31m'
-NEUTRAL='\033[0m'
+_COLOR_NEUTRAL='\033[0m'
+_COLOR_RED='\033[0;31m'
+_COLOR_GREEN='\033[0;32m'
+_COLOR_YELLOW='\033[0;32m'
 
 sudo -v
 
@@ -48,10 +49,10 @@ deploy() {
 		read -rp "Overwrite '$TARGET' by '$SOURCE'? [y/N] " user_confirmation < /dev/tty
 		if [[ ! "$user_confirmation" =~ ^[yY]$ ]];
 		then
-			printf "${RED}Aborted overwriting '$TARGET' by '$SOURCE'.${NEUTRAL}\n"
+			printf "${_COLOR_RED}Aborted overwriting '$TARGET' by '$SOURCE'.${_COLOR_NEUTRAL}\n"
 			return 1
 		fi	
-		printf "'$TARGET' will become overwritten...\n"
+		printf "${_COLOR_YELLOW}'$TARGET' will become overwritten...${_COLOR_NEUTRAL}\n"
 		$EXEC rm -rf "$TARGET"
 	else
 		if [[ "$MODE" == 'ln' ]];
@@ -59,7 +60,7 @@ deploy() {
 			read -rp "Link '$SOURCE' to '$TARGET'? [y/N] " user_confirmation < /dev/tty
 			if [[ ! "$user_confirmation" =~	^[yY]$ ]];
 			then
-				printf "${RED}Aborted linking '$SOURCE' to '$TARGET'.${NEUTRAL}\n"
+				printf "${_COLOR_RED}Aborted linking '$SOURCE' to '$TARGET'.${_COLOR_NEUTRAL}\n"
 				return 1
 			fi
 		elif [[ "$MODE" == 'cp' ]];
@@ -67,7 +68,7 @@ deploy() {
 			read -rp "Copy '$SOURCE' to '$TARGET'? [y/N] " user_confirmation < /dev/tty
 			if [[ ! "$user_confirmation" =~	^[yY]$ ]];
 			then
-				printf "${RED}Aborted copying '$SOURCE' to '$TARGET'.${NEUTRAL}\n"
+				printf "${_COLOR_RED}Aborted copying '$SOURCE' to '$TARGET'.${_COLOR_NEUTRAL}\n"
 				return 1
 			fi
 		fi
@@ -78,11 +79,11 @@ deploy() {
 	if [[ "$MODE" == 'ln' ]];
 	then
 		$EXEC ln -sf "$SOURCE" "$TARGET"
-		printf "${GREEN}Linked '$SOURCE' to '$TARGET'.${NEUTRAL}\n"
+		printf "${_COLOR_GREEN}Linked '$SOURCE' to '$TARGET'.${_COLOR_NEUTRAL}\n"
 	elif [[ "$MODE" == 'cp' ]];
 	then
 		$EXEC cp -rf "$SOURCE" "$TARGET"
-		printf "${GREEN}Copied '$SOURCE' to '$TARGET'.${NEUTRAL}\n"
+		printf "${_COLOR_GREEN}Copied '$SOURCE' to '$TARGET'.${_COLOR_NEUTRAL}\n"
 	fi
 
 	if [[ ! "$TARGET" =~ ^/home/ ]];
@@ -117,5 +118,3 @@ deploy			"$CONFIGS_DIR/Hyprland"							"$HOME/.config/hypr"					'ln'
 deploy			"$CONFIGS_DIR/Waybar"							"$HOME/.config/waybar"					'ln'
 deploy			"$CONFIGS_DIR/MimeAppsList/mimeapps.list"		"$HOME/.config/mimeapps.list"			'ln'
 deploy			"$CONFIGS_DIR/MangoHud"							"$HOME/.config/MangoHud"				'ln'
-
-exit 0

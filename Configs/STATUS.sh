@@ -4,9 +4,9 @@ EXIT_CODE=0
 
 CONFIGS_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
-GREEN='\033[0;32m'
-RED='\033[0;31m'
-NEUTRAL='\033[0m'
+_COLOR_NEUTRAL='\033[0m'
+_COLOR_RED='\033[0;31m'
+_COLOR_GREEN='\033[0;32m'
 
 pprint()
 {
@@ -15,7 +15,7 @@ pprint()
 	local SOURCE=$3
 	local TARGET=$4
 
-	printf "[ ${STATUS_COLOR}${STATUS_TEXT}${NEUTRAL} ] %-50s -> %s\n" "$TARGET" "$SOURCE"
+	printf "[ ${STATUS_COLOR}${STATUS_TEXT}${_COLOR_NEUTRAL} ] %-50s -> %s\n" "$TARGET" "$SOURCE"
 }
 
 is_linked()
@@ -25,12 +25,12 @@ is_linked()
 
 	if [[ ! -e "$TARGET" || ! -L "$TARGET" || ! "$(realpath "$TARGET")" = "$SOURCE" ]];
 	then
-		pprint "$RED" "LINKED" "$SOURCE" "$TARGET"
+		pprint "$_COLOR_RED" "LINKED" "$SOURCE" "$TARGET"
 		EXIT_CODE=1
 		return 1
 	fi
 
-	pprint "$GREEN" "LINKED" "$SOURCE" "$TARGET"
+	pprint "$_COLOR_GREEN" "LINKED" "$SOURCE" "$TARGET"
 	return 0
 
 }
@@ -42,11 +42,11 @@ has_same_content()
 
 	if [[ ! -e "$TARGET" ]] || ! cmp --silent "$SOURCE" "$TARGET";
 	then
-		pprint "$RED" "EQUAL " "$SOURCE" "$TARGET"
+		pprint "$_COLOR_RED" "EQUAL " "$SOURCE" "$TARGET"
 		EXIT_CODE=1
 		return 1
 	fi
-	pprint "$GREEN" "EQUAL " "$SOURCE" "$TARGET"
+	pprint "$_COLOR_GREEN" "EQUAL " "$SOURCE" "$TARGET"
 	return 0
 }
 
@@ -57,16 +57,16 @@ is_same_structure()
 
 	if [[ ! -e "$TARGET" ]] || ! diff -qrr "$SOURCE" "$TARGET" >/dev/null 2>&1;
 	then
-		pprint "$RED" "EQUAL " "$SOURCE" "$TARGET"
+		pprint "$_COLOR_RED" "EQUAL " "$SOURCE" "$TARGET"
 		EXIT_CODE=1
 		return 1
 	fi
-	pprint "$GREEN" "EQUAL " "$SOURCE" "$TARGET"
+	pprint "$_COLOR_GREEN" "EQUAL " "$SOURCE" "$TARGET"
 	return 0
 }
 
 # output header
-pprint "$NEUTRAL" "STATUS" "SOURCE" "TARGET"
+pprint "$_COLOR_NEUTRAL" "STATUS" "SOURCE" "TARGET"
 
 ###	ACTION			SOURCE											TARGET
 
