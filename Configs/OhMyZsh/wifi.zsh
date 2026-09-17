@@ -10,7 +10,7 @@ wifi_st()
 		return 1
 	fi
 
-	local ifname=$1
+	local ifname="$1"
 	
 	nmcli device wifi show ifname "$ifname"
 	nmcli device show "$ifname"
@@ -26,8 +26,8 @@ wifi_con()
 		return 1
 	fi
 
-	local ifname=$1
-	local ssid=$2
+	local ifname="$1"
+	local ssid="$2"
 
 	sudo nmcli --ask device wifi connect "$ssid" ifname "$ifname"
 }

@@ -10,7 +10,7 @@ to_clipboard()
 		return 1
 	fi
 
-	local file_name=$1
+	local file_name="$1"
 
 	if ! [[ -e "$file_name" && -r "$file_name" ]];
 	then

@@ -7,18 +7,18 @@ alias src="source $HOME/.zshrc"
 alias clr='clear'
 alias now='date +"%Y/%m/%d %H:%M:%S%n week: %V | day: %u "'
 
-alias py='python'
-
 bindkey '^[[1;5C' forward-word
 bindkey '^[[1;5D' backward-word
 bindkey '^H' backward-kill-word
 bindkey '\e[3~' delete-char
 bindkey '\e[3;5~' kill-word
 
+alias py='python'
+
 vpy()
 {
-	local venv_name=$1
-	local python_args=${@:2}
+	local venv_name="$1"
+	local python_args=("${@:2}")
 
 	if [[ ! -x "$venv_name/bin/python" ]];
 	then
@@ -31,8 +31,8 @@ vpy()
 
 vpip()
 {
-	local venv_name=$1
-	local pip_args=${@:2}
+	local venv_name="$1"
+	local pip_args=("${@:2}")
 	
 	vpy "$venv_name" -m pip "${pip_args[@]}"
 }
@@ -46,7 +46,7 @@ vx2c()
 		return 1
 	fi
 
-	local venv_name=$1
+	local venv_name="$1"
 
 	vpy "$venv_name" -m pyx2cscope
 }
@@ -61,9 +61,9 @@ mnt_cyrpt()
 		return 1
 	fi
 
-	local device=$1
-	local mapper_name=$2
-	local mountpoint=$3
+	local device="$1"
+	local mapper_name="$2"
+	local mountpoint="$3"
 	local mapper="/dev/mapper/$mapper_name"
 
 	if ! sudo cryptsetup open "$device" "$mapper_name";
