@@ -24,6 +24,6 @@ export USER_GID=`id -g`; sudo --preserve-env=USER_GID sh -c 'echo "KERNEL==\"hid
 # create executable
 cat << 'EOF' > RUN.sh
 #!/bin/bash
-cd "$(dirname "${BASH_SOURCE[0]}")/vial-gui" && QT_QPA_PLATFORM=xcb venv/bin/fbs run
+cd "$(dirname "${BASH_SOURCE[0]}")" && QT_QPA_PLATFORM=xcb venv/bin/fbs run
 EOF
 chmod +x RUN.sh
