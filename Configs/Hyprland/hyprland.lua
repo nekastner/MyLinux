@@ -314,7 +314,7 @@ end)
 
 -- IMPORT HOST-SPECIFIC CONFIGS
 
-local config = string.format("%s/.config/hypr/%s.lua", os.getenv("HOME"), hostname)
+local config = string.format("%s/.config/hypr/hyprland_host_specific/%s.lua", os.getenv("HOME"), hostname)
 local file = io.open(config, "r")
 if file then
     file:close()
