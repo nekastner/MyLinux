@@ -4,7 +4,6 @@ local terminal = "kitty"
 local menu = "hyprlauncher"
 local file_explorer = "dolphin"
 
-local hostname = io.popen("hostname"):read("*l")
 local colorTemperature = 4500
 local monitorScale = 1.0
 
@@ -314,9 +313,14 @@ end)
 
 -- IMPORT HOST-SPECIFIC CONFIGS
 
-local config = string.format("%s/.config/hypr/hyprland_host_specific/%s.lua", os.getenv("HOME"), hostname)
-local file = io.open(config, "r")
-if file then
-    file:close()
-    dofile(config)
+local hostname_file = io.open("/etc/hostname", "r")
+if hostname_file then
+	local hostname = hostname_file:read("*l")
+	hostname_file:close()
+	local config = string.format("%s/.config/hypr/hyprland_host_specific/%s.lua", os.getenv("HOME"), hostname)
+	local file = io.open(config, "r")
+	if file then
+	    file:close()
+	    require(string.format("hyprland_host_specific.%s", hostname))
+	end
 end
