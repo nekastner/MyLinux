@@ -1,21 +1,5 @@
 alias waybar-reload="pkill -USR2 waybar"
 
-alias rotate-monitor='rotate_monitor'
-rotate_monitor()
-{
-	if (( $# != 2 ));
-	then
-		echo "ERROR ==> Wrong usage!"
-		echo "Parameters: <monitor name> <rotation>"
-		return 1
-	fi
-
-	local name="$1"
-	local rotation="$2"
-
-	hyprctl keyword monitor "${name},preferred,auto,1,transform,${rotation}"
-}
-
 alias to-clipboard='to_clipboard'
 to_clipboard()
 {
