@@ -22,7 +22,7 @@ vpy()
 
 	if [[ ! -x "$venv_name/bin/python" ]];
 	then
-		echo "ERROR ==> Python venv not found: '$venv_name/bin/python'" >&2
+		echo "ERROR ==> Python venv not found: '$venv_name/bin/python'"
 		return 1
 	fi
 
@@ -41,7 +41,7 @@ vx2c()
 {
 	if (($# != 1));
 	then
-		echo "ERROR ==> Wrong usage!" >&2
+		echo "ERROR ==> Wrong usage!"
 		echo "Parameters: <venv name>"
 		return 1
 	fi
@@ -56,7 +56,7 @@ mnt_cyrpt()
 {
 	if (($# != 3));
 	then
-		echo "ERROR ==> Wrong usage!" >&2
+		echo "ERROR ==> Wrong usage!"
 		echo "Parameters: <device> <mapper name> <mountpoint>"
 		return 1
 	fi
@@ -68,13 +68,13 @@ mnt_cyrpt()
 
 	if ! sudo cryptsetup open "$device" "$mapper_name";
 	then
-		echo "ERROR ==> Unable to open '$device'!" >&2
+		echo "ERROR ==> Unable to open '$device'!"
 		return 1
 	fi
 
 	if ! sudo mount /dev/mapper/"$mapper_name" "$mountpoint";
 	then
-		echo "ERROR ==> Unable to mount '$mapper'!" >&2
+		echo "ERROR ==> Unable to mount '$mapper'!"
 		echo "Undoing cryptsetup for '$mapper' ('$device')..."
 		sudo cryptsetup close "$mapper"
 		return 1

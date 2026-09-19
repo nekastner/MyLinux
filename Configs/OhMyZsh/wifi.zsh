@@ -5,7 +5,7 @@ wifi_st()
 {
 	if (( $# != 1 ));
 	then
-		echo "ERROR ==> Wrong usage!" >&2
+		echo "ERROR ==> Wrong usage!"
 		echo "Parameters: <ifname>"
 		return 1
 	fi
@@ -21,7 +21,7 @@ wifi_con()
 {
 	if (( $# != 2 ));
 	then
-		echo "ERROR ==> Wrong usage!" >&2
+		echo "ERROR ==> Wrong usage!"
 		echo "Parameters: <ifname> <ssid>"
 		return 1
 	fi
