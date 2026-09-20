@@ -166,23 +166,22 @@ local mainMod = "SUPER"
 -- general
 hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + C", hl.dsp.window.close())
-hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch exit"))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(file_explorer))
 hl.bind(mainMod .. " + K", hl.dsp.exec_cmd("hyprctl kill"))
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("pkill -USR2 waybar"))
-hl.bind(mainMod .. " + P", hl.dsp.layout("promote"))
 
--- move focus
+-- move focus between windows
 hl.bind(mainMod .. " + left",	hl.dsp.focus({ direction = "left" }))
 hl.bind(mainMod .. " + right",	hl.dsp.focus({ direction = "right" }))
 hl.bind(mainMod .. " + up",		hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + down",	hl.dsp.focus({ direction = "down" }))
 
--- move workspace
+-- move windows
 hl.bind(mainMod .. " + SHIFT + left",	hl.dsp.layout("swapcol l"))
 hl.bind(mainMod .. " + SHIFT + right",	hl.dsp.layout("swapcol r"))
+hl.bind(mainMod .. " + P", hl.dsp.layout("promote"))
 
 -- move (windows) in workspaces
 for i = 1, 10 do
@@ -191,14 +190,20 @@ for i = 1, 10 do
 	hl.bind(mainMod .. " + SHIFT + " .. key,	hl.dsp.window.move({ workspace = i }))
 end
 
-hl.bind(mainMod .. " + S",			hl.dsp.workspace.toggle_special("magic"))
-hl.bind(mainMod .. " + SHIFT + S",	hl.dsp.window.move({ workspace = "special:magic" }))
+-- magic workspace
+hl.bind(mainMod .. " + M",			hl.dsp.workspace.toggle_special("magic"))
+hl.bind(mainMod .. " + SHIFT + M",	hl.dsp.window.move({ workspace = "special:magic" }))
 
 -- scoll through workspaces
 hl.bind(mainMod .. " + mouse_down",	hl.dsp.focus({ workspace = "e+1" }))
 hl.bind(mainMod .. " + mouse_up",	hl.dsp.focus({ workspace = "e-1" }))
 
--- manipulate windows with the mouse
+-- take screenshots
+hl.bind(mainMod .. " + S",			hl.dsp.exec_cmd("hyprshot -m window"))
+hl.bind(mainMod .. " + CTRL + S",	hl.dsp.exec_cmd("hyprshot -m output"))
+hl.bind(mainMod .. " + SHIFT + S",	hl.dsp.exec_cmd("hyprshot -m region"))
+
+-- manipulate windows by mouse
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag())
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize())
 
