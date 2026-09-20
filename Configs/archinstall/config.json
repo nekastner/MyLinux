@@ -13,7 +13,7 @@
             "enabled": true
         }
     },
-    "archinstall-language": "English",
+    "archinstall_language": "English",
     "auth_config": {},
     "bootloader_config": {
         "bootloader": "Refind",
@@ -26,6 +26,7 @@
         "linux"
     ],
     "locale_config": {
+        "console_font": "default8x16",
         "kb_layout": "de-latin1-nodeadkeys",
         "sys_enc": "UTF-8",
         "sys_lang": "en_US.UTF-8"
@@ -155,6 +156,7 @@
         "git",
         "github-cli",
         "gnome-disk-utility",
+        "hardinfo2",
         "hunspell-de",
         "hunspell-en_us",
         "hyprlauncher",
@@ -182,7 +184,7 @@
         "wakeonlan",
         "waybar",
         "wf-recorder",
-        "hardinfo2"
+        "hyprshot"
     ],
     "pacman_config": {
         "color": true,
@@ -210,5 +212,5 @@
         "enabled": true
     },
     "timezone": "Europe/Berlin",
-    "version": "4.3"
+    "version": "4.4"
 }
