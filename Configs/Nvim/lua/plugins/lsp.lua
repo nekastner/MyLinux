@@ -12,7 +12,7 @@ return {
 
     	require("mason").setup()
     	require("mason-lspconfig").setup({
-			ensure_installed = { "clangd", "pyright", "ts_ls", "lua_ls", "tailwindcss", "cssls", "marksman", "rust_analyzer" }
+			ensure_installed = { "clangd", "pyright", "ts_ls", "lua_ls", "tailwindcss", "cssls", "marksman", "rust_analyzer", "bashls" }
     	})
 
     	local capabilities = require('blink.cmp').get_lsp_capabilities()
@@ -30,7 +30,20 @@ return {
 
 			pyright = {},
 
-			lua_ls = {},
+			lua_ls = {
+				settings = {
+					Lua = {
+						diagnostics = {
+							globals = { "vim", "hl" },
+						},
+						workspace = {
+							library = vim.api.nvim_get_runtime_file("", true),
+							checkThirdParty = false,
+						},
+						telemetry = { enable = false },
+					},
+				},
+			},
 
 			tailwindcss = {},
 
@@ -51,6 +64,10 @@ return {
 			},
 
 			rust_analyzer = {},
+
+			bashls = {
+				filetypes = { "sh", "bash", "zsh" },
+			},
 
 		}
 
