@@ -164,17 +164,15 @@ hl.device({
 local mainMod = "SUPER"
 
 -- general
-hl.bind(mainMod .. " + Q",		hl.dsp.exec_cmd(terminal))
-hl.bind(mainMod .. " + C",		hl.dsp.window.close())
-hl.bind(mainMod .. " + M",		hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch exit"))
-hl.bind(mainMod .. " + V",		hl.dsp.window.float({ action = "toggle" }))
-hl.bind(mainMod .. " + R",		hl.dsp.exec_cmd(menu))
-hl.bind(mainMod .. " + P",		hl.dsp.window.pseudo())
-hl.bind(mainMod .. " + L",		hl.dsp.exec_cmd("hyprlock"))
-hl.bind(mainMod .. " + Return",	hl.dsp.layout("swapwithmaster"))
-hl.bind(mainMod .. " + E",		hl.dsp.exec_cmd(file_explorer))
-hl.bind(mainMod .. " + K",		hl.dsp.exec_cmd("hyprctl kill"))
-hl.bind(mainMod .. " + W",		hl.dsp.exec_cmd("pkill -USR2 waybar"))
+hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(terminal))
+hl.bind(mainMod .. " + C", hl.dsp.window.close())
+hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch exit"))
+hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
+hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
+hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(file_explorer))
+hl.bind(mainMod .. " + K", hl.dsp.exec_cmd("hyprctl kill"))
+hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("pkill -USR2 waybar"))
+hl.bind(mainMod .. " + P", hl.dsp.layout("promote"))
 
 -- move focus
 hl.bind(mainMod .. " + left",	hl.dsp.focus({ direction = "left" }))
@@ -183,10 +181,8 @@ hl.bind(mainMod .. " + up",		hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + down",	hl.dsp.focus({ direction = "down" }))
 
 -- move workspace
-hl.bind(mainMod .. " + SHIFT + left",	hl.dsp.workspace.move({ monitor = "l" }))
-hl.bind(mainMod .. " + SHIFT + right",	hl.dsp.workspace.move({ monitor = "r" }))
-hl.bind(mainMod .. " + SHIFT + up",		hl.dsp.workspace.move({ monitor = "u" }))
-hl.bind(mainMod .. " + SHIFT + down",	hl.dsp.workspace.move({ monitor = "d" }))
+hl.bind(mainMod .. " + SHIFT + left",	hl.dsp.layout("swapcol l"))
+hl.bind(mainMod .. " + SHIFT + right",	hl.dsp.layout("swapcol r"))
 
 -- move (windows) in workspaces
 for i = 1, 10 do
@@ -198,23 +194,27 @@ end
 hl.bind(mainMod .. " + S",			hl.dsp.workspace.toggle_special("magic"))
 hl.bind(mainMod .. " + SHIFT + S",	hl.dsp.window.move({ workspace = "special:magic" }))
 
+-- scoll through workspaces
 hl.bind(mainMod .. " + mouse_down",	hl.dsp.focus({ workspace = "e+1" }))
 hl.bind(mainMod .. " + mouse_up",	hl.dsp.focus({ workspace = "e-1" }))
 
+-- manipulate windows with the mouse
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag())
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize())
 
+-- sound settings
 hl.bind("XF86AudioRaiseVolume",		hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true, repeating = true })
 hl.bind("XF86AudioLowerVolume",		hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"), { locked = true, repeating = true })
 hl.bind("XF86AudioMute",			hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"), { locked = true, repeating = true })
 hl.bind("XF86AudioMicMute",			hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"), { locked = true, repeating = true })
+hl.bind("XF86AudioNext",			hl.dsp.exec_cmd("playerctl next"), { locked = true })
+hl.bind("XF86AudioPause",			hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
+hl.bind("XF86AudioPlay",			hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
+hl.bind("XF86AudioPrev",			hl.dsp.exec_cmd("playerctl previous"), { locked = true })
+
+-- brightness settings
 hl.bind("XF86MonBrightnessUp",		hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"), { locked = true, repeating = true })
 hl.bind("XF86MonBrightnessDown",	hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"), { locked = true, repeating = true })
-
-hl.bind("XF86AudioNext",	hl.dsp.exec_cmd("playerctl next"), { locked = true })
-hl.bind("XF86AudioPause",	hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
-hl.bind("XF86AudioPlay",	hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
-hl.bind("XF86AudioPrev",	hl.dsp.exec_cmd("playerctl previous"), { locked = true })
 
 -- WINDOW RULES
 
@@ -259,7 +259,7 @@ hl.config({
         },
         resize_on_border = true,
         allow_tearing = false,
-        layout = "master",
+        layout = "scrolling",
     },
     decoration = {
         rounding = 5,
@@ -281,9 +281,6 @@ hl.config({
     },
     animations = {
         enabled = true,
-    },
-    master = {
-        new_status = "master",
     },
     misc = {
         force_default_wallpaper = 1,
