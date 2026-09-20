@@ -174,6 +174,7 @@ hl.bind(mainMod .. " + L",		hl.dsp.exec_cmd("hyprlock"))
 hl.bind(mainMod .. " + Return",	hl.dsp.layout("swapwithmaster"))
 hl.bind(mainMod .. " + E",		hl.dsp.exec_cmd(file_explorer))
 hl.bind(mainMod .. " + K",		hl.dsp.exec_cmd("hyprctl kill"))
+hl.bind(mainMod .. " + W",		hl.dsp.exec_cmd("pkill -USR2 waybar"))
 
 -- move focus
 hl.bind(mainMod .. " + left",	hl.dsp.focus({ direction = "left" }))
