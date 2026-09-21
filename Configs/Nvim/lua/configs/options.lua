@@ -11,3 +11,14 @@ vim.opt.shell = "zsh"
 vim.opt.shellcmdflag = "-ic"
 
 vim.opt.exrc = true
+
+vim.opt.list = true
+vim.opt.listchars = {
+	tab = '→ ',
+	trail = '•',
+	space = '·',
+	nbsp = '␣',
+	eol = '↲',
+	extends = '⟩',
+	precedes = '⟨',
+}
