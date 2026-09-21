@@ -1,26 +1,25 @@
---[[
 hl.monitor({
 	output = "HDMI-A-1",
-	mode = "preferred",
+	mode = "1920x1080@120",
 	position = "0x0",
 	scale = 1,
+	transform = 0,
 })
-
-hl.monitor({
-	output = "HDMI-A-2",
-	mode = "preferred",
-	position = "1920x0",
-	scale = 1,
-	transform = 1,
-})
-
-for i = 1, 8 do
-	hl.workspace({
-		id = i,
+for i = 1, 10 do
+	hl.workspace_rule({
+		workspace = i,
 		monitor = "HDMI-A-1",
 	})
 end
 
+--[[
+hl.monitor({
+	output = "HDMI-A-2",
+	mode = "1080x1920@60",
+	position = "1920x0",
+	scale = 1,
+	transform = 3,
+})
 for i = 9, 10 do
 	hl.workspace({
 		id = i,
