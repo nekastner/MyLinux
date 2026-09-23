@@ -1,0 +1,14 @@
+gcc
+make
+dotnet-host
+dotnet-runtime
+dotnet-sdk
+aspnet-runtime
+jdk-openjdk
+nodejs
+npm
+jetbrains-toolbox
+unityhub
+ghidra
+chromium
+nginx
