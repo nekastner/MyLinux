@@ -95,6 +95,9 @@ is_linked			"$CONFIGS_DIR/Vim/.vimrc"						"$HOME/.vimrc"
 # nano
 is_linked			"$CONFIGS_DIR/Nano/.nanorc"						"$HOME/.nanorc"
 
+# clang
+is_linked			"$CONFIGS_DIR/Clang/.clang-format"				"$HOME/.clang-format"
+
 # samba
 is_linked			"$CONFIGS_DIR/Samba/smb.conf"					"/etc/samba/smb.conf"
 is_linked			"$CONFIGS_DIR/Samba/user_specific"				"/etc/samba/user_specific"

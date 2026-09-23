@@ -112,6 +112,7 @@ deploy			"$CONFIGS_DIR/Git/.gitconfig"					"$HOME/.gitconfig"						'ln' 0
 deploy			"$CONFIGS_DIR/Nvim"								"$HOME/.config/nvim"					'ln' 0
 deploy			"$CONFIGS_DIR/Vim/.vimrc"						"$HOME/.vimrc"							'ln' 0
 deploy			"$CONFIGS_DIR/Nano/.nanorc"						"$HOME/.nanorc"							'ln' 0
+deploy			"$CONFIGS_DIR/Clang.clang-format"				"$HOME/.clang-format"					'ln' 0
 deploy			"$CONFIGS_DIR/Samba/smb.conf"					"/etc/samba/smb.conf"					'ln' 1
 deploy			"$CONFIGS_DIR/Samba/user_specific"				"/etc/samba/user_specific"				'ln' 1
 deploy			"$CONFIGS_DIR/Nginx/nginx.conf"					"/etc/nginx/nginx.conf"					'ln' 1
