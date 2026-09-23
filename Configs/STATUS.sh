@@ -10,18 +10,18 @@ _COLOR_GREEN='\033[0;32m'
 
 pprint()
 {
-	local STATUS_COLOR=$1
-	local STATUS_TEXT=$2
-	local SOURCE=$3
-	local TARGET=$4
+	local STATUS_COLOR="$1"
+	local STATUS_TEXT="$2"
+	local SOURCE="$3"
+	local TARGET="$4"
 
 	printf "[ ${STATUS_COLOR}${STATUS_TEXT}${_COLOR_NEUTRAL} ] %-50s -> %s\n" "$TARGET" "$SOURCE"
 }
 
 is_linked()
 {
-	local SOURCE=$1
-	local TARGET=$2
+	local SOURCE="$1"
+	local TARGET="$2"
 
 	if [[ ! -e "$TARGET" || ! -L "$TARGET" || ! "$(realpath "$TARGET")" = "$SOURCE" ]];
 	then
@@ -31,14 +31,12 @@ is_linked()
 	fi
 
 	pprint "$_COLOR_GREEN" "LINKED" "$SOURCE" "$TARGET"
-	return 0
-
 }
 
 has_same_content()
 {
-	local SOURCE=$1
-	local TARGET=$2
+	local SOURCE="$1"
+	local TARGET="$2"
 
 	if [[ ! -e "$TARGET" ]] || ! cmp --silent "$SOURCE" "$TARGET";
 	then
@@ -46,14 +44,14 @@ has_same_content()
 		EXIT_CODE=1
 		return 1
 	fi
+
 	pprint "$_COLOR_GREEN" "EQUAL " "$SOURCE" "$TARGET"
-	return 0
 }
 
 is_same_structure()
 {
-	local SOURCE=$1
-	local TARGET=$2
+	local SOURCE="$1"
+	local TARGET="$2"
 
 	if [[ ! -e "$TARGET" ]] || ! diff -qrr "$SOURCE" "$TARGET" >/dev/null 2>&1;
 	then
@@ -61,8 +59,8 @@ is_same_structure()
 		EXIT_CODE=1
 		return 1
 	fi
+
 	pprint "$_COLOR_GREEN" "EQUAL " "$SOURCE" "$TARGET"
-	return 0
 }
 
 # output header
