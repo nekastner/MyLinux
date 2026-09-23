@@ -25,4 +25,3 @@ scanimage -L
 
 # install gui vor sane
 sudo pacman -S simple-scan
-
