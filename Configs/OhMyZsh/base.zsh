@@ -1,20 +1,25 @@
+# fix sudo
 alias sudo='sudo '
+
+# remove unwanted aliases
 unalias mkdir 2> /dev/null
 unalias cp 2> /dev/null
 unalias mv 2> /dev/null
 
+# utils
 alias src="source $HOME/.zshrc"
 alias clr='clear'
 alias now='date +"%Y.%m.%d %H:%M:%S%n week %V, day %u "'
 
+# key binds
 bindkey '^[[1;5C' forward-word
 bindkey '^[[1;5D' backward-word
 bindkey '^H' backward-kill-word
 bindkey '\e[3~' delete-char
 bindkey '\e[3;5~' kill-word
 
+# python
 alias py='python'
-
 vpy()
 {
 	local venv_name="$1"
@@ -28,7 +33,6 @@ vpy()
 
 	"$venv_name/bin/python" "${python_args[@]}"
 }
-
 vpip()
 {
 	local venv_name="$1"
@@ -37,20 +41,7 @@ vpip()
 	vpy "$venv_name" -m pip "${pip_args[@]}"
 }
 
-vx2c()
-{
-	if (($# != 1));
-	then
-		echo "ERROR ==> Wrong usage!"
-		echo "Parameters: <venv name>"
-		return 1
-	fi
-
-	local venv_name="$1"
-
-	vpy "$venv_name" -m pyx2cscope
-}
-
+# mount encrypted devices
 alias mnt-crypt='mnt_crypt'
 mnt_cyrpt()
 {
