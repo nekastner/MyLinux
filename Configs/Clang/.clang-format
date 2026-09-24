@@ -1,9 +1,13 @@
----
-Language: C
-BasedOnStyle: BSD
+BasedOnStyle: LLVM
+
+BreakBeforeBraces: Allman
+AllowShortFunctionsOnASingleLine: None
+AllowShortBlocksOnASingleLine: Never
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLoopsOnASingleLine: false
 
 IndentWidth: 4
 TabWidth: 4
-UseTab: Always
-
+UseTab: ForIndentation
+ContinuationIndentWidth: 4
 ColumnLimit: 100
