@@ -18,6 +18,9 @@ bindkey '^H' backward-kill-word
 bindkey '\e[3~' delete-char
 bindkey '\e[3;5~' kill-word
 
+# git
+alias gdh='git diff HEAD'
+
 # python
 alias py='python'
 vpy()
