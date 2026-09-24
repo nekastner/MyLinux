@@ -1,3 +1,5 @@
+local obsidian_dir = vim.fn.expand("~/Documents/Obsidian")
+
 return {
 
 	"obsidian-nvim/obsidian.nvim",
@@ -6,17 +8,28 @@ return {
 	lazy = true,
 	ft = "markdown",
 
+	init = function()
+		vim.fn.mkdir(obsidian_dir, "p")
+	end,
+
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 	},
 
 	opts = {
 
+		legacy_commands = false,
+
 		workspaces = {
 			{
 				name = "default",
-				path = vim.fn.expand("~") .. "/Documents/Obsidian/",
+				path = obsidian_dir,
 			},
+		},
+
+		checkbox = {
+			enabled = true,
+			order = { " ", "x", ">" },
 		},
 
 		ui = {
