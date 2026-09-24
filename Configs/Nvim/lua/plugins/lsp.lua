@@ -3,20 +3,19 @@ return {
 	"neovim/nvim-lspconfig",
 
 	dependencies = {
-    	"williamboman/mason.nvim",
-    	"williamboman/mason-lspconfig.nvim",
-    	"saghen/blink.cmp",
+		"williamboman/mason.nvim",
+		"williamboman/mason-lspconfig.nvim",
+		"saghen/blink.cmp",
 	},
 
 	config = function()
-
-    	require("mason").setup()
-    	require("mason-lspconfig").setup({
+		require("mason").setup()
+		require("mason-lspconfig").setup({
 			ensure_installed = { "clangd", "pyright", "ts_ls", "lua_ls", "tailwindcss", "cssls", "marksman", "rust_analyzer", "bashls" }
-    	})
+		})
 
-    	local capabilities = require('blink.cmp').get_lsp_capabilities()
-    	local configs = {
+		local capabilities = require('blink.cmp').get_lsp_capabilities()
+		local configs = {
 
 			clangd = {
 				cmd = {
@@ -48,19 +47,19 @@ return {
 			tailwindcss = {},
 
 			ts_ls = {
-	    		root_dir = function(fname)
-				return vim.fs.root(fname, { "package.json", "tsconfig.json", ".git" })
-	    		end,
+				root_dir = function(fname)
+					return vim.fs.root(fname, { "package.json", "tsconfig.json", ".git" })
+				end,
 			},
 
 			cssls = {
-	    		settings = {
+				settings = {
 					css = {
-		    			lint = {
+						lint = {
 							unknownAtRules = "ignore",
-		    			},
+						},
 					},
-	    		},
+				},
 			},
 
 			rust_analyzer = {},
@@ -71,15 +70,13 @@ return {
 
 		}
 
-    	for server_name, server_opts in pairs(configs) do
+		for server_name, server_opts in pairs(configs) do
 			server_opts.capabilities = capabilities
 			vim.lsp.config(server_name, server_opts)
 			vim.lsp.enable(server_name)
-    		end
+		end
 
-    	vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = "Go to Definition" })
-    	vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = "Show Doc" })
-
-		end,
+		vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = "Go to Definition" })
+		vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = "Show Doc" })
+	end,
 }
-

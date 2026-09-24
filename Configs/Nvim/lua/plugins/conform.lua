@@ -7,6 +7,14 @@ return {
 		formatters_by_ft = {
 			c = { "clang_format" },
 			cpp = { "clang_format" },
+			lua = { "stylua" },
+			python = { "ruff_format" },
+			javascript = { "prettier" },
+			typescript = { "prettier" },
+			java = { "google-java-format" },
+			markdown = { "prettier" },
+			rust = { "rustfmt" },
+			bash = { "shfmt" },
 		},
 
 		format_on_save = {
