@@ -2,7 +2,7 @@
 
 EXIT_CODE=0
 
-CONFIGS_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+CONFIGS_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
 _COLOR_NEUTRAL='\033[0m'
 _COLOR_RED='\033[0;31m'
