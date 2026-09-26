@@ -1,18 +1,23 @@
+#battery.warnung:not(.charging) {
+	background-color: #f5f500;
+	color: #ffffff;
+}
+
 #battery.critical:not(.charging) {
-    background-color: #f53c3c;
-    color: #ffffff;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+	background-color: #f53c3c;
+	color: #ffffff;
+	animation-name: blink;
+	animation-duration: 0.5s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
 }
 
-#tray > .passive {
-    -gtk-icon-effect: dim;
+#tray>.passive {
+	-gtk-icon-effect: dim;
 }
 
-#tray > .needs-attention {
-    -gtk-icon-effect: highlight;
-    background-color: #eb4d4b;
+#tray>.needs-attention {
+	-gtk-icon-effect: highlight;
+	background-color: #eb4d4b;
 }
