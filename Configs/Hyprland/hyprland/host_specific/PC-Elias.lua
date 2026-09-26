@@ -18,7 +18,7 @@ hl.monitor({
 	mode = "1920x1080@60",
 	position = "1920x0",
 	scale = 1,
-	transform = 0,
+	transform = 3,
 })
 for i = 11, 20 do
 	hl.workspace_rule({
