@@ -1,3 +1,4 @@
+-- horizontal monitor
 hl.monitor({
 	output = "HDMI-A-1",
 	mode = "1920x1080@120",
@@ -12,7 +13,7 @@ for i = 1, 10 do
 	})
 end
 
-
+-- vertical monitor
 hl.monitor({
 	output = "HDMI-A-2",
 	mode = "1920x1080@60",
@@ -24,5 +25,6 @@ for i = 11, 20 do
 	hl.workspace_rule({
 		workspace = i,
 		monitor = "HDMI-A-2",
+		layout_opts = { direction = "down" }
 	})
 end
