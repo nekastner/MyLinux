@@ -7,7 +7,6 @@ hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("hyprlauncher"))
 hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd("dolphin"))
 hl.bind(mainMod .. " + K", hl.dsp.exec_cmd("hyprctl kill"))
-hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("pkill -USR2 waybar"))
 
 -- move focus between windows
 hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "left" }))
