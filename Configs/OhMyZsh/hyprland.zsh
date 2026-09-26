@@ -1,13 +1,14 @@
 alias quit-hyprland='command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch exit'
 
-alias stop-waybar='pkill waybar'
 alias start-waybar='hyprland_exec waybar'
+alias stop-waybar='pkill waybar'
+alias reload-waybar='pkill -SIGUSR2 waybar'
 
-alias stop-hyprsunset='pkill hyprsunset'
 alias start-hyprsenset='hyprland_exec hyprsunset'
+alias stop-hyprsunset='pkill hyprsunset'
 
-alias stop-hyprpaper='pkill hyprpaper'
 alias start-hyprpaper='hyprland_exec hyprpaper'
+alias stop-hyprpaper='pkill hyprpaper'
 
 alias hyprland-exec='hyprland_exec'
 hyprland_exec()
