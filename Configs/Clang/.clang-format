@@ -1,13 +1,93 @@
+---
+Language: C
 BasedOnStyle: LLVM
 
-BreakBeforeBraces: Allman
-AllowShortFunctionsOnASingleLine: None
-AllowShortBlocksOnASingleLine: Never
-AllowShortIfStatementsOnASingleLine: Never
-AllowShortLoopsOnASingleLine: false
-
+# base indentation
 IndentWidth: 4
 TabWidth: 4
 UseTab: ForIndentation
 ContinuationIndentWidth: 4
-ColumnLimit: 100
+ColumnLimit: 120
+
+# parameters
+AllowAllArgumentsOnNextLine: true
+AllowAllParametersOfDeclarationOnNextLine: true
+
+# blocks and shorts
+AllowShortBlocksOnASingleLine: Always
+AlignAfterOpenBracket: true
+AlignArrayOfStructures: Left
+AllowShortCaseExpressionOnASingleLine: true
+AllowShortCaseLabelsOnASingleLine: true
+AllowShortEnumsOnASingleLine: true
+AllowShortFunctionsOnASingleLine: All
+AllowShortIfStatementsOnASingleLine: AllIfsAndElse
+AllowShortLoopsOnASingleLine: true
+BraceWrapping:
+  AfterControlStatement: Always
+  AfterEnum: true
+  AfterFunction: true
+  AfterStruct: true
+  BeforeElse: true
+  BeforeWhile: true
+IndentCaseLabels: true
+
+# pointers
+DerivePointerAlignment: false
+PointerAlignment: Right
+
+# includes
+IncludeBlocks: Regroup
+SortIncludes: true
+
+# empty lines
+KeepEmptyLines:
+  AtEndOfFile: true
+  AtStartOfBlock: false
+  AtStartOfFile: false
+MaxEmptyLinesToKeep: 1
+InsertNewlineAtEOF: true
+
+# seperators
+IntegerLiteralSeparator:
+  Binary: 4
+  Decimal: 3
+  Hex: 2
+
+# spaces
+SpaceBeforeAssignmentOperators: true
+SpaceBeforeCaseColon: false
+SpaceBeforeParens: Custom
+SpaceBeforeParensOptions:
+  AfterControlStatements: true
+  AfterFunctionDeclarationName: false
+  AfterFunctionDefinitionName: false
+SpaceBeforeSquareBrackets: false
+SpaceAfterCStyleCast: false
+SpaceAfterLogicalNot: false
+SpaceInEmptyBraces: Block
+SpacesBeforeTrailingComments: 1
+#SpacesInBlockComments: Always
+
+# braces
+BreakBeforeBraces: Allman
+BreakBeforeCloseBracketBracedList: true
+BreakBeforeCloseBracketFunction: true
+BreakBeforeCloseBracketIf: true
+BreakBeforeCloseBracketLoop: true
+BreakBeforeCloseBracketSwitch: true
+
+# consecutive alignments
+AlignConsecutiveAssignments: Consecutive
+AlignConsecutiveBitFields: Consecutive
+AlignConsecutiveDeclarations: Consecutive
+AlignConsecutiveMacros: Consecutive
+AlignConsecutiveShortCaseStatements:
+  Enabled: true
+AlignConsecutiveTableGenBreakingDAGArgColons: Consecutive
+AlignConsecutiveTableGenCondOperatorColons: Consecutive
+AlignConsecutiveTableGenDefinitionColons: Consecutive
+AlignEscapedNewlines: LeftWithLastLine
+AlignOperands: true
+AlignTrailingComments:
+  Kind: Always
