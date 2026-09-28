@@ -16,7 +16,7 @@ end
 -- vertical monitor
 hl.monitor({
 	output = "HDMI-A-2",
-	mode = "1920x1080@60",
+	mode = "1920x1080@120",
 	position = "1920x0",
 	scale = 1,
 	transform = 3,
