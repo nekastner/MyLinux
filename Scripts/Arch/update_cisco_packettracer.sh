@@ -3,7 +3,7 @@
 if (( $# != 1 ));
 then
 	echo "ERROR ==> Wrong usage!"
-	echo ""Parameters: <path to new packettracer.deb>
+	echo "Parameters: <path to new packettracer.deb>"
 	exit 1
 fi
 

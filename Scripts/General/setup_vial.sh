@@ -10,7 +10,6 @@ git clone https://github.com/vial-kb/vial-gui.git Vial
 cd Vial
 
 # install required python version
-sudo pacman -S --needed pyenv
 pyenv install --skip-existing 3.6.15
 
 # create and prepare venv
