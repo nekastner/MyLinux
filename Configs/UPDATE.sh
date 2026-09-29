@@ -19,7 +19,7 @@ if ! "$CONFIGS_DIR/STATUS.sh";
 then
 	# deploy new configs
 	read -rp "Do you want to deploy? [y/N] " user_confirmation
-	if [[ "&user_confirmation" =~ ^[yY]$ ]];
+	if [[ "$user_confirmation" =~ ^[yY]$ ]];
 	then
 		"$CONFIGS_DIR/DEPLOY.sh"
 	fi
