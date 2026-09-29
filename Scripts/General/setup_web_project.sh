@@ -13,7 +13,7 @@ then
 	exit 1
 fi
 
-local PROJECT_NAME="$1"
+PROJECT_NAME="$1"
 
 # create vite project
 npm create vite@latest "$PROJECT_NAME" --yes -- --template react-ts &
