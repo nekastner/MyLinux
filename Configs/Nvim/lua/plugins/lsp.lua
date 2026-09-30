@@ -77,6 +77,5 @@ return {
 		end
 
 		vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = "Go to Definition" })
-		vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = "Show Doc" })
 	end,
 }
