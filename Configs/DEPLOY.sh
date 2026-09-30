@@ -1,57 +1,11 @@
 #!/bin/bash
 
 SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-CONFIGS_DIR="$SCRIPT_DIR"
-
-_COLOR_NEUTRAL='\033[0m'
-_COLOR_RED='\033[0;31m'
-_COLOR_GREEN='\033[0;32m'
-_COLOR_YELLOW='\033[0;33m'
+source "$SCRIPT_DIR/DATA.sh"
+source "$SCRIPT_DIR/UTILS.sh"
 
 # ensure root rights are given
 sudo -v
-
-is_path_in_home()
-{
-	local TARGET_PATH="$1"
-
-	[[ "$TARGET_PATH" == "$HOME" ]] || [[ "$TARGET_PATH" == "$HOME"/* ]]
-	return $?
-}
-
-is_target_linked_to_source()
-{
-	local TARGET="$1"
-	local SOURCE="$2"
-
-	[[ -L "$TARGET" ]] && [[ "$(realpath "$TARGET")" == "$SOURCE" ]]
-	return $?
-}
-
-is_target_equal_to_source()
-{
-	local TARGET="$1"
-	local SOURCE="$2"
-
-	if ! [[ -d "$TARGET" ]];
-	then
-		cmp --silent "$SOURCE" "$TARGET"
-		return $?
-	else
-		diff -qrr "$SOURCE" "$TARGET" >/dev/null 2>&1
-		return $?
-	fi
-}
-
-ask_user_default_no()
-{
-	local MSG="$1"
-
-	read -rp "$MSG [y/N] " user_confirmation < /dev/tty
-
-	[[ "$user_confirmation" =~ ^[yY]$ ]]
-	return $?
-}
 
 deploy()
 {
@@ -138,28 +92,8 @@ deploy()
 	fi
 }
 
-#				SOURCE											TARGET
-deploy			"$CONFIGS_DIR/Refind/refind.conf"				"/boot/EFI/refind/refind.conf"
-deploy			"$CONFIGS_DIR/Refind/background.png"			"/boot/EFI/refind/background.png"
-deploy			"$CONFIGS_DIR/KernelPresets/linux.preset"		"/etc/mkinitcpio.d/linux.preset"
-deploy			"$CONFIGS_DIR/KernelPresets/linux-zen.preset"	"/etc/mkinitcpio.d/linux-zen.preset"
-deploy			"$CONFIGS_DIR/OhMyZsh/.zshrc"					"$HOME/.zshrc"
-for config in	"$CONFIGS_DIR/OhMyZsh/"*;
+for source_path in "${!SOURCES_TARGETS_LIST[@]}";
 do
-	[[ -e "$config" ]] || continue
-	config_name=$(basename "$config")
-	deploy		"$config"										"$HOME/.oh-my-zsh/custom/$config_name"
+	target_path="${SOURCES_TARGETS_LIST[$source_path]}"
+	deploy "$source_path" "$target_path"
 done
-deploy			"$CONFIGS_DIR/Git/.gitconfig"					"$HOME/.gitconfig"
-deploy			"$CONFIGS_DIR/Nvim"								"$HOME/.config/nvim"
-deploy			"$CONFIGS_DIR/Vim/.vimrc"						"$HOME/.vimrc"
-deploy			"$CONFIGS_DIR/Nano/.nanorc"						"$HOME/.nanorc"
-deploy			"$CONFIGS_DIR/Clang/.clang-format"				"$HOME/.clang-format"
-deploy			"$CONFIGS_DIR/Samba/smb.conf"					"/etc/samba/smb.conf"
-deploy			"$CONFIGS_DIR/Samba/user_specific"				"/etc/samba/user_specific"
-deploy			"$CONFIGS_DIR/Nginx/nginx.conf"					"/etc/nginx/nginx.conf"
-deploy			"$CONFIGS_DIR/Nginx/sites-available"			"/etc/nginx/sites-available"
-deploy			"$CONFIGS_DIR/Hyprland"							"$HOME/.config/hypr"
-deploy			"$CONFIGS_DIR/Waybar"							"$HOME/.config/waybar"
-deploy			"$CONFIGS_DIR/MimeAppsList/mimeapps.list"		"$HOME/.config/mimeapps.list"
-deploy			"$CONFIGS_DIR/MangoHud"							"$HOME/.config/MangoHud"

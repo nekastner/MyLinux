@@ -1,11 +1,8 @@
 #!/bin/bash
 
 SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-CONFIGS_DIR="$SCRIPT_DIR"
-
-_COLOR_NEUTRAL='\033[0m'
-_COLOR_RED='\033[0;31m'
-_COLOR_YELLOW='\033[0;33m'
+source "$SCRIPT_DIR/DATA.sh"
+source "$SCRIPT_DIR/UTILS.sh"
 
 # pull new stand
 if ! git -C "$CONFIGS_DIR" pull --rebase;
@@ -15,12 +12,10 @@ then
 fi
 
 # inform user about new status
-if ! "$CONFIGS_DIR/STATUS.sh";
+"$CONFIGS_DIR/STATUS.sh"
+
+# if not everything is up to date and user confirms, run deploy
+if ! $? && ask_user_default_no "Do you want to deploy?";
 then
-	# deploy new configs
-	read -rp "Do you want to deploy? [y/N] " user_confirmation
-	if [[ "$user_confirmation" =~ ^[yY]$ ]];
-	then
-		"$CONFIGS_DIR/DEPLOY.sh"
-	fi
+	"$CONFIGS_DIR/DEPLOY.sh"
 fi
