@@ -100,12 +100,12 @@ is_linked			"$CONFIGS_DIR/Nano/.nanorc"						"$HOME/.nanorc"
 is_linked			"$CONFIGS_DIR/Clang/.clang-format"				"$HOME/.clang-format"
 
 # samba
-is_linked			"$CONFIGS_DIR/Samba/smb.conf"					"/etc/samba/smb.conf"
-is_linked			"$CONFIGS_DIR/Samba/user_specific"				"/etc/samba/user_specific"
+has_same_content	"$CONFIGS_DIR/Samba/smb.conf"					"/etc/samba/smb.conf"
+is_same_structure	"$CONFIGS_DIR/Samba/user_specific"				"/etc/samba/user_specific"
 
 # nginx
-is_linked			"$CONFIGS_DIR/Nginx/nginx.conf"					"/etc/nginx/nginx.conf"
-is_linked			"$CONFIGS_DIR/Nginx/sites-available"			"/etc/nginx/sites-available"
+has_same_content	"$CONFIGS_DIR/Nginx/nginx.conf"					"/etc/nginx/nginx.conf"
+is_same_structure	"$CONFIGS_DIR/Nginx/sites-available"			"/etc/nginx/sites-available"
 
 # hyprland
 is_linked			"$CONFIGS_DIR/Hyprland"							"$HOME/.config/hypr"
