@@ -24,7 +24,7 @@ is_target_linked_to_source()
 	local TARGET="$1"
 	local SOURCE="$2"
 
-	[[ -L "$TARGET" && "$(realpath "$TARGET")" == "$SOURCE" ]]
+	[[ -L "$TARGET" ]] && [[ "$(realpath "$TARGET")" == "$SOURCE" ]]
 	return $?
 }
 
@@ -49,7 +49,7 @@ ask_user_default_no()
 
 	read -rp "$MSG [y/N] " user_confirmation < /dev/tty
 
-	[[ ! "$user_confirmation" =~ ^[yY]$ ]]
+	[[ "$user_confirmation" =~ ^[yY]$ ]]
 	return $?
 }
 
