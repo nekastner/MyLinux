@@ -24,9 +24,3 @@ then
 		"$CONFIGS_DIR/DEPLOY.sh"
 	fi
 fi
-
-# updates off running system
-if [[ -e "$HOME/.zshrc" ]];
-then
-	printf "${_COLOR_YELLOW}INFO ==> ZSH requires a configuration reload!${_COLOR_NEUTRAL}"
-fi
