@@ -9,6 +9,38 @@ _COLOR_NEUTRAL='\033[0m'
 _COLOR_RED='\033[0;31m'
 _COLOR_GREEN='\033[0;32m'
 
+is_path_in_home()
+{
+	local TARGET_PATH="$1"
+
+	[[ "$TARGET_PATH" == "$HOME" ]] || [[ "$TARGET_PATH" == "$HOME"/* ]]
+	return $?
+}
+
+is_target_linked_to_source()
+{
+	local TARGET="$1"
+	local SOURCE="$2"
+
+	[[ -L "$TARGET" ]] && [[ "$(realpath "$TARGET")" == "$SOURCE" ]]
+	return $?
+}
+
+is_target_equal_to_source()
+{
+	local TARGET="$1"
+	local SOURCE="$2"
+
+	if ! [[ -d "$TARGET" ]];
+	then
+		cmp --silent "$SOURCE" "$TARGET"
+		return $?
+	else
+		diff -qrr "$SOURCE" "$TARGET" >/dev/null 2>&1
+		return $?
+	fi
+}
+
 pprint()
 {
 	local STATUS_COLOR="$1"
@@ -16,15 +48,20 @@ pprint()
 	local SOURCE="$3"
 	local TARGET="$4"
 
-	printf "[ ${STATUS_COLOR}${STATUS_TEXT}${_COLOR_NEUTRAL} ] %-50s -> %s\n" "$TARGET" "$SOURCE"
+	printf "[ ${STATUS_COLOR}${STATUS_TEXT}${_COLOR_NEUTRAL} ] %-50s -> %s\n" "$SOURCE" "$TARGET"
 }
 
-is_linked()
+pprint_header()
 {
-	local SOURCE="$1"
-	local TARGET="$2"
+	pprint "_COLOR_NEUTRAL" "STATUS" "SOURCE" "TARGET"
+}
 
-	if [[ ! -e "$TARGET" || ! -L "$TARGET" || ! "$(realpath "$TARGET")" = "$SOURCE" ]];
+pprint_is_target_linked_to_source()
+{
+	local TARGET="$1"
+	local SOURCE="$2"
+
+	if ! is_target_linked_to_source "$TARGET" "$SOURCE";
 	then
 		pprint "$_COLOR_RED" "LINKED" "$SOURCE" "$TARGET"
 		EXIT_CODE=1
@@ -34,12 +71,12 @@ is_linked()
 	pprint "$_COLOR_GREEN" "LINKED" "$SOURCE" "$TARGET"
 }
 
-has_same_content()
+pprint_is_target_equal_to_source()
 {
-	local SOURCE="$1"
-	local TARGET="$2"
+	local TARGET="$1"
+	local SOURCE="$2"
 
-	if [[ ! -e "$TARGET" ]] || ! cmp --silent "$SOURCE" "$TARGET";
+	if ! is_target_equal_to_source "$TARGET" "$SOURCE";
 	then
 		pprint "$_COLOR_RED" "EQUAL " "$SOURCE" "$TARGET"
 		EXIT_CODE=1
@@ -49,74 +86,74 @@ has_same_content()
 	pprint "$_COLOR_GREEN" "EQUAL " "$SOURCE" "$TARGET"
 }
 
-is_same_structure()
+pprint_status()
 {
 	local SOURCE="$1"
 	local TARGET="$2"
 
-	if [[ ! -e "$TARGET" ]] || ! diff -qrr "$SOURCE" "$TARGET" >/dev/null 2>&1;
+	if is_path_in_home "$TARGET";
 	then
-		pprint "$_COLOR_RED" "EQUAL " "$SOURCE" "$TARGET"
-		EXIT_CODE=1
-		return 1
+		pprint_is_target_linked_to_source "$TARGET" "$SOURCE"
+	else
+		pprint_is_target_equal_to_source "$TARGET" "$SOURCE"
 	fi
-
-	pprint "$_COLOR_GREEN" "EQUAL " "$SOURCE" "$TARGET"
 }
 
 # output header
-pprint "$_COLOR_NEUTRAL" "STATUS" "SOURCE" "TARGET"
+pprint_header
 
-###	ACTION			SOURCE											TARGET
+#					SOURCE											TARGET
 
 # refind
-has_same_content	"$CONFIGS_DIR/Refind/refind.conf"				"/boot/EFI/refind/refind.conf"
-has_same_content	"$CONFIGS_DIR/Refind/background.png"			"/boot/EFI/refind/background.png"
+pprint_status		"$CONFIGS_DIR/Refind/refind.conf"				"/boot/EFI/refind/refind.conf"
+pprint_status		"$CONFIGS_DIR/Refind/background.png"			"/boot/EFI/refind/background.png"
 
 # kernel presets
-has_same_content	"$CONFIGS_DIR/KernelPresets/linux.preset"		"/etc/mkinitcpio.d/linux.preset"
-has_same_content	"$CONFIGS_DIR/KernelPresets/linux-zen.preset"	"/etc/mkinitcpio.d/linux-zen.preset"
+pprint_status		"$CONFIGS_DIR/KernelPresets/linux.preset"		"/etc/mkinitcpio.d/linux.preset"
+pprint_status		"$CONFIGS_DIR/KernelPresets/linux-zen.preset"	"/etc/mkinitcpio.d/linux-zen.preset"
 
 # oh my zsh
-is_linked			"$CONFIGS_DIR/OhMyZsh/.zshrc"					"$HOME/.zshrc"
+pprint_status		"$CONFIGS_DIR/OhMyZsh/.zshrc"					"$HOME/.zshrc"
 for config in		"$CONFIGS_DIR/OhMyZsh/"*;
 do
-	is_linked		"$config"										"$HOME/.oh-my-zsh/custom/$(basename "$config")"
+	config_name="$(basename "$config")"
+	pprint_status	"$config"										"$HOME/.oh-my-zsh/custom/$config_name"
 done
 
 # git
-is_linked			"$CONFIGS_DIR/Git/.gitconfig"					"$HOME/.gitconfig"
+pprint_status		"$CONFIGS_DIR/Git/.gitconfig"					"$HOME/.gitconfig"
 
 # nvim
-is_linked			"$CONFIGS_DIR/Nvim"								"$HOME/.config/nvim"
+pprint_status		"$CONFIGS_DIR/Nvim"								"$HOME/.config/nvim"
 
 # vim
-is_linked			"$CONFIGS_DIR/Vim/.vimrc"						"$HOME/.vimrc"
+pprint_status		"$CONFIGS_DIR/Vim/.vimrc"						"$HOME/.vimrc"
 
 # nano
-is_linked			"$CONFIGS_DIR/Nano/.nanorc"						"$HOME/.nanorc"
+pprint_status		"$CONFIGS_DIR/Nano/.nanorc"						"$HOME/.nanorc"
 
 # clang
-is_linked			"$CONFIGS_DIR/Clang/.clang-format"				"$HOME/.clang-format"
+pprint_status		"$CONFIGS_DIR/Clang/.clang-format"				"$HOME/.clang-format"
 
 # samba
-has_same_content	"$CONFIGS_DIR/Samba/smb.conf"					"/etc/samba/smb.conf"
-is_same_structure	"$CONFIGS_DIR/Samba/user_specific"				"/etc/samba/user_specific"
+pprint_status		"$CONFIGS_DIR/Samba/smb.conf"					"/etc/samba/smb.conf"
+pprint_status		"$CONFIGS_DIR/Samba/user_specific"				"/etc/samba/user_specific"
 
 # nginx
-has_same_content	"$CONFIGS_DIR/Nginx/nginx.conf"					"/etc/nginx/nginx.conf"
-is_same_structure	"$CONFIGS_DIR/Nginx/sites-available"			"/etc/nginx/sites-available"
+pprint_status		"$CONFIGS_DIR/Nginx/nginx.conf"					"/etc/nginx/nginx.conf"
+pprint_status		"$CONFIGS_DIR/Nginx/sites-available"			"/etc/nginx/sites-available"
 
 # hyprland
-is_linked			"$CONFIGS_DIR/Hyprland"							"$HOME/.config/hypr"
+pprint_status		"$CONFIGS_DIR/Hyprland"							"$HOME/.config/hypr"
 
 # waybar
-is_linked			"$CONFIGS_DIR/Waybar"							"$HOME/.config/waybar"
+pprint_status		"$CONFIGS_DIR/Waybar"							"$HOME/.config/waybar"
 
 # mimeapps list
-is_linked			"$CONFIGS_DIR/MimeAppsList/mimeapps.list"		"$HOME/.config/mimeapps.list"
+pprint_status		"$CONFIGS_DIR/MimeAppsList/mimeapps.list"		"$HOME/.config/mimeapps.list"
 
 # mango hud
-is_linked			"$CONFIGS_DIR/MangoHud"							"$HOME/.config/MangoHud"
+pprint_status		"$CONFIGS_DIR/MangoHud"							"$HOME/.config/MangoHud"
 
+# return exit code to caller
 exit "$EXIT_CODE"
