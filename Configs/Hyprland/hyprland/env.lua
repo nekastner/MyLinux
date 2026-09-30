@@ -12,5 +12,5 @@ hl.env("GTK_THEME", "Breeze-Dark")
 hl.env("GTK_USE_PORTAL", 1)
 
 -- hyprshot
-hl.env("HYPRSHOT_DIR", "~/Pictures/Hyprshot")
+hl.env("HYPRSHOT_DIR", "Pictures/Hyprshot")
 hl.env("HYPRSHOT_FILENAME", "%Y-%m-%d_%H-%M-%S")
