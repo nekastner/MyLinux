@@ -21,11 +21,14 @@ SOURCES_TARGETS_LIST["${CONFIGS_DIR}/KernelPresets/linux-zen.preset"]="/etc/mkin
 
 # oh my zsh
 SOURCES_TARGETS_LIST["${CONFIGS_DIR}/OhMyZsh/.zshrc"]="$HOME/.zshrc"
+shopt -s dotglob nullglob
 for config in "$CONFIGS_DIR/OhMyZsh/"*;
 do
 	config_name="$(basename "$config")"
+	if [[ "$config_name" == '.zshrc' ]]; then continue; fi
 	SOURCES_TARGETS_LIST["$config"]="$HOME/.oh-my-zsh/custom/$config_name"
 done
+shopt -u dotglob nullglob
 
 # git
 SOURCES_TARGETS_LIST["${CONFIGS_DIR}/Git/.gitconfig"]="$HOME/.gitconfig"
