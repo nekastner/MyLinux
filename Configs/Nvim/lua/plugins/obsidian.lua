@@ -16,6 +16,8 @@ return {
 		"nvim-lua/plenary.nvim",
 	},
 
+	-- seems not to have any effect anymore
+	--[[
 	opts = {
 
 		legacy_commands = false,
@@ -51,5 +53,6 @@ return {
 				ObsidianHighlightText = { bg = "#fff59d", fg = "#000000" },
 			},
 		},
-	},
+	}
+	]]
 }
