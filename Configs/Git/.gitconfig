@@ -9,7 +9,7 @@
 [core]
 	editor = nvim
 [alias]
-	recache = !git rm -r --cached . && git add . && git reset --mixed HEAD
+	recache = !git rm -r --cached . && git add .
 [credential "https://github.com"]
 	helper = 
 	helper = !/usr/bin/gh auth git-credential
