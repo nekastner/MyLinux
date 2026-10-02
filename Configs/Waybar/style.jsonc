@@ -1,0 +1,104 @@
+{
+	"hyprland/workspaces": {
+		"format": "{icon}",
+		"on-click": "activate"
+	},
+
+	"clock": {
+		"format": "{:%Y.%m.%d %H:%M}",
+		"interval": 60,
+		"tooltip-format": "<tt><small>{calendar}</small></tt>",
+		"calendar": {
+			"mode": "year",
+			"mode-mon-col": 3,
+			"weaks-pos": "right",
+			"on-scroll": 1,
+			"on-click-right": "mode",
+			"format": {
+				"months":	"<span color='#ffead3'><b>{}</b></span>",
+				"days":		"<span color='#ecc6d9'><b>{}</b></span>",
+				"weeks":	"<span color='#99ffdd'><b>W{}</b></span>",
+				"weekdays":	"<span color='#ffcc66'><b>{}</b></span>",
+				"today":	"<span color='#ff6699'><b><u>{}</u></b></span>"
+			}
+		},
+		"actions": {
+			"on-click-right": "mode",
+			"on-click-forward": "tz_up",
+			"on-click-backward": "tz_down",
+			"on-scroll-up": "shift_up",
+			"on-scroll-down": "shift_down"
+		}
+	},
+
+	"mpris": {
+		"format": "{player_icon} {status_icon} {title}",
+		"tooltip-format": "{player_icon} {player} ({status_icon} {status})\n\nTitle:\t{title}\nArtist:\t{artist}\nLength:\t{length}\nAlbum:\t{album}",
+		"max-length": 50,
+		"player-icons": {
+			"spotify": ""
+		},
+		"status-icons": {
+			"playing": "",
+			"paused": ""
+		}
+	},
+
+	"temperature": {
+		"thermal-zone": 2,
+		"hwmon-path": [
+			"/sys/class/hwmon/hwmon5/temp1_input"
+		],
+		"interval": 5,
+		"warning-threshold": 70,
+		"critical-treshold": 80,
+		"format": " {temperatureC}°C",
+		"format-warning": " {temperatureC}°C",
+		"format-critical": " {temperatureC}°C",
+		"tooltip": false
+	},
+
+	"wireplumber": { 
+		"format": " {volume}%",
+		"on-scroll-up": "true",
+		"on-scoll-down": "true"
+	},
+
+	"network": {
+		"format-wifi": " {essid} {signalStrength}%",
+		"format-ethernet": " {ipaddr}",
+		"format-disconnected": "offline",
+		"tooltip-format": "{ifname}: {ipaddr}"
+	},
+
+	"bluetooth": {
+		"format": " {status}",
+		"format-connected": " {device_alias}",
+		"format-connected-battery": " {device_alias} {device_battery_percentage}%",
+		"format-off": "󰂲"
+	},
+
+	"backlight": {
+		"format": "󰃟 {percent}%",
+		"tooltip-format": "Controller Name: {controller_alias}\nStatus: {status}\nConnections: {num_connections}\nDevices:{device_enumerate}",
+		"tooltip-format-enumerate-connected": "{device_address}\t{device_alias}",
+		"tooltip-format-enumerate-connected": "{device_address}\t{device_alias} ({device_battery_percentage}%)"
+	},
+
+	"battery": {
+		"bat": "BAT0",
+		"states": {
+			"good": 80,
+			"warning": 50,
+			"critical": 30
+		},
+		"format": "󰁹 {capacity}%",
+		"format-charging": "󰂄 {capacity}% (charging)",
+		"format-plugged": " {capacity}% (plugged)"
+	},
+
+	"tray": {
+		"icon-size": 20,
+		"spacing": 10
+	}
+}
