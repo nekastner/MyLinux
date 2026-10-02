@@ -24,8 +24,6 @@
 			"wireplumber",
 			"network",
 			"bluetooth",
-			"backlight",
-			"battery",
 			"tray"
 		]
 	},
