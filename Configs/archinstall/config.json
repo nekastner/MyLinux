@@ -21,6 +21,7 @@
         "uki": true
     },
     "custom_commands": [],
+    "firmware_optdeps": [],
     "hostname": "Arch",
     "kernels": [
         "linux"
@@ -162,6 +163,7 @@
         "hyprlauncher",
         "hyprlock",
         "hyprpaper",
+        "hyprshot",
         "hyprsunset",
         "jdk-openjdk",
         "kvantum",
@@ -184,7 +186,7 @@
         "wakeonlan",
         "waybar",
         "wf-recorder",
-        "hyprshot"
+        "ttf-nerd-fonts-symbols"
     ],
     "pacman_config": {
         "color": true,
@@ -212,5 +214,5 @@
         "enabled": true
     },
     "timezone": "Europe/Berlin",
-    "version": "4.4"
+    "version": "4.5"
 }
