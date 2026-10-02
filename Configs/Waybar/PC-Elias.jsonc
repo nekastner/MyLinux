@@ -48,6 +48,7 @@
 		],
 		"modules-right": [
 			"keyboard-state",
+			"wireplumber",
 			"tray"
 		]
 	}
