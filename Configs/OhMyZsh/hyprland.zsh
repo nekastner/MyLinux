@@ -22,7 +22,9 @@ alias stop-hyprpaper='pkill hyprpaper'
 alias hyprland-exec='hyprland_exec'
 hyprland_exec()
 {
-	local command="$@"
+	local command="$*"
+	command="${command//\\/\\\\}"
+	command="${command//\"/\\\"}"
 	hyprctl dispatch "hl.dsp.exec_cmd(\"$command\")"
 }
 
