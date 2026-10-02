@@ -1,6 +1,15 @@
 alias quit-hyprland='command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch exit'
 
-alias start-waybar='hyprland_exec waybar'
+alias start-waybar='start_waybar'
+start_waybar()
+{
+	local CONFIG_PATH="$HOME/.config/waybar/$HOST.jsonc"
+	if [[ -e "$CONFIG_PATH" ]]; then
+		hyprland_exec "waybar --config $CONFIG_PATH"
+	else
+		hyprland_exec 'waybar'
+	fi
+}
 alias stop-waybar='pkill waybar'
 alias reload-waybar='pkill -SIGUSR2 waybar'
 
