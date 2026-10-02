@@ -13,4 +13,6 @@ require("hyprland.design")
 local host_specific_config = require("hyprland.host_specific_config_utils")
 if host_specific_config.is_config_existing then
 	require(host_specific_config.require_string)
+else
+	require(host_specific_config.get_config_path("default"))
 end

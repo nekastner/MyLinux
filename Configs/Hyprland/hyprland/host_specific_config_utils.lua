@@ -27,6 +27,7 @@ end
 local hostname = get_hostname()
 
 return {
+	get_config_path = get_config_path,
 	is_config_existing = is_file_existing(get_config_path(hostname)),
 	require_string = get_require_string(hostname),
 }

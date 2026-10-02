@@ -28,3 +28,8 @@ for i = 11, 20 do
 		layout_opts = { direction = "down" }
 	})
 end
+
+-- startup
+hl.on("hyprland.start", function()
+	hl.exec_cmd("waybar --config ~/.config/waybar/PC-Elias.jsonc")
+end)
