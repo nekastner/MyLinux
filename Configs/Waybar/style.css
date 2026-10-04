@@ -48,15 +48,11 @@
 }
 
 window#waybar {
-	background-color: #000000;
-	color: #ffffff;
-	border-color: #ffffff;
-	border-width: 1px;
-	border-bottom-style: solid;
+	background-color: transparent;
 }
 
 #workspaces button {
-	background: transparent;
+	background-color: transparent;
 	color: #888888;
 	border: none;
 	margin: 2px;
