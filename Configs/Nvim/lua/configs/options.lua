@@ -22,6 +22,3 @@ vim.opt.listchars = {
 	extends = '⟩',
 	precedes = '⟨',
 }
-
-vim.opt.conceallevel = 2
-vim.opt.concealcursor = "n"
