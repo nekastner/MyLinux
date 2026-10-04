@@ -1,15 +1,17 @@
 ---
-Language: C
 BasedOnStyle: LLVM
 
-# base indentation
+# indentation
 IndentWidth: 4
 TabWidth: 4
 UseTab: ForIndentation
 ContinuationIndentWidth: 4
+IndentCaseLabels: true
+
+# line length
 ColumnLimit: 120
 
-# parameters
+# arguments and parameters
 AllowAllArgumentsOnNextLine: true
 AllowAllParametersOfDeclarationOnNextLine: true
 
@@ -17,20 +19,14 @@ AllowAllParametersOfDeclarationOnNextLine: true
 AllowShortBlocksOnASingleLine: Always
 AlignAfterOpenBracket: true
 AlignArrayOfStructures: Left
+
+# single lines
 AllowShortCaseExpressionOnASingleLine: true
 AllowShortCaseLabelsOnASingleLine: true
 AllowShortEnumsOnASingleLine: true
 AllowShortFunctionsOnASingleLine: All
 AllowShortIfStatementsOnASingleLine: AllIfsAndElse
 AllowShortLoopsOnASingleLine: true
-BraceWrapping:
-  AfterControlStatement: Always
-  AfterEnum: true
-  AfterFunction: true
-  AfterStruct: true
-  BeforeElse: true
-  BeforeWhile: true
-IndentCaseLabels: true
 
 # pointers
 DerivePointerAlignment: false
@@ -48,7 +44,7 @@ KeepEmptyLines:
 MaxEmptyLinesToKeep: 1
 InsertNewlineAtEOF: true
 
-# seperators
+# literal seperators
 IntegerLiteralSeparator:
   Binary: 4
   Decimal: 3
@@ -71,7 +67,14 @@ SpacesBeforeTrailingComments: 1
 
 # braces
 BreakBeforeBraces: Allman
-BreakBeforeCloseBracketBracedList: true
+BraceWrapping:
+  AfterControlStatement: Always
+  AfterEnum: true
+  AfterFunction: true
+  AfterStruct: true
+  BeforeElse: true
+  BeforeWhile: true
+  BreakBeforeCloseBracketBracedList: true
 BreakBeforeCloseBracketFunction: true
 BreakBeforeCloseBracketIf: true
 BreakBeforeCloseBracketLoop: true
