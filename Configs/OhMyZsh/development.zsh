@@ -1,3 +1,18 @@
+alias ls-todos='ls_todos'
+ls_todos()
+{
+	if (( $# == 0 ));
+	then
+		set -- .
+	fi
+
+	for place in "$@";
+	do
+		printf "### '%s' ('%s') ###\n\n" "$place" "$(realpath "$place")"
+		rg -ni -- 'todo:' "$place"
+	done
+}
+
 alias setup-web-project='setup_web_project'
 setup_web_project()
 {
