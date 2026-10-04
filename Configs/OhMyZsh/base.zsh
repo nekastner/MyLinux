@@ -45,8 +45,8 @@ vpip()
 }
 
 # mount encrypted devices
-alias mnt-crypt='mnt_crypt'
-mnt_cyrpt()
+alias mount-crypt='mount_crypt'
+mount_crypt()
 {
 	if (($# != 3));
 	then
