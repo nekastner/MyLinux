@@ -20,10 +20,10 @@
 		"modules-right": [
 			"keyboard-state",
 			"mpris",
-			"temperature",
 			"wireplumber",
 			"network",
 			"bluetooth",
+			"temperature",
 			"tray"
 		]
 	},
@@ -49,6 +49,7 @@
 		"modules-right": [
 			"keyboard-state",
 			"wireplumber",
+			"temperature",
 			"tray"
 		]
 	}
