@@ -1,7 +1,8 @@
 source "$ZSH/custom/colors.zsh"
 
 # git branch compare (how much ahead of each other)
-gbc()
+alias gbc='git-branch-compare'
+function git_branch_compare
 {
 	# determine names of branches
 	local branch1_name branch2_name
@@ -40,8 +41,20 @@ gbc()
 	printf "%-*s %s\n" "$branch_name_longest" "$branch1_ahead_by" "$branch2_ahead_by"
 }
 
+alias gum='git_update_main'
+function git_update_main
+{
+	git switch "$(git_main_branch)"
+
+	git merge "$(git_develop_branch)"
+
+	git push
+
+	git switch "$(git_develop_branch)"
+}
+
 alias ls-todos='ls_todos'
-ls_todos()
+function ls_todos
 {
 	if (( $# == 0 )); then
 		set -- .
@@ -54,7 +67,7 @@ ls_todos()
 }
 
 alias setup-web-project='setup_web_project'
-setup_web_project()
+function setup_web_project
 {
 	if (( $# != 1 )) || [[ -z "$1" ]]; then
 		printf "${COLOR_RED}ERROR ==> Project name required!${COLOR_NEUTRAL}\n"
