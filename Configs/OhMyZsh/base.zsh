@@ -10,7 +10,10 @@ unalias mv 2> /dev/null
 alias src="source $HOME/.zshrc"
 alias clr='clear'
 alias now='date +"%Y.%m.%d %H:%M:%S%n week %V, day %u "'
+
+# shorts for cli lists and reads
 alias lsn='ls | sort -n'
+alias bata='bat -A'
 
 # key binds
 bindkey '^[[1;5C' forward-word
