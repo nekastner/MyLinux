@@ -1,4 +1,10 @@
-is_path_in_home()
+# SHELL OUTPUT COLORS
+COLOR_NEUTRAL='\033[0m'
+COLOR_RED='\033[0;31m'
+COLOR_GREEN='\033[0;32m'
+COLOR_YELLOW='\033[0;33m'
+
+function is_path_in_home
 {
 	local TARGET_PATH="$1"
 
@@ -6,7 +12,7 @@ is_path_in_home()
 	return $?
 }
 
-is_target_linked_to_source()
+function is_target_linked_to_source
 {
 	local TARGET="$1"
 	local SOURCE="$2"
@@ -15,13 +21,12 @@ is_target_linked_to_source()
 	return $?
 }
 
-is_target_equal_to_source()
+function is_target_equal_to_source
 {
 	local TARGET="$1"
 	local SOURCE="$2"
 
-	if ! [[ -d "$TARGET" ]];
-	then
+	if ! [[ -d "$TARGET" ]]; then
 		cmp --silent "$SOURCE" "$TARGET"
 		return $?
 	else
@@ -30,7 +35,7 @@ is_target_equal_to_source()
 	fi
 }
 
-ask_user_default_no()
+function ask_user_default_no
 {
 	local MSG="$1"
 
