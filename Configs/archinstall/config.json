@@ -182,11 +182,12 @@
         "ripgrep",
         "rustup",
         "sbctl",
+        "ttf-nerd-fonts-symbols",
         "vlc",
         "wakeonlan",
         "waybar",
         "wf-recorder",
-        "ttf-nerd-fonts-symbols"
+        "lua-filesystem"
     ],
     "pacman_config": {
         "color": true,
