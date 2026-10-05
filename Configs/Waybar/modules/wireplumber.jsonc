@@ -1,0 +1,7 @@
+{
+	"wireplumber": { 
+		"format": " {volume}%",
+		"on-scroll-up": "true",
+		"on-scoll-down": "true"
+	}
+}

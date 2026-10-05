@@ -31,5 +31,5 @@ end
 
 -- startup
 hl.on("hyprland.start", function()
-	hl.exec_cmd("waybar --config ~/.config/waybar/PC-Elias.jsonc")
+	hl.exec_cmd("waybar --config ~/.config/waybar/host_specific/PC-Elias.jsonc")
 end)

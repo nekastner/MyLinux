@@ -1,0 +1,8 @@
+{
+	"backlight": {
+		"format": "󰃟 {percent}%",
+		"tooltip-format": "Controller Name: {controller_alias}\nStatus: {status}\nConnections: {num_connections}\nDevices:{device_enumerate}",
+		"tooltip-format-enumerate-connected": "{device_address}\t{device_alias}",
+		"tooltip-format-enumerate-connected": "{device_address}\t{device_alias} ({device_battery_percentage}%)"
+	}
+}

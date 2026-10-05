@@ -1,0 +1,31 @@
+#temperature.cpu,
+#temperature.gpu,
+#network.linked,
+#network.ethernet,
+#network.wifi,
+#bluetooth.on,
+#bluetooth.discoverable,
+#bluetooth.discovering,
+#bluetooth.pairable,
+#bluetooth.connected {
+	background-color: #00ff00;
+	color: #000000;
+}
+
+#temperature.cpu.warning,
+#temperature.gpu.warning,
+#battery.warnung:not(.charging) {
+	background-color: #ffff00;
+	color: #000000;
+}
+
+#temperature.cpu.critical,
+#temperature.gpu.critical,
+#network.disabled,
+#network.disconnected,
+#bluetooth.off,
+#bluetooth.disabled,
+#battery.critical:not(.charging) {
+	background-color: #ff0000;
+	color: #000000;
+}

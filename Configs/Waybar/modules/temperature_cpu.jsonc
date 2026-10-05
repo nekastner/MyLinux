@@ -1,0 +1,11 @@
+{
+	"temperature#cpu": {
+		"inlcude": "~/.config/waybar/modules/temperature.jsonc",
+		"hwmon-path": [
+			"/sys/class/hwmon/hwmon5/temp1_input"
+		],
+		"format": " CPU: {temperatureC}°C",
+		"format-warning": " CPU: {temperatureC}°C",
+		"format-critical": " CPU: {temperatureC}°C"
+	}
+}

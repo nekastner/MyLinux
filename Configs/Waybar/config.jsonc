@@ -1,5 +1,5 @@
 {
-	"include": "~/.config/waybar/style.jsonc",
+	"include": "~/.config/waybar/modules/all.jsonc",
 
 	"layer": "top",
 	"position": "top",
@@ -16,13 +16,8 @@
 	],
 	"modules-right": [
 		"keyboard-state",
-		"mpris",
-		"temperature",
 		"wireplumber",
 		"network",
-		"bluetooth",
-		"backlight",
-		"battery",
 		"tray"
 	]
 }

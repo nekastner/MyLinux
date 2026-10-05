@@ -1,0 +1,17 @@
+{
+	"mpris": {
+
+		"format": "{player_icon} {status_icon} {title}",
+		"max-length": 30,
+
+		"tooltip-format": "{player_icon} {player} ({status_icon} {status})\n\nTitle:\t{title}\nArtist:\t{artist}\nLength:\t{length}\nAlbum:\t{album}",
+
+		"player-icons": {
+			"spotify": ""
+		},
+		"status-icons": {
+			"playing": "",
+			"paused": ""
+		}
+	}
+}

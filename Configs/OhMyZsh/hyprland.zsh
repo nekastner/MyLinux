@@ -5,7 +5,7 @@ alias quit-hyprland='command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || 
 alias start-waybar='start_waybar'
 start_waybar()
 {
-	local CONFIG_PATH="$HOME/.config/waybar/$HOST.jsonc"
+	local CONFIG_PATH="$HOME/.config/waybar/host_specific/$HOST.jsonc"
 	if [[ -e "$CONFIG_PATH" ]]; then
 		hyprland_exec "waybar --config $CONFIG_PATH"
 	else
