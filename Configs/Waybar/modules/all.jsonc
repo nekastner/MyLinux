@@ -10,6 +10,6 @@
 		"~/.config/waybar/modules/temperature_gpu.jsonc",
 		"~/.config/waybar/modules/backlight.jsonc",
 		"~/.config/waybar/modules/battery.jsonc",
-		"~/.config/waybar/modules/trayy.jsonc"
+		"~/.config/waybar/modules/tray.jsonc"
 	]
 }

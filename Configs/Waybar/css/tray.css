@@ -1,3 +1,8 @@
+#tray>* {
+	border: 1px solid #ffffff;
+	border-radius: 5px;
+}
+
 #tray>.passive {
 	-gtk-icon-effect: dim;
 }
