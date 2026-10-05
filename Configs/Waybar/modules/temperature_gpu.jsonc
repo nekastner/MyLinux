@@ -1,10 +1,14 @@
 {
 	"temperature#gpu": {
+		"interval": 3,
+		"warning-threshold": 60,
+		"critical-treshold": 70,
 		"hwmon-path": [
 			"/sys/class/hwmon/hwmon3/temp1_input"
 		],
 		"format": " GPU: {temperatureC}°C",
 		"format-warning": " GPU: {temperatureC}°C",
-		"format-critical": " GPU: {temperatureC}°C"
+		"format-critical": " GPU: {temperatureC}°C",
+		"tooltip": false
 	}
 }
