@@ -17,6 +17,5 @@ end
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup("plugins")
 
--- configs
-local import_utils = require("import_utils")
-import_utils.load_dir("configs")
+-- import non plugin configs
+require("configs")
