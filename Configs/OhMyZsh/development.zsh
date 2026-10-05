@@ -1,7 +1,4 @@
-_COLOR_NEUTRAL='\033[0m'
-_COLOR_RED='\033[0;31m'
-_COLOR_GREEN='\033[0;32m'
-_COLOR_YELLOW='\033[0;32m'
+source "$ZSH/custom/colors.zsh"
 
 # git branch compare (how much ahead of each other)
 gbc()
@@ -17,7 +14,7 @@ gbc()
 		branch2_name="$(git_develop_branch)"
 
 	else
-		printf "${_COLOR_RED}ERROR ==> Wrong usage!${_COLOR_NEUTRAL}}\n"
+		printf "${COLOR_RED}ERROR ==> Wrong usage!${COLOR_NEUTRAL}}\n"
 		printf "Parameters: <branch 1> <branch 2>\n"
 		printf "Hint: Alternatively install the git plugin and create a main and a develop branch."
 		return 1
@@ -46,13 +43,11 @@ gbc()
 alias ls-todos='ls_todos'
 ls_todos()
 {
-	if (( $# == 0 ));
-	then
+	if (( $# == 0 )); then
 		set -- .
 	fi
 
-	for place in "$@";
-	do
+	for place in "$@"; do
 		printf "### '%s' ('%s') ###\n\n" "$place" "$(realpath "$place")"
 		rg -ni -- 'todo:' "$place"
 	done
@@ -61,10 +56,9 @@ ls_todos()
 alias setup-web-project='setup_web_project'
 setup_web_project()
 {
-	if (( $# != 1 )) || [[ -z "$1" ]];
-	then
-		printf "${_COLOR_RED}ERROR ==> Project name required!${_COLOR_NEUTRAL}\n"
-		printf "${_COLOR_RED}'$1' is not a valid project name!${_COLOR_NEUTRAL}\n"
+	if (( $# != 1 )) || [[ -z "$1" ]]; then
+		printf "${COLOR_RED}ERROR ==> Project name required!${COLOR_NEUTRAL}\n"
+		printf "${COLOR_RED}'$1' is not a valid project name!${COLOR_NEUTRAL}\n"
 		exit 1
 	fi
 
@@ -75,9 +69,8 @@ setup_web_project()
 	wait $!
 
 	# go into project directory
-	if ! cd "$PROJECT_NAME";
-	then
-		printf "${_COLOR_RED}ERROR ==> Unable to find project directory '$PROJECT_NAME'${_COLOR_NEUTRAL}"
+	if ! cd "$PROJECT_NAME"; then
+		printf "${COLOR_RED}ERROR ==> Unable to find project directory '$PROJECT_NAME'${COLOR_NEUTRAL}"
 		exit 1
 	fi
 

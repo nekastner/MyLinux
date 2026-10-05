@@ -1,12 +1,13 @@
+source "$ZSH/custom/colors.zsh"
+
 alias wifi-ls='nmcli device wifi'
 
 alias wifi-st='wifi_st'
 wifi_st()
 {
-	if (( $# != 1 ));
-	then
-		echo "ERROR ==> Wrong usage!"
-		echo "Parameters: <ifname>"
+	if (( $# != 1 )); then
+		printf "${COLOR_RED}ERROR ==> Wrong usage!${COLOR_NEUTRAL}\n"
+		printf "Parameters: <ifname>\n"
 		return 1
 	fi
 
@@ -19,10 +20,9 @@ wifi_st()
 alias wifi-con='wifi_con'
 wifi_con()
 {
-	if (( $# != 2 ));
-	then
-		echo "ERROR ==> Wrong usage!"
-		echo "Parameters: <ifname> <ssid>"
+	if (( $# != 2 )); then
+		printf "${COLOR_RED}ERROR ==> Wrong usage!${COLOR_NEUTRAL}\n"
+		printf "Parameters: <ifname> <ssid>"
 		return 1
 	fi
 

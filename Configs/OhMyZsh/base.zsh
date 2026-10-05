@@ -27,20 +27,19 @@ alias gdh='git diff HEAD'
 
 # python
 alias py='python'
-vpy()
+function vpy
 {
 	local venv_name="$1"
 	local python_args=("${@:2}")
 
-	if [[ ! -x "$venv_name/bin/python" ]];
-	then
+	if [[ ! -x "$venv_name/bin/python" ]]; then
 		echo "ERROR ==> Python venv not found: '$venv_name/bin/python'"
 		return 1
 	fi
 
 	"$venv_name/bin/python" "${python_args[@]}"
 }
-vpip()
+function vpip
 {
 	local venv_name="$1"
 	local pip_args=("${@:2}")
@@ -50,10 +49,9 @@ vpip()
 
 # mount encrypted devices
 alias mount-crypt='mount_crypt'
-mount_crypt()
+function mount_crypt
 {
-	if (($# != 3));
-	then
+	if (($# != 3)); then
 		echo "ERROR ==> Wrong usage!"
 		echo "Parameters: <device> <mapper name> <mountpoint>"
 		return 1
@@ -64,14 +62,12 @@ mount_crypt()
 	local mountpoint="$3"
 	local mapper="/dev/mapper/$mapper_name"
 
-	if ! sudo cryptsetup open "$device" "$mapper_name";
-	then
+	if ! sudo cryptsetup open "$device" "$mapper_name"; then
 		echo "ERROR ==> Unable to open '$device'!"
 		return 1
 	fi
 
-	if ! sudo mount /dev/mapper/"$mapper_name" "$mountpoint";
-	then
+	if ! sudo mount /dev/mapper/"$mapper_name" "$mountpoint"; then
 		echo "ERROR ==> Unable to mount '$mapper'!"
 		echo "Undoing cryptsetup for '$mapper' ('$device')..."
 		sudo cryptsetup close "$mapper"
