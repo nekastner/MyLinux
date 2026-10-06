@@ -1,0 +1,5 @@
+{
+	"include": [
+		"~/.config/waybar/host_specific/NB-Noah/temperature_cpu.jsonc"
+	]
+}

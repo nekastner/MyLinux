@@ -1,10 +1,10 @@
 [
 	{
-		"output": "HDMI-A-1",
+		"output": "eDP-1",
 
 		"include": [
 			"~/.config/waybar/modules/all.jsonc",
-			"~/.config/waybar/host_specific/PC-Elias/all.jsonc"
+			"~/.config/waybar/host_specific/NB-Noah/all.jsonc"
 		],
 
 		"layer": "top",
@@ -27,15 +27,19 @@
 			"network",
 			"bluetooth",
 			"temperature#cpu",
-			"temperature#gpu",
 			"tray"
 		]
 	},
-
 	{
-		"output": "HDMI-A-2",
+		"output": [
+			"!eDP-1",
+			"*"
+		],
 
-		"include": "~/.config/waybar/modules/all.jsonc",
+		"include": [
+			"~/.config/waybar/modules/all.jsonc",
+			"~/.config/waybar/host_specific/NB-Noah/all.jsonc"
+		]
 
 		"layer": "top",
 		"position": "top",
@@ -51,11 +55,6 @@
 			"clock"
 		],
 		"modules-right": [
-			"keyboard-state",
-			"wireplumber",
-			"temperature#cpu",
-			"temperature#gpu",
-			"tray"
 		]
 	}
 ]

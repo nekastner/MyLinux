@@ -1,0 +1,6 @@
+{
+	"include": [
+		"~/.config/waybar/host_specific/PC-Elias/temperature_cpu.jsonc",
+		"~/.config/waybar/host_specific/PC-Elias/temperature_gpu.jsonc"
+	]
+}
