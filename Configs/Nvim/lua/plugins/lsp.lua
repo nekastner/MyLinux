@@ -74,8 +74,6 @@ return {
 			server_opts.capabilities = capabilities
 			vim.lsp.config(server_name, server_opts)
 			vim.lsp.enable(server_name)
-		end
-
-		vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = "Go to Definition" })
+		end	
 	end,
 }

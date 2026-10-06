@@ -13,3 +13,6 @@ map("i", "<S-Tab>", "<C-d>", { silent = true })
 -- tab management
 map("n", "<leader>tc", "<cmd>tabclose<CR>", { desc = "tab close" })
 map("n", "<leader>to", "<cmd>tabonly<CR>", { desc = "tab only" })
+
+-- lsp
+map('n', 'gd', vim.lsp.buf.definition, { desc = "Go to Definition" })
