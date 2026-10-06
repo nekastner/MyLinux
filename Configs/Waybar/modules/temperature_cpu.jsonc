@@ -4,7 +4,7 @@
 		"warning-threshold": 60,
 		"critical-treshold": 70,
 		"hwmon-path": [
-			"/sys/class/hwmon/hwmon5/temp1_input"
+			"/sys/class/hwmon/hwmon6/temp1_input"
 		],
 		"format": " CPU: {temperatureC}°C",
 		"format-warning": " CPU: {temperatureC}°C",
