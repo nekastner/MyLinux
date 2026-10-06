@@ -39,7 +39,7 @@
 		"include": [
 			"~/.config/waybar/modules/all.jsonc",
 			"~/.config/waybar/host_specific/NB-Noah/all.jsonc"
-		]
+		],
 
 		"layer": "top",
 		"position": "top",
