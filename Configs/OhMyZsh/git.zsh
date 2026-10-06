@@ -1,6 +1,7 @@
 alias gdh='git diff HEAD'
 
-alias gum='git_update_main'
+alias gum='git-update-main'
+alias git-update-main='git_update_main'
 function git_update_main
 {
 	git switch "$(git_main_branch)"
@@ -14,6 +15,7 @@ function git_update_main
 
 # git branch compare (how much ahead of each other)
 alias gbc='git-branch-compare'
+alias git-branch-compare='git_branch_compare'
 function git_branch_compare
 {
 	# determine names of branches
