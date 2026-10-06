@@ -22,7 +22,7 @@ end
 -- move focus to workspaces 11 to 20
 for i = 11, 20 do
 	local key = i % 10
-	hl.bind(mainMod .. " + ALT + " .. key, hl.dsp.focus({ workspace = i }))
+	hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.focus({ workspace = i }))
 end
 
 -- toggle focus of magic workspace
@@ -37,7 +37,6 @@ hl.bind(mainMod .. " + K", hl.dsp.exec_cmd("hyprctl kill"))
 -- window movement
 hl.bind(mainMod .. " + M", hl.dsp.submap("window_movement"))
 hl.define_submap("window_movement", function()
-
 	-- move window inside workspace
 	for _, direction in ipairs({ "left", "right", "down", "up" }) do
 		hl.bind(direction, hl.dsp.window.move({ direction = direction }))
