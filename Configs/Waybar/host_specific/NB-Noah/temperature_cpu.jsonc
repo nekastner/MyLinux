@@ -1,8 +1,8 @@
 {
 	"temperature#cpu": {
 		"interval": 3,
-		"warning-threshold": 60,
-		"critical-treshold": 70,
+		"warning-threshold": 40,
+		"critical-treshold": 50,
 		"hwmon-path": [
 			"/sys/class/hwmon/hwmon3/temp1_input"
 		],
