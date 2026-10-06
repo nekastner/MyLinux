@@ -1,143 +1,86 @@
 local mainMod = "SUPER"
 
 -- lock session
-hl.bind(
-	mainMod .. " + L",
-	hl.dsp.exec_cmd("hyprlock"),
-	{}
-)
+hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
 
 -- start applications
-hl.bind(
-	mainMod .. " + Q",
-	hl.dsp.exec_cmd("kitty"),
-	{}
-)
-hl.bind(
-	mainMod .. " + R",
-	hl.dsp.exec_cmd("hyprlauncher"),
-	{}
-)
-hl.bind(
-	mainMod .. " + E",
-	hl.dsp.exec_cmd("dolphin"),
-	{}
-)
+hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd("kitty"))
+hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("hyprlauncher"))
+hl.bind(mainMod .. " + E", hl.dsp.exec_cmd("dolphin"))
 
--- layout (scrolling)
-for direction, abbreviation in pairs({ right = "r", left = "l" }) do
-	hl.bind(
-		mainMod .. " + CTRL + " .. direction,
-		hl.dsp.layout("swapcol " .. abbreviation),
-		{}
-	)
-end
-hl.bind(
-	mainMod .. " + P",
-	hl.dsp.layout("promote"),
-	{}
-)
-
--- window management
+-- move window focus inside workspace
 for _, direction in ipairs({ "left", "right", "down", "up" }) do
-	hl.bind(
-		mainMod .. " + " .. direction,
-		hl.dsp.focus({ direction = direction }),
-		{}
-	)
-	hl.bind(
-		mainMod .. " + SHIFT + " .. direction,
-		hl.dsp.window.move({ direction = direction }),
-		{}
-	)
+	hl.bind(mainMod .. " + " .. direction, hl.dsp.focus({ direction = direction }))
 end
-hl.bind(
-	mainMod .. " + C",
-	hl.dsp.window.close(),
-	{}
-)
-hl.bind(
-	mainMod .. " + K",
-	hl.dsp.exec_cmd("hyprctl kill"),
-	{}
-)
 
--- workspace management
+-- move focus to workspaces 1 to 10
 for i = 1, 10 do
 	local key = i % 10
-	hl.bind(
-		mainMod .. " + " .. key,
-		hl.dsp.focus({ workspace = i }),
-		{}
-	)
-	hl.bind(
-		mainMod .. " + SHIFT + " .. key,
-		hl.dsp.window.move({ workspace = i }),
-		{}
-	)
+	hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = i }))
 end
+
+-- move focus to workspaces 11 to 20
 for i = 11, 20 do
 	local key = i % 10
-	hl.bind(
-		mainMod .. " + ALT + " .. key,
-		hl.dsp.focus({ workspace = i }),
-		{}
-	)
-	hl.bind(
-		mainMod .. " + ALT + SHIFT + " .. key,
-		hl.dsp.window.move({ workspace = i }),
-		{}
-	)
+	hl.bind(mainMod .. " + ALT + " .. key, hl.dsp.focus({ workspace = i }))
 end
-hl.bind(
-	mainMod .. " + M",
-	hl.dsp.workspace.toggle_special("magic"),
-	{}
-)
-hl.bind(
-	mainMod .. " + SHIFT + M",
-	hl.dsp.window.move({ workspace = "special:magic" }),
-	{}
-)
-hl.bind(
-	mainMod .. " + mouse_down",
-	hl.dsp.focus({ workspace = "e+1" }),
-	{}
-)
-hl.bind(
-	mainMod .. " + mouse_up",
-	hl.dsp.focus({ workspace = "e-1" }),
-	{}
-)
+
+-- toggle focus of magic workspace
+hl.bind(mainMod .. " + M", hl.dsp.workspace.toggle_special("magic"))
+
+-- close window
+hl.bind(mainMod .. " + C", hl.dsp.window.close())
+
+-- kill window
+hl.bind(mainMod .. " + K", hl.dsp.exec_cmd("hyprctl kill"))
+
+-- window movement
+hl.bind(mainMod .. " + M", hl.dsp.submap("window_movement"))
+hl.define_submap("window_movement", function()
+
+	-- move window inside workspace
+	for _, direction in ipairs({ "left", "right", "down", "up" }) do
+		hl.bind(direction, hl.dsp.window.move({ direction = direction }))
+	end
+
+	-- move columns inside workspace
+	for direction, abbreviation in pairs({ right = "r", left = "l" }) do
+		hl.bind("CTRL + " .. direction, hl.dsp.layout("swapcol " .. abbreviation))
+	end
+
+	-- promote window to new column
+	hl.bind(mainMod .. " + P", hl.dsp.layout("promote"))
+
+	-- move window to workspaces 1 to 10
+	for i = 1, 10 do
+		local key = i % 10
+		hl.bind(key, hl.dsp.window.move({ workspace = i }))
+	end
+
+	-- move window to workspaces 11 to 20
+	for i = 11, 20 do
+		local key = i % 10
+		hl.bind("SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
+	end
+
+	-- move window to magic workspace
+	hl.bind("M", hl.dsp.focus({ workspace = "special:magic" }))
+
+	-- move focus between all workspaces with the mouse
+	hl.bind("mouse_down", hl.dsp.focus({ workspace = "e+1" }))
+	hl.bind("mouse_up", hl.dsp.focus({ workspace = "e-1" }))
+
+	-- manipulate window size and position with the mouse
+	hl.bind("mouse:272", hl.dsp.window.drag())
+	hl.bind("mouse:273", hl.dsp.window.resize())
+
+	hl.bind("escape", hl.dsp.submap("reset"))
+end)
 
 -- take screenshots
-hl.bind(
-	mainMod .. " + S",
-	hl.dsp.exec_cmd("hyprshot -m window"),
-	{}
-)
-hl.bind(
-	mainMod .. " + CTRL + S",
-	hl.dsp.exec_cmd("hyprshot -m output"),
-	{}
-)
-hl.bind(
-	mainMod .. " + SHIFT + S",
-	hl.dsp.exec_cmd("hyprshot -m region"),
-	{}
-)
-
--- manipulate windows with the mouse
-hl.bind(
-	mainMod .. " + mouse:272",
-	hl.dsp.window.drag(),
-	{}
-)
-hl.bind(
-	mainMod .. " + mouse:273",
-	hl.dsp.window.resize(),
-	{}
-)
+hl.bind(mainMod .. " + S", hl.dsp.exec_cmd("hyprshot -m window"))
+hl.bind(mainMod .. " + CTRL + S", hl.dsp.exec_cmd("hyprshot -m output"))
+hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("hyprshot -m region"))
 
 -- sound settings
 hl.bind(
