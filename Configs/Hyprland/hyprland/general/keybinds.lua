@@ -35,7 +35,7 @@ hl.bind(mainMod .. " + C", hl.dsp.window.close())
 hl.bind(mainMod .. " + K", hl.dsp.exec_cmd("hyprctl kill"))
 
 -- window movement
-hl.bind(mainMod .. " + M", hl.dsp.submap("window_movement"))
+hl.bind(mainMod .. " + W", hl.dsp.submap("window_movement"))
 hl.define_submap("window_movement", function()
 	-- move window inside workspace
 	for _, direction in ipairs({ "left", "right", "down", "up" }) do
