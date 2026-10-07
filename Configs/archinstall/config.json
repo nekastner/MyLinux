@@ -163,6 +163,7 @@
         "hyprlauncher",
         "hyprlock",
         "hyprpaper",
+        "hyprpolkitagent",
         "hyprshot",
         "hyprsunset",
         "jdk-openjdk",
@@ -188,7 +189,7 @@
         "wakeonlan",
         "waybar",
         "wf-recorder",
-        "hyprpolkitagent"
+        "xorg-xhost"
     ],
     "pacman_config": {
         "color": true,
