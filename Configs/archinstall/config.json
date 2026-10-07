@@ -171,6 +171,7 @@
         "libdvdnav",
         "libdvdread",
         "loupe",
+        "lua-filesystem",
         "man-db",
         "man-pages",
         "nano",
@@ -187,7 +188,7 @@
         "wakeonlan",
         "waybar",
         "wf-recorder",
-        "lua-filesystem"
+        "hyprpolkitagent"
     ],
     "pacman_config": {
         "color": true,
