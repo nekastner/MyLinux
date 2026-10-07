@@ -35,7 +35,10 @@
 	{
 		"output": "HDMI-A-2",
 
-		"include": "~/.config/waybar/modules/all.jsonc",
+		"include": [
+			"~/.config/waybar/modules/all.jsonc",
+			"~/.config/waybar/host_specific/PC-Elias/all.jsonc"
+		],
 
 		"layer": "top",
 		"position": "top",
