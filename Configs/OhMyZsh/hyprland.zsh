@@ -48,3 +48,5 @@ to_clipboard()
 
 	wl-copy < "$file_name"
 }
+
+alias kitty-ssh='kitty +kitten ssh'
