@@ -2,6 +2,10 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- import utils
+local import_utils = require("utils.import_utils")
+local host_utils = require("utils.host_utils")
+
 -- lazy vim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.uv.fs_stat(lazypath) then
@@ -15,7 +19,8 @@ if not vim.uv.fs_stat(lazypath) then
 	})
 end
 vim.opt.rtp:prepend(lazypath)
-require("lazy").setup("plugins")
+
+require("lazy").setup(host_utils.require_string_for_linux_distro_specific_plugins)
 
 -- import non plugin configs
-require("configs")
+import_utils.import("configs")
