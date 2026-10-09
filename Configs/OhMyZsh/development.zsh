@@ -25,8 +25,7 @@ function setup_web_project
 	local PROJECT_NAME="$1"
 
 	# create vite project
-	npm create vite@latest "$PROJECT_NAME" --yes -- --template react-ts &
-	wait $!
+	npm create vite@latest "$PROJECT_NAME" --yes -- --template react-ts
 
 	# go into project directory
 	if ! cd "$PROJECT_NAME"; then
@@ -79,6 +78,8 @@ EOF
 	# remove src/App.css
 	rm src/App.css
 
-	# execute
-	npm run dev
+	read -rp "Run? [y/N]" execute_confirmation
+	if [[ "$execute_confirmation" =~ ^[yY]$ ]]; then
+		npm run dev
+	fi
 }
