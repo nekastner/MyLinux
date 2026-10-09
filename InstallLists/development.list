@@ -7,7 +7,7 @@ aspnet-runtime
 jdk-openjdk
 nodejs
 npm
-jetbrains-toolbox
+platformio-core
 unityhub
 ghidra
 chromium
