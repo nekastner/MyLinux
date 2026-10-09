@@ -18,7 +18,7 @@ local function get_linux_distro()
 end
 
 local function setup_linux_distro_specific_plugins_dir(linux_distro)
-	local path_to_distro_specific_plugins_dir = vim.fn.stdpath("config") .. "/plugins/" .. linux_distro
+	local path_to_distro_specific_plugins_dir = vim.fn.stdpath("config") .. "/lua/plugins/" .. linux_distro
 	vim.fn.mkdir(path_to_distro_specific_plugins_dir, "p")
 end
 
