@@ -8,7 +8,7 @@ return {
 			c = { "clang_format" },
 			cpp = { "clang_format" },
 			lua = { "stylua" },
-			python = { "ruff_format" },
+			python = { "ruff_organize_imports", "ruff_format" },
 			javascript = { "prettier" },
 			typescript = { "prettier" },
 			java = { "google-java-format" },

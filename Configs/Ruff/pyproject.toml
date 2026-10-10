@@ -1,0 +1,16 @@
+[tool.ruff]
+indent-width = 2
+line-length = 120
+
+[tool.ruff.analyze]
+detect-string-imports = true
+type-checking-imports = true
+
+[tool.ruff.format]
+docstring-code-format = true
+docstring-code-line-length = "dynamic"
+indent-style = "tab"
+line-ending = "auto"
+nested-string-quote-style = "preffered"
+quote-style = "double"
+skip-magic-trailing-comma = false

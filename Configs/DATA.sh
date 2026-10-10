@@ -29,6 +29,8 @@ SOURCES_TARGETS_LIST["${CONFIGS_DIR}/Vim/.vimrc"]="$HOME/.vimrc"
 SOURCES_TARGETS_LIST["${CONFIGS_DIR}/Nano/.nanorc"]="$HOME/.nanorc"
 # clang format
 SOURCES_TARGETS_LIST["${CONFIGS_DIR}/Clang/.clang-format"]="$HOME/.clang-format"
+# ruff
+SOURCES_TARGETS_LIST["${CONFIGS_DIR}/Ruff"]="$HOME/.config/ruff"
 # samba
 SOURCES_TARGETS_LIST["${CONFIGS_DIR}/Samba/smb.conf"]="/etc/samba/smb.conf"
 SOURCES_TARGETS_LIST["${CONFIGS_DIR}/Samba/user_specific"]="/etc/samba/user_specific"
