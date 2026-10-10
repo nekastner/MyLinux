@@ -4,7 +4,7 @@ SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 source "$SCRIPT_DIR/DATA.sh"
 source "$SCRIPT_DIR/UTILS.sh"
 
-function recover
+function reverse_deploy
 {
 	local SOURCE_PATH="$1"
 	local TARGET_PATH="$2"
@@ -16,6 +16,11 @@ function recover
 
 	if is_target_equal_to_source "$TARGET_PATH" "$SOURCE_PATH"; then
 		printf "${COLOR_GREEN}'$SOURCE_PATH' is already equal to '$TARGET_PATH'${COLOR_NEUTRAL}\n"
+		return 0
+	fi
+
+	if is_target_linked_to_source "$TARGET_PATH" "$SOURCE_PATH"; then
+		printf "${COLOR_GREEN}'$SOURCE_PATH' is already linked to '$TARGET_PATH'${COLOR_NEUTRAL}\n"
 		return 0
 	fi
 
@@ -36,6 +41,5 @@ function recover
 
 for source_path in "${!SOURCES_TARGETS_LIST[@]}"; do
 	target_path="${SOURCES_TARGETS_LIST[$source_path]}"
-	if is_path_in_home "$target_path"; then	continue; fi
-	recover "$source_path" "$target_path"
+	reverse_deploy "$source_path" "$target_path"
 done
