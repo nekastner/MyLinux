@@ -11,6 +11,6 @@ docstring-code-format = true
 docstring-code-line-length = "dynamic"
 indent-style = "tab"
 line-ending = "auto"
-nested-string-quote-style = "preffered"
+nested-string-quote-style = "preferred"
 quote-style = "double"
 skip-magic-trailing-comma = false
