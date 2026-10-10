@@ -17,19 +17,44 @@ local function get_linux_distro()
 	return nil
 end
 
-local function setup_linux_distro_specific_plugins_dir(linux_distro)
-	local path_to_distro_specific_plugins_dir = vim.fn.stdpath("config") .. "/lua/plugins/" .. linux_distro
-	vim.fn.mkdir(path_to_distro_specific_plugins_dir, "p")
+local function are_plugins_existing(linux_distro)
+	if linux_distro == nil then
+		return false
+	end
+
+	local path = vim.fn.stdpath("config") .. "/lua/plugins/" .. linux_distro
+	local stat = vim.uv.fs_stat(path)
+	if not stat or stat.type ~= "directory" then
+		return false
+	end
+
+	local iter = vim.fs.dir(path)
+	local first = iter()
+	if not first then
+		return false
+	end
+
+	return true
 end
 
-local function get_linux_distro_specific_plugins_require_string(linux_distro)
+local function get_plugins_require_string(linux_distro)
+	if linux_distro == nil then
+		return nil
+	end
+
 	return "plugins." .. linux_distro
 end
 
-local linux_distro = get_linux_distro()
+local function import_plugins(lazy)
+	local linux_distro = get_linux_distro()
 
-setup_linux_distro_specific_plugins_dir(linux_distro)
+	if not are_plugins_existing(linux_distro) then
+		return
+	end
+
+	lazy.setup(get_plugins_require_string(linux_distro))
+end
 
 return {
-	require_string_for_linux_distro_specific_plugins = get_linux_distro_specific_plugins_require_string(linux_distro)
+	import_plugins = import_plugins
 }
