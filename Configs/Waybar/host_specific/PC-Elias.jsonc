@@ -15,20 +15,21 @@
 
 		"modules-left": [
 			"hyprland/workspaces",
-			"hyprland/mode"
+			//"hyprland/mode",
+			//"keyboard-state",
+			"tray"
 		],
 		"modules-center": [
 			"clock"
 		],
 		"modules-right": [
-			"keyboard-state",
 			"mpris",
 			"wireplumber",
 			"network",
 			"bluetooth",
+			//"cpu",
 			"temperature#cpu",
-			"temperature#gpu",
-			"tray"
+			"temperature#gpu"
 		]
 	},
 
@@ -48,17 +49,18 @@
 
 		"modules-left": [
 			"hyprland/workspaces",
-			"hyprland/mode"
+			//"hyprland/mode",
+			//"keyboard-state",
+			"tray"
 		],
 		"modules-center": [
 			"clock"
 		],
 		"modules-right": [
-			"keyboard-state",
 			"wireplumber",
+			//"cpu",
 			"temperature#cpu",
-			"temperature#gpu",
-			"tray"
+			"temperature#gpu"
 		]
 	}
 ]
