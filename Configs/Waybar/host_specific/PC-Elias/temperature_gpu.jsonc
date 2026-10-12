@@ -1,7 +1,7 @@
 {
 	"temperature#gpu": {
 		"interval": 3,
-		"warning-threshold": 60,
+		"warning-threshold": 65,
 		"critical-treshold": 70,
 		"hwmon-path": [
 			"/sys/class/hwmon/hwmon3/temp1_input"
