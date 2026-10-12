@@ -10,6 +10,8 @@ SOURCES_TARGETS_LIST["${CONFIGS_DIR}/Refind/background.png"]="/boot/EFI/refind/b
 # kernel
 SOURCES_TARGETS_LIST["${CONFIGS_DIR}/KernelPresets/linux.preset"]="/etc/mkinitcpio.d/linux.preset"
 SOURCES_TARGETS_LIST["${CONFIGS_DIR}/KernelPresets/linux-zen.preset"]="/etc/mkinitcpio.d/linux-zen.preset"
+# bash
+SOURCES_TARGETS_LIST["${CONFIGS_DIR}/Bash/.bashrc"]="$HOME/.bashrc"
 # oh my zsh
 SOURCES_TARGETS_LIST["${CONFIGS_DIR}/OhMyZsh/.zshrc"]="$HOME/.zshrc"
 shopt -s dotglob nullglob
