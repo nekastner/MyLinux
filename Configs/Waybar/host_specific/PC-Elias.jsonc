@@ -15,9 +15,7 @@
 
 		"modules-left": [
 			"hyprland/workspaces",
-			//"hyprland/mode",
-			//"keyboard-state",
-			"tray"
+			"hyprland/submap"
 		],
 		"modules-center": [
 			"clock"
@@ -27,9 +25,9 @@
 			"wireplumber",
 			"network",
 			"bluetooth",
-			//"cpu",
 			"temperature#cpu",
-			"temperature#gpu"
+			"temperature#gpu",
+			"tray"
 		]
 	},
 
@@ -49,18 +47,16 @@
 
 		"modules-left": [
 			"hyprland/workspaces",
-			//"hyprland/mode",
-			//"keyboard-state",
-			"tray"
+			"hyprland/submap"
 		],
 		"modules-center": [
 			"clock"
 		],
 		"modules-right": [
 			"wireplumber",
-			//"cpu",
 			"temperature#cpu",
-			"temperature#gpu"
+			"temperature#gpu",
+			"tray"
 		]
 	}
 ]

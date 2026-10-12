@@ -1,7 +1,9 @@
 {
 	"include": [
 		"~/.config/waybar/modules/hyprland_workspaces.jsonc",
+		"~/.config/waybar/modules/hyprland_submap.jsonc",
 		"~/.config/waybar/modules/clock.jsonc",
+		"~/.config/waybar/modules/cpu.jsonc",
 		"~/.config/waybar/modules/mpris.jsonc",
 		"~/.config/waybar/modules/wireplumber.jsonc",
 		"~/.config/waybar/modules/network.jsonc",

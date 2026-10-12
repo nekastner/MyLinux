@@ -15,13 +15,12 @@
 
 		"modules-left": [
 			"hyprland/workspaces",
-			"hyprland/mode"
+			"hyprland/submap"
 		],
 		"modules-center": [
 			"clock"
 		],
 		"modules-right": [
-			"keyboard-state",
 			"mpris",
 			"wireplumber",
 			"network",
@@ -49,12 +48,13 @@
 
 		"modules-left": [
 			"hyprland/workspaces",
-			"hyprland/mode"
+			"hyprland/submap"
 		],
 		"modules-center": [
 			"clock"
 		],
 		"modules-right": [
+			"wireplumber"
 		]
 	}
 ]
