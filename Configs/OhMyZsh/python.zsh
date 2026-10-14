@@ -2,8 +2,6 @@ source "$ZSH/custom/colors.zsh"
 
 alias py='python'
 
-
-
 function vpa
 {
 	local venv_name="$1"
