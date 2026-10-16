@@ -19,7 +19,7 @@ function setup_web_project
 	if (( $# != 1 )) || [[ -z "$1" ]]; then
 		printf "${COLOR_RED}ERROR ==> Project name required!${COLOR_NEUTRAL}\n"
 		printf "${COLOR_RED}'$1' is not a valid project name!${COLOR_NEUTRAL}\n"
-		exit 1
+		return 1
 	fi
 
 	local PROJECT_NAME="$1"
@@ -30,7 +30,7 @@ function setup_web_project
 	# go into project directory
 	if ! cd "$PROJECT_NAME"; then
 		printf "${COLOR_RED}ERROR ==> Unable to find project directory '$PROJECT_NAME'${COLOR_NEUTRAL}"
-		exit 1
+		return 1
 	fi
 
 	# install tailwind with dependencies

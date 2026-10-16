@@ -33,7 +33,7 @@ function vpd
 
 	if [[ -z "$VIRTUAL_ENV" ]]; then
 		printf "${COLOR_RED}ERROR ==> No venv active!${COLOR_NEUTRAL}\n"
-		exit 1
+		return 1
 	fi
 
 	deactivate
