@@ -5,10 +5,13 @@ alias py='python'
 function vpa
 {
 	local venv_name="$1"
+	if [[ -z "$venv_name" ]]; then
+		venv_name='.venv'
+	fi
 
-	if (( $# != 1 )); then
+	if [[ -z "$venv_name" ]]; then
 		printf "${COLOR_RED}ERROR ==> Wrong usage!{COLOR_NEUTRAL}\n"
-		printf "Parameters: <venv name>"
+		printf "Parameters: <venv name (defaults to '.venv')>"
 		return 1
 	fi
 
