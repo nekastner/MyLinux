@@ -16,7 +16,7 @@ function vpa
 
 function vps
 {
-	printf 'Currently active python venv: %s' "$(python -c 'import sys; print(sys.prefix)')"
+	printf 'Currently active python (v)env: %s\n' "$(python -c 'import sys; print(sys.prefix)')"
 }
 
 function vpd
