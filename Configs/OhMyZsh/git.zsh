@@ -13,6 +13,8 @@ function git_update_main
 	git switch "$(git_develop_branch)"
 }
 
+alias gsc="bat $(git rev-parse --show-toplevel)/.git/config"
+
 # git branch compare (how much ahead of each other)
 alias gbc='git-branch-compare'
 alias git-branch-compare='git_branch_compare'
