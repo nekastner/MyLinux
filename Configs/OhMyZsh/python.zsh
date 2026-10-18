@@ -2,60 +2,29 @@ source "$ZSH/custom/colors.zsh"
 
 alias py='python'
 
+alias vpy='uv run python'
+
 function vpa
 {
-	local venv_name="$1"
-	if [[ -z "$venv_name" ]]; then
-		venv_name='.venv'
+	local venv_path="$1"
+	if [[ -z "$venv_path" ]]; then
+		venv_path="$(uv run --no-sync python -c 'import sys; print(sys.prefix)')"
 	fi
 
-	if [[ -z "$venv_name" ]]; then
-		printf "${COLOR_RED}ERROR ==> Wrong usage!{COLOR_NEUTRAL}\n"
-		printf "Parameters: <venv name (defaults to '.venv')>"
-		return 1
-	fi
+	source "$venv_path/bin/activate"
+}
 
-	if [[ ! -x "$venv_name/bin/python" ]]; then
-		printf "${COLOR_RED}ERROR ==> Python venv not found: '$venv_name/bin/python'${COLOR_NEUTRAL}\n"
-		return 1
-	fi
-
-	source "$venv_name/bin/activate"
+function vps
+{
+	printf 'Currently active python venv: %s' "$(python -c 'import sys; print(sys.prefix)')"
 }
 
 function vpd
 {
-	if (( $# != 0 )); then
-		printf "${COLOR_RED}ERROR ==> Wrong usage!{COLOR_NEUTRAL}\n"
-		printf "Parameters: none"
-		return 1
-	fi
-
 	if [[ -z "$VIRTUAL_ENV" ]]; then
-		printf "${COLOR_RED}ERROR ==> No venv active!${COLOR_NEUTRAL}\n"
-		return 1
+		printf "${COLOR_YELLOW}There seems to be no currently active python venv!${COLOR_NEUTRAL}\n"
+		return 0
 	fi
 
 	deactivate
-}
-
-function vpy
-{
-	local venv_name="$1"
-	local python_args=("${@:2}")
-
-	if [[ ! -x "$venv_name/bin/python" ]]; then
-		printf "${COLOR_RED}ERROR ==> Python venv not found: '$venv_name/bin/python'${COLOR_NEUTRAL}\n"
-		return 1
-	fi
-
-	"$venv_name/bin/python" "${python_args[@]}"
-}
-
-function vpip
-{
-	local venv_name="$1"
-	local pip_args=("${@:2}")
-
-	vpy "$venv_name" -m pip "${pip_args[@]}"
 }
