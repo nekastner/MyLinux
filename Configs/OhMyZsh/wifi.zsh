@@ -6,8 +6,8 @@ alias wifi-st='wifi_st'
 wifi_st()
 {
 	if (( $# != 1 )); then
-		printf "${COLOR_RED}ERROR ==> Wrong usage!${COLOR_NEUTRAL}\n"
-		printf "Parameters: <ifname>\n"
+		printf "${COLOR_RED}%s${COLOR_NEUTRAL}\n" 'ERROR ==> Wrong usage!'
+		printf '%s\n' 'Parameters: <ifname>'
 		return 1
 	fi
 
@@ -21,8 +21,8 @@ alias wifi-con='wifi_con'
 wifi_con()
 {
 	if (( $# != 2 )); then
-		printf "${COLOR_RED}ERROR ==> Wrong usage!${COLOR_NEUTRAL}\n"
-		printf "Parameters: <ifname> <ssid>"
+		printf "${COLOR_RED}%s${COLOR_NEUTRAL}\n" 'ERROR ==> Wrong usage!'
+		printf '%s\n' 'Parameters: <ifname> <ssid>'
 		return 1
 	fi
 
