@@ -66,6 +66,11 @@ alias git-show-config='cat "$(git rev-parse --show-toplevel)/.git/config"'
 alias gls='git-list-submodules'
 alias git-list-submodules='ls -1 "$(git rev-parse --show-toplevel)/.git/modules"'
 
+### INFORMATION IN GENERAL ###
+
+alias gccs='git-count-commits'
+alias git-count-commits='git rev-list --count HEAD'
+
 ### COMPARISON ###
 
 alias pgd='print-git-diff'
