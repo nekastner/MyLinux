@@ -1,6 +1,6 @@
 source "$ZSH/custom/colors.zsh"
 
-alias ls-todos='ls_todos'
+alias what-todo='ls_todos'
 function ls_todos
 {
 	if (( $# == 0 )); then
@@ -8,7 +8,7 @@ function ls_todos
 	fi
 
 	for place in "$@"; do
-		printf "### '%s' ('%s') ###\n\n" "$place" "$(realpath "$place")"
+		printf '### '%s' ('%s') ###\n\n' "$place" "$(realpath "$place")"
 		rg -ni -- 'todo:' "$place"
 	done
 }
@@ -17,8 +17,8 @@ alias setup-web-project='setup_web_project'
 function setup_web_project
 {
 	if (( $# != 1 )) || [[ -z "$1" ]]; then
-		printf "${COLOR_RED}ERROR ==> Project name required!${COLOR_NEUTRAL}\n"
-		printf "${COLOR_RED}'$1' is not a valid project name!${COLOR_NEUTRAL}\n"
+		printf "${COLOR_RED}%s${COLOR_NEUTRAL}\n" "ERROR ==> Project name required!"
+		printf "${COLOR_RED}%s${COLOR_NEUTRAL}\n" "'$1' is not a valid project name!"
 		return 1
 	fi
 
@@ -29,7 +29,7 @@ function setup_web_project
 
 	# go into project directory
 	if ! cd "$PROJECT_NAME"; then
-		printf "${COLOR_RED}ERROR ==> Unable to find project directory '$PROJECT_NAME'${COLOR_NEUTRAL}"
+		printf "${COLOR_RED}%s${COLOR_NEUTRAL}\n" "ERROR ==> Unable to find project directory '$PROJECT_NAME'!"
 		return 1
 	fi
 
