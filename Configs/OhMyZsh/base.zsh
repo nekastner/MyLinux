@@ -1,3 +1,5 @@
+source "$ZSH/custom/colors.zsh"
+
 # fix sudo
 alias sudo='sudo '
 
@@ -27,8 +29,8 @@ alias mount-crypt='mount_crypt'
 function mount_crypt
 {
 	if (($# != 3)); then
-		echo "ERROR ==> Wrong usage!"
-		echo "Parameters: <device> <mapper name> <mountpoint>"
+		printf "${COLOR_RED}%s${COLOR_NEUTRAL}\n" 'ERROR ==> Wrong usage!'
+		printf 'Parameters: <device> <mapper name> <mountpoint>\n'
 		return 1
 	fi
 
@@ -38,16 +40,16 @@ function mount_crypt
 	local mapper="/dev/mapper/$mapper_name"
 
 	if ! sudo cryptsetup open "$device" "$mapper_name"; then
-		echo "ERROR ==> Unable to open '$device'!"
+		printf "${COLOR_RED}%s${COLOR_NEUTRAL}\n" "ERROR ==> Unable to open '$device'!"
 		return 1
 	fi
 
 	if ! sudo mount /dev/mapper/"$mapper_name" "$mountpoint"; then
-		echo "ERROR ==> Unable to mount '$mapper'!"
-		echo "Undoing cryptsetup for '$mapper' ('$device')..."
+		printf "${COLOR_RED}%s${COLOR_NEUTRAL}\n" "ERROR ==> Unable to mount '$mapper'!"
+		printf "Undoing cryptsetup for '$mapper' ('$device')...\n"
 		sudo cryptsetup close "$mapper"
 		return 1
 	fi
 
-	echo "Mounted '$device' ('$mapper') to '$mountpoint'."
+	printf "${COLOR_GREEN}%s${COLOR_NEUTRAL}\n" "Mounted '$device' ('$mapper') to '$mountpoint'."
 }
