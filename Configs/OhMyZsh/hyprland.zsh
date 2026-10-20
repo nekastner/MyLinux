@@ -3,7 +3,7 @@ source "$ZSH/custom/colors.zsh"
 alias quit-hyprland='command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch exit'
 
 alias start-waybar='start_waybar'
-start_waybar()
+function start_waybar
 {
 	local CONFIG_PATH="$HOME/.config/waybar/host_specific/$HOST.jsonc"
 	if [[ -e "$CONFIG_PATH" ]]; then
@@ -22,7 +22,7 @@ alias start-hyprpaper='hyprland_exec hyprpaper'
 alias stop-hyprpaper='pkill hyprpaper'
 
 alias hyprland-exec='hyprland_exec'
-hyprland_exec()
+function hyprland_exec
 {
 	local command="$*"
 	command="${command//\\/\\\\}"
