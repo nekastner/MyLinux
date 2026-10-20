@@ -86,10 +86,10 @@ alias git-diff-head='git diff HEAD'
 alias pgdh='print-git-diff-head'
 alias print-git-diff-head='git-diff-head | bat'
 
-alias gcd='git-branch-compare-develop'
+alias gcd='git-compare-develop'
 alias git-compare-develop='git_branch_compare $(git_develop_branch) %(git rev-parse --abbrev-ref HEAD)'
 
-alias gcmd='git-branch-compare-main-develop'
+alias gcmd='git-compare-main-develop'
 alias git-compare-main-develop='git_branch_compare $(git_main_branch) $git_develop_branch'
 
 alias gcb='git-branch-compare'
