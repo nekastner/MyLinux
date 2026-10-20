@@ -87,13 +87,13 @@ alias pgdh='print-git-diff-head'
 alias print-git-diff-head='git-diff-head | bat'
 
 alias gcd='git-compare-develop'
-alias git-compare-develop='git_branch_compare $(git_develop_branch) %(git rev-parse --abbrev-ref HEAD)'
+alias git-compare-develop='git_compare_branches $(git_develop_branch) %(git rev-parse --abbrev-ref HEAD)'
 
 alias gcmd='git-compare-main-develop'
-alias git-compare-main-develop='git_branch_compare $(git_main_branch) $git_develop_branch'
+alias git-compare-main-develop='git_compare_branches $(git_main_branch) $git_develop_branch'
 
-alias gcb='git-branch-compare'
-alias git-compare-branches='git_branch_compare'
+alias gcb='git-compare-branches'
+alias git-compare-branches='git_compare_branches'
 function git_compare_branches
 {
 	local branch1_name="$1"
