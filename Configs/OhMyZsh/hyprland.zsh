@@ -30,23 +30,4 @@ function hyprland_exec
 	hyprctl dispatch "hl.dsp.exec_cmd(\"$command\")"
 }
 
-alias to-clipboard='to_clipboard'
-to_clipboard()
-{
-	if (( $# != 1 )); then
-		printf "${COLOR_RED}ERROR ==> Wrong usage!${COLOR_NEUTRAL}"
-		printf "Parameters: <file name>"
-		return 1
-	fi
-
-	local file_name="$1"
-
-	if ! [[ -e "$file_name" && -r "$file_name" ]]; then
-		printf "${COLOR_RED}'$file_name' does not exist or has no read permissions!${COLOR_NEUTRAL}"
-		return 1
-	fi
-
-	wl-copy < "$file_name"
-}
-
 alias kitty-ssh='kitty +kitten ssh'
