@@ -90,7 +90,7 @@ alias gcd='git-compare-develop'
 alias git-compare-develop='git_compare_branches $(git_develop_branch) %(git rev-parse --abbrev-ref HEAD)'
 
 alias gcmd='git-compare-main-develop'
-alias git-compare-main-develop='git_compare_branches $(git_main_branch) $git_develop_branch'
+alias git-compare-main-develop='git_compare_branches $(git_main_branch) $(git_develop_branch)'
 
 alias gcb='git-compare-branches'
 alias git-compare-branches='git_compare_branches'
