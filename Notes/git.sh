@@ -10,13 +10,44 @@ function git_develop_branch
 	printf 'develop'
 }
 
-alias gud='git-update-develop'
-alias git-update-develop='git_update_develop'
-function git_update_develop
+alias gld='git-pull-develop'
+alias git-pull-develop="git_pull_branch $(git_develop_branch)"
+
+alias glm='git-pull-main'
+alias git-pull-main="git_pull_branch $(git_main_branch)"
+
+alias glb='git-pull-branch'
+alias git-pull-branch='git_pull_branch'
+function git_pull_branch
 {
+	local target_git_branch="$1"
 	local current_git_branch="$(git rev-parse --abbrev-ref HEAD)"
 
-	git switch "$(git_develop_branch)"
+	git switch "$target_git_branch"
+
+	printf '\n'
+
+	git pull
+
+	printf '\n'
+
+	git switch "$current_git_branch"
+}
+
+alias gud='git-update-develop'
+alias git-update-develop="git_update_branch $(git_develop_branch)"
+
+alias gum='git-update-main'
+alias git-update-main="git_update_branch $(git_main_branch)"
+
+alias gub='git-update-branch'
+alias git-update-branch='git_update_branch'
+function git_update_branch
+{
+	local target_git_branch="$1"
+	local current_git_branch="$(git rev-parse --abbrev-ref HEAD)"
+
+	git switch "$target_git_branch"
 
 	printf '\n'
 
@@ -25,44 +56,6 @@ function git_update_develop
 	printf '\n'
 
 	git push
-
-	printf '\n'
-
-	git switch "$current_git_branch"
-}
-
-alias gum='git-update-main'
-alias git-update-main='git_update_main'
-function git_update_main
-{
-	local current_git_branch="$(git rev-parse --abbrev-ref HEAD)"
-
-	git switch "$(git_main_branch)"
-
-	printf '\n'
-
-	git merge "$(git_develop_branch)"
-
-	printf '\n'
-
-	git push
-
-	printf '\n'
-
-	git switch "$current_git_branch"
-}
-
-alias glm='git-pull-main'
-alias git-pull-main='git_pull_main'
-function git_pull_main
-{
-	local current_git_branch="$(git rev-parse --abbrev-ref HEAD)"
-
-	git switch "$(git_main_branch)"
-
-	printf '\n'
-
-	git pull
 
 	printf '\n'
 
