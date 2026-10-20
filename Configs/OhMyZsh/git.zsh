@@ -68,7 +68,18 @@ alias git-list-submodules='ls -1 "$(git rev-parse --show-toplevel)/.git/modules"
 
 ### COMPARISON ###
 
-alias gdh='git diff HEAD'
+alias pgd='print-git-diff'
+alias print-git-diff='print_git_diff'
+function print_git_diff
+{
+	git diff "$@" | bat
+}
+
+alias gdh='git-diff-head'
+alias git-diff-head='git diff HEAD'
+
+alias pgdh='print-git-diff-head'
+alias print-git-diff-head='git-diff-head | bat'
 
 alias gcd='git-branch-compare-develop'
 alias git-compare-develop='git_branch_compare $(git_develop_branch) %(git rev-parse --abbrev-ref HEAD)'
