@@ -1,5 +1,7 @@
 source "$ZSH/custom/colors.zsh"
 
+alias what-todo-proj='ls_todos "$(git rev-parse --show-toplevel)"'
+
 alias what-todo='ls_todos'
 function ls_todos
 {
