@@ -12,7 +12,14 @@ fpath=(/usr/share/zsh/site-functions $fpath)
 ZSH_THEME="simple"
 
 # oh-my-zsh plugins
-plugins=(git rust)
+plugins=(
+	git
+	rust
+	python
+	npm
+	colored-man-pages
+	command-not-found
+)
 
 # load oh-my-zsh
 source $ZSH/oh-my-zsh.sh
