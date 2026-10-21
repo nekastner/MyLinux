@@ -39,3 +39,11 @@ HIST_STAMPS="yyyy-mm-dd"
 if [[ -f "$HOME/.cargo/env" ]]; then
 	. "$HOME/.cargo/env"
 fi
+
+# fix sudo
+alias sudo='sudo '
+
+# remove unwanted aliases
+unalias mkdir 2> /dev/null
+unalias cp 2> /dev/null
+unalias mv 2> /dev/null

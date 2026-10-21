@@ -1,13 +1,5 @@
 source "$ZSH/custom/colors.zsh"
 
-# fix sudo
-alias sudo='sudo '
-
-# remove unwanted aliases
-unalias mkdir 2> /dev/null
-unalias cp 2> /dev/null
-unalias mv 2> /dev/null
-
 # utils
 alias src="source $HOME/.zshrc"
 alias clr='clear'
