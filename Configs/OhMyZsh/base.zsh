@@ -5,8 +5,11 @@ alias src="source $HOME/.zshrc"
 alias clr='clear'
 alias now='date +"%Y.%m.%d %H:%M:%S%n week %V, day %u "'
 
+# default flags
 alias nvim='nvim -p'
-alias lsn='ls | sort -n'
+alias eza='eza -a'
+
+# quick flags
 alias bata='bat -A'
 
 # key binds
