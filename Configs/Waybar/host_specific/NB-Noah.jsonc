@@ -26,6 +26,7 @@
 			"network",
 			"bluetooth",
 			"temperature#cpu",
+			"battery",
 			"tray"
 		]
 	},
