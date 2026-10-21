@@ -34,6 +34,9 @@ hl.bind(mainMod .. " + C", hl.dsp.window.close())
 -- kill window
 hl.bind(mainMod .. " + K", hl.dsp.exec_cmd("hyprctl kill"))
 
+-- waybar
+hl.bind(mainMod .. " + T", hl.dsp.exec_cmd("pkill -USR1 waybar"))
+
 -- window movement
 hl.bind(mainMod .. " + W", hl.dsp.submap("window_movement"))
 hl.define_submap("window_movement", function()
