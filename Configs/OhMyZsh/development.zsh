@@ -3,10 +3,6 @@ source "$ZSH/custom/colors.zsh"
 alias what-todo='ls_todos'
 function ls_todos
 {
-	if (( $# == 0 )); then
-		set -- .
-	fi
-
 	for place in "$@"; do
 		printf '### '%s' ('%s') ###\n\n' "$place" "$(realpath "$place")"
 		rg -ni -- 'todo:' "$place"
