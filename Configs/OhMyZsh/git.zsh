@@ -1,10 +1,10 @@
 ### PULL ###
 
 alias gld='git-pull-develop'
-alias git-pull-develop="git_pull_branch $(git_develop_branch)"
+alias git-pull-develop='git_pull_branch $(git_develop_branch)'
 
 alias glm='git-pull-main'
-alias git-pull-main="git_pull_branch $(git_main_branch)"
+alias git-pull-main='git_pull_branch $(git_main_branch)'
 
 alias glb='git-pull-branch'
 alias git-pull-branch='git_pull_branch'

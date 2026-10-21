@@ -1,1 +1,1 @@
-alias bc="batcat"
+alias bc='batcat'

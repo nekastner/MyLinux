@@ -1,7 +1,7 @@
 source "$ZSH/custom/colors.zsh"
 
 # utils
-alias src="source $HOME/.zshrc"
+alias src='source "$HOME"/.zshrc'
 alias clr='clear'
 alias now='date +"%Y.%m.%d %H:%M:%S%n week %V, day %u "'
 
