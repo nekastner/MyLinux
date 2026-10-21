@@ -1,15 +1,7 @@
 source "$ZSH/custom/colors.zsh"
 
-alias what-todo-proj='ls_todos "$(git rev-parse --show-toplevel)"'
-
-alias what-todo='ls_todos'
-function ls_todos
-{
-	for place in "$@"; do
-		printf '### '%s' ('%s') ###\n\n' "$place" "$(realpath "$place")"
-		rg -ni -- 'todo:' "$place"
-	done
-}
+alias what-todo-proj='what-todo "$(git rev-parse --show-toplevel)"'
+alias what-todo='rg -ni "todo:"'
 
 alias setup-web-project='setup_web_project'
 function setup_web_project
