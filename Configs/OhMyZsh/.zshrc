@@ -36,6 +36,7 @@ HYPHEN_INSENSITIVE="true"
 ENABLE_CORRECTION="true"
 HIST_STAMPS="yyyy-mm-dd"
 
+# laod cargo env if existing
 if [[ -f "$HOME/.cargo/env" ]]; then
 	. "$HOME/.cargo/env"
 fi
