@@ -13,12 +13,18 @@ ZSH_THEME="simple"
 
 # oh-my-zsh plugins
 plugins=(
-	git
-	rust
-	python
-	npm
-	colored-man-pages
+	zsh-syntax-highlighting
+	zsh-autosuggestions
 	command-not-found
+	colored-man-pages
+	thefuck
+	git
+	python
+	ruff
+	uv
+	uv-env
+	rust
+	kitty
 )
 
 # load oh-my-zsh
