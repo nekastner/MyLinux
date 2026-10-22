@@ -189,7 +189,8 @@
         "wakeonlan",
         "waybar",
         "wf-recorder",
-        "xorg-xhost"
+        "xorg-xhost",
+        "eza"
     ],
     "pacman_config": {
         "color": true,
