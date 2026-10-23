@@ -1,9 +1,18 @@
 {
 	"bluetooth": {
-		"format": " {status}",
+
+		"format-off": "󰂲",
+		"format-disconnected": "󰂲",
+		"format-no-controller": "󰂲",
+
 		"format-on": "",
-		"format-connected": " {device_alias}",
-		"format-connected-battery": " {device_alias} {device_battery_percentage}%",
-		"format-off": "󰂲"
+		"format-connected": " {num_connections}",
+
+		"tooltip": true,
+		"tooltip-format": "{controller_alias} [{controller_address}]",
+		"tooltip-format-connected": "{controller_alias} [{controller_address}]\n\n{device_enumerate}",
+
+		"tooltip-format-enumerate-connected": "{device_alias} [{device_address}]",
+		"tooltip-format-enumerate-connected-battery": "{device_alias} ({device_battery_percentage}%) [{device_address}]"
 	}
 }
