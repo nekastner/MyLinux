@@ -15,7 +15,8 @@
 		"clock"
 	],
 	"modules-right": [
-		"wireplumber",
+		"wireplumber#sinks",
+		"wireplumber#sources",
 		"network",
 		"tray"
 	]

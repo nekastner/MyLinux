@@ -1,0 +1,15 @@
+{
+	"wireplumber#sources":
+	{
+		"node-type": "Audio/Source",
+
+		"format": " {volume}%",
+
+		"on-click": "helvum",
+		"on-scroll-up": "true",
+		"on-scoll-down": "true",
+
+		"tooltip": true,
+		"tooltip-format": "{node_name} ({volume}%)"
+	}
+}

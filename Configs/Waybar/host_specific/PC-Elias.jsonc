@@ -22,7 +22,8 @@
 		],
 		"modules-right": [
 			"mpris",
-			"wireplumber",
+			"wireplumber#sinks",
+			"wireplumber#sources",
 			"network",
 			"bluetooth",
 			"temperature#cpu",
@@ -53,7 +54,8 @@
 			"clock"
 		],
 		"modules-right": [
-			"wireplumber",
+			"wireplumber#sinks",
+			"wireplumber#sources",
 			"temperature#cpu",
 			"temperature#gpu",
 			"tray"
