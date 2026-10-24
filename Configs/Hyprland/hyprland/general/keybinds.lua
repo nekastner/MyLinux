@@ -25,6 +25,16 @@ for i = 11, 20 do
 	hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.focus({ workspace = i }))
 end
 
+-- move focus to workspaces relative
+hl.bind(mainMod .. " + CTRL + right", hl.dsp.focus({ workspace = "e+1" }))
+hl.bind(mainMod .. " + CTRL + left", hl.dsp.focus({ workspace = "e-1" }))
+hl.bind(mainMod .. " + CTRL + mouse_up", hl.dsp.focus({ workspace = "e+1" }))
+hl.bind(mainMod .. " + CTRL + mouse_down", hl.dsp.focus({ workspace = "e-1" }))
+
+-- manipulate window size and position with the mouse
+hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag())
+hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize())
+
 -- toggle focus of magic workspace
 hl.bind(mainMod .. " + M", hl.dsp.workspace.toggle_special("magic"))
 
@@ -67,14 +77,6 @@ hl.define_submap("window_movement", function()
 
 	-- move window to magic workspace
 	hl.bind("M", hl.dsp.focus({ workspace = "special:magic" }))
-
-	-- move focus between all workspaces with the mouse
-	hl.bind("mouse_down", hl.dsp.focus({ workspace = "e+1" }))
-	hl.bind("mouse_up", hl.dsp.focus({ workspace = "e-1" }))
-
-	-- manipulate window size and position with the mouse
-	hl.bind("mouse:272", hl.dsp.window.drag())
-	hl.bind("mouse:273", hl.dsp.window.resize())
 
 	hl.bind("escape", hl.dsp.submap("reset"))
 end)
