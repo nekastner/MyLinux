@@ -154,6 +154,7 @@
         "cpupower",
         "dvdbackup",
         "elisa",
+        "eza",
         "git",
         "github-cli",
         "gnome-disk-utility",
@@ -190,7 +191,7 @@
         "waybar",
         "wf-recorder",
         "xorg-xhost",
-        "eza"
+        "helvum"
     ],
     "pacman_config": {
         "color": true,
