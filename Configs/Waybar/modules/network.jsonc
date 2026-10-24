@@ -1,13 +1,12 @@
 {
-	"network": {
-
+	"network":
+	{
 		"format-ethernet": "",
-		"format-wifi": " {essid} {signalStrength}%",
+		"format-wifi": "",
 		"format-disconnected": "offline",
 
-		"tooltip-format-ethernet": "Interface:\t{ifname}\nIP:\t\t\t{ipaddr}/{cidr}\nGateway:\t{gwaddr}",
-		"tooltip-format-wifi": "Interface:\t{ifname}\nSSID:\t\t{essid}\nIP:\t\t\t{ipaddr}/{cidr}\nGateway:\t{gwaddr}",
+		"tooltip-format-ethernet": "Interface:\t{ifname}\n\nIP:\t\t\t{ipaddr}/{cidr}\nGateway:\t{gwaddr}",
+		"tooltip-format-wifi": "Interface:\t\t{ifname}\n\nSSID:\t\t\t{essid}\n\nSignal-Strength:\t{signalStrength}%\n\nIP:\t\t\t\t{ipaddr}/{cidr}\nGateway:\t\t{gwaddr}",
 		"tooltip-format-disconnected": "offline"
-
 	}
 }
