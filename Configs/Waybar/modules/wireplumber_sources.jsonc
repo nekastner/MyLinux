@@ -3,11 +3,11 @@
 	{
 		"node-type": "Audio/Source",
 
-		"format": " {volume}%",
+		"format": " {volume}%",
+
+		"scroll-step": 5,
 
 		"on-click": "helvum",
-		"on-scroll-up": "true",
-		"on-scoll-down": "true",
 
 		"tooltip": true,
 		"tooltip-format": "{node_name} ({volume}%)"
