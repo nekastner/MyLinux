@@ -7,7 +7,7 @@
 
 		"scroll-step": 5,
 
-		"on-click": "helvum",
+		"on-click": "pavucontrol; helvum",
 
 		"tooltip": true,
 		"tooltip-format": "{node_name} ({volume}%)"
