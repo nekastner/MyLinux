@@ -194,6 +194,8 @@ hl.config({
 	},
 	scrolling = {
 		direction = "right",
+		follow_focus = true,
+		wrap_focus = true,
 	},
 	misc = {
 		force_default_wallpaper = 1,
