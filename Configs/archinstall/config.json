@@ -159,6 +159,7 @@
         "github-cli",
         "gnome-disk-utility",
         "hardinfo2",
+        "helvum",
         "hunspell-de",
         "hunspell-en_us",
         "hyprlauncher",
@@ -191,7 +192,7 @@
         "waybar",
         "wf-recorder",
         "xorg-xhost",
-        "helvum"
+        "pavucontrol"
     ],
     "pacman_config": {
         "color": true,
