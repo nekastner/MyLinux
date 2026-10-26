@@ -10,11 +10,23 @@ return {
 
 	config = function()
 		require("mason").setup()
+
 		require("mason-lspconfig").setup({
-			ensure_installed = { "clangd", "pyright", "ts_ls", "lua_ls", "tailwindcss", "cssls", "marksman", "rust_analyzer", "bashls" }
+			ensure_installed = {
+				"clangd",
+				"pyright",
+				"ts_ls",
+				"lua_ls",
+				"tailwindcss",
+				"cssls",
+				"marksman",
+				"rust_analyzer",
+				"bashls"
+			}
 		})
 
 		local capabilities = require('blink.cmp').get_lsp_capabilities()
+
 		local configs = {
 
 			clangd = {
@@ -74,6 +86,6 @@ return {
 			server_opts.capabilities = capabilities
 			vim.lsp.config(server_name, server_opts)
 			vim.lsp.enable(server_name)
-		end	
+		end
 	end,
 }

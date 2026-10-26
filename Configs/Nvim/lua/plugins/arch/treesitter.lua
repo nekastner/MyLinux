@@ -7,7 +7,21 @@ return {
 	event = { "BufReadPost", "BufNewFile" },
 
 	opts = {
-		ensure_installed = { "c", "cpp", "lua", "python", "javascript", "typescript", "java", "markdown", "markdown_inline", "rust", "bash" },
+
+		ensure_installed = {
+			"c",
+			"cpp",
+			"lua",
+			"python",
+			"javascript",
+			"typescript",
+			"java",
+			"markdown",
+			"markdown_inline",
+			"rust",
+			"bash"
+		},
+
 		highlight = {
 			enable = true,
 			custom_captures = {},
