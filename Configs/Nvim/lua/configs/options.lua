@@ -22,5 +22,3 @@ vim.opt.listchars = {
 	extends = '⟩',
 	precedes = '⟨',
 }
-
-vim.cmd("filetype plugin indent off")
