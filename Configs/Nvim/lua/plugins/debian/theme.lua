@@ -11,7 +11,6 @@ return {
 		vim.g.moonflyTerminalColors = true
 		vim.g.moonflyUndercurls = true
 		vim.g.moonflyWinSeparator = 1
-		vim.o.winborder = "single"
 	end,
 
 	config = function()
