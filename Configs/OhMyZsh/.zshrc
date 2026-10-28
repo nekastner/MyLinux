@@ -56,6 +56,7 @@ fi
 
 # fix sudo
 alias sudo='sudo '
+alias sudo-nvim='EDITOR=nvim sudoedit'
 
 # remove unwanted aliases
 unalias mkdir 2> /dev/null
