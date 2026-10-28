@@ -76,7 +76,7 @@ hl.define_submap("window_movement", function()
 	end
 
 	-- move window to magic workspace
-	hl.bind("M", hl.dsp.focus({ workspace = "special:magic" }))
+	hl.bind("M", hl.dsp.window.move({ workspace = "special:magic" }))
 
 	hl.bind("escape", hl.dsp.submap("reset"))
 end)
