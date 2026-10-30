@@ -11,22 +11,19 @@ CREDS_GENERATED_PATH="$SCRIPT_DIR/user_credentials.json"
 ARGS=()
 
 if [[ -f "$CONFIG_PATH" ]]; then
-    ARGS+=(--config "$CONFIG_PATH")
+	ARGS+=(--config "$CONFIG_PATH")
 fi
 
 if [[ -f "$CREDS_PATH" ]]; then
-    ARGS+=(--creds "$CREDS_PATH")
+	ARGS+=(--creds "$CREDS_PATH")
 fi
 
 if ! sudo archinstall "${ARGS[@]}"; then
-    echo "ERROR: archinstall ist fehlgeschlagen." >&2
-    exit 1
+	exit 1
 fi
 
-echo "converting configs..."
-
-chown_and_mv() {
-
+function chown_and_mv
+{
 	local source_path="$SCRIPT_DIR/$1"
 	local target_path="$SCRIPT_DIR/$2"
 
@@ -40,6 +37,3 @@ chown_and_mv() {
 
 chown_and_mv "user_configuration.json" "config.json"
 chown_and_mv "user_credentials.json" "creds.json"
-
-echo "finished converting."
-
