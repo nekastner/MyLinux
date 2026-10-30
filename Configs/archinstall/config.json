@@ -181,6 +181,7 @@
         "neovim",
         "nodejs",
         "npm",
+        "pavucontrol",
         "qt5ct",
         "qt6ct",
         "ripgrep",
@@ -192,7 +193,9 @@
         "waybar",
         "wf-recorder",
         "xorg-xhost",
-        "pavucontrol"
+        "obs-studio",
+        "librewolf",
+        "thunderbird"
     ],
     "pacman_config": {
         "color": true,
