@@ -3,73 +3,15 @@ source "$ZSH/custom/colors.zsh"
 alias what-todo-proj='what-todo "$(git rev-parse --show-toplevel)"'
 alias what-todo='rg -ni "todo:"'
 
-alias setup-web-project='setup_web_project'
-function setup_web_project
+alias create-c-module='create_c_module'
+function create_c_module
 {
-	if (( $# != 1 )) || [[ -z "$1" ]]; then
-		printf "${COLOR_RED}%s${COLOR_NEUTRAL}\n" "ERROR ==> Project name required!"
-		printf "${COLOR_RED}%s${COLOR_NEUTRAL}\n" "'$1' is not a valid project name!"
-		return 1
-	fi
+	for lib_name in "$@"; do
+		local h_file_name="${lib_name}.h"
+		local c_file_name="${lib_name}.c"
+		local macro_name="${lib_name:u}_H"
 
-	local PROJECT_NAME="$1"
-
-	# create vite project
-	npm create vite@latest "$PROJECT_NAME" --yes -- --template react-ts
-
-	# go into project directory
-	if ! cd "$PROJECT_NAME"; then
-		printf "${COLOR_RED}%s${COLOR_NEUTRAL}\n" "ERROR ==> Unable to find project directory '$PROJECT_NAME'!"
-		return 1
-	fi
-
-	# install tailwind with dependencies
-	npm install -D tailwindcss @tailwindcss/postcss postcss autoprefixer
-
-	# setup postcss.config.js
-	cat << "EOF" > postcss.config.js
-	export default {
-		plugins: {
-			"@tailwindcss/postcss": {},
-			autoprefixer: {},
-		},
-	}
-EOF
-
-	# setup src/tailwind.css
-	cat << "EOF" > src/tailwind.css
-	@import "tailwindcss";
-EOF
-
-	# remove src/index.css
-	rm src/index.css
-
-	# setup src/main.tsx
-	sed -i "/index\.css/d" src/main.tsx
-	sed -i "s/'/\"/g" src/main.tsx
-
-	# setup src/App.tsx
-	cat << "EOF" > src/App.tsx
-	import "./tailwind.css"
-
-	function App() {
-		return (
-			<div className="h-screen bg-red-500 flex items-center justify-center">
-				<h1 className="text-white text-5xl font-black uppercase">
-					Hello World!
-				</h1>
-			</div>
-		)
-	}
-
-	export default App
-EOF
-
-	# remove src/App.css
-	rm src/App.css
-
-	read -rp "Run? [y/N]" execute_confirmation
-	if [[ "$execute_confirmation" =~ ^[yY]$ ]]; then
-		npm run dev
-	fi
+		printf '#ifndef %s\n#define %s\n\n#endif // %s\n' "$macro_name" "$macro_name" "$macro_name" > "$h_file_name"
+		printf '#include "%s"\n' "$h_file_name" > "$c_file_name"
+	done
 }
