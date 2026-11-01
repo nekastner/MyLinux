@@ -9,17 +9,27 @@ return {
 	opts = {
 
 		ensure_installed = {
+			-- [[ c langs ]]
 			"c",
 			"cpp",
-			"lua",
-			"python",
+			-- [[ rust ]]
+			"rust",
+			-- [[ java(-like) ]]
+			"java",
+			"c_sharp",
+			-- [[ web frontend ]]
+			"html",
+			"css",
 			"javascript",
 			"typescript",
-			"java",
+			"razor",
+			-- [[ scripting ]]
+			"lua",
+			"python",
+			"bash",
+			-- [[ markdown ]]
 			"markdown",
 			"markdown_inline",
-			"rust",
-			"bash"
 		},
 
 		highlight = {
