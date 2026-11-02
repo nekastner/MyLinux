@@ -68,7 +68,7 @@ function deploy
 	fi
 }
 
-for source_path in "${!SOURCES_TARGETS_LIST[@]}"; do
-	target_path="${SOURCES_TARGETS_LIST[$source_path]}"
+for source_path in "${SOURCES_ORDER[@]}"; do
+	target_path="${SOURCES_TARGETS_LIST["$source_path"]}"
 	deploy "$source_path" "$target_path"
 done

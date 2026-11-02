@@ -4,17 +4,29 @@ CONFIGS_DIR="$SCRIPT_DIR"
 
 # SOURCES AND TARGETS LIST
 declare -A SOURCES_TARGETS_LIST=()
+declare -a SOURCES_ORDER=()
+
+function sources_targets_add_entry
+{
+	local key="$1" value="$2"
+
+	if ! [[ -v SOURCES_TARGETS_LIST["$key"] ]]; then
+		SOURCES_ORDER+=("$key")
+	fi
+
+	SOURCES_TARGETS_LIST["$key"]="$value"
+}
 
 # refind
-SOURCES_TARGETS_LIST["${CONFIGS_DIR}/Refind/refind.conf"]="/boot/EFI/refind/refind.conf"
-SOURCES_TARGETS_LIST["${CONFIGS_DIR}/Refind/background.png"]="/boot/EFI/refind/background.png"
+sources_targets_add_entry "${CONFIGS_DIR}/Refind/refind.conf" "/boot/EFI/refind/refind.conf"
+sources_targets_add_entry "${CONFIGS_DIR}/Refind/background.png" "/boot/EFI/refind/background.png"
 
 # kernel
-SOURCES_TARGETS_LIST["${CONFIGS_DIR}/Kernel-cmdline/cmdline"]="/etc/kernel/cmdline"
+sources_targets_add_entry "${CONFIGS_DIR}/Kernel-cmdline/cmdline" "/etc/kernel/cmdline"
 shopt -s nullglob
 for config in "$CONFIGS_DIR"/KernelPresets/*; do
 	config_name="$(basename "$config")"
-	SOURCES_TARGETS_LIST["$config"]="/etc/mkinitcpio.d/$config_name"
+	sources_targets_add_entry "$config" "/etc/mkinitcpio.d/$config_name"
 done
 shopt -u nullglob
 
@@ -22,54 +34,54 @@ shopt -u nullglob
 shopt -s nullglob
 for config in "$CONFIGS_DIR"/Locale/*; do
 	config_name="$(basename "$config")"
-	SOURCES_TARGETS_LIST["$config"]="/usr/share/i18n/locales/$config_name"
+	sources_targets_add_entry "$config" "/usr/share/i18n/locales/$config_name"
 done
 shopt -u nullglob
 
 # bash
-SOURCES_TARGETS_LIST["${CONFIGS_DIR}/Bash/.bashrc"]="$HOME/.bashrc"
+sources_targets_add_entry  "${CONFIGS_DIR}/Bash/.bashrc" "$HOME/.bashrc"
 
 # oh my zsh
-SOURCES_TARGETS_LIST["${CONFIGS_DIR}/OhMyZsh/.zshrc"]="$HOME/.zshrc"
+sources_targets_add_entry "${CONFIGS_DIR}/OhMyZsh/.zshrc" "$HOME/.zshrc"
 shopt -s nullglob
 for config in "$CONFIGS_DIR"/OhMyZsh/*; do
 	config_name="$(basename "$config")"
-	SOURCES_TARGETS_LIST["$config"]="$HOME/.oh-my-zsh/custom/$config_name"
+	sources_targets_add_entry "$config" "$HOME/.oh-my-zsh/custom/$config_name"
 done
 shopt -u nullglob
 
 # git
-SOURCES_TARGETS_LIST["${CONFIGS_DIR}/Git/.gitconfig"]="$HOME/.gitconfig"
+sources_targets_add_entry "${CONFIGS_DIR}/Git/.gitconfig" "$HOME/.gitconfig"
 
 # nvim
-SOURCES_TARGETS_LIST["${CONFIGS_DIR}/Nvim"]="$HOME/.config/nvim"
+sources_targets_add_entry "${CONFIGS_DIR}/Nvim" "$HOME/.config/nvim"
 
 # vim
-SOURCES_TARGETS_LIST["${CONFIGS_DIR}/Vim/.vimrc"]="$HOME/.vimrc"
+sources_targets_add_entry "${CONFIGS_DIR}/Vim/.vimrc" "$HOME/.vimrc"
 
 # nano
-SOURCES_TARGETS_LIST["${CONFIGS_DIR}/Nano/.nanorc"]="$HOME/.nanorc"
+sources_targets_add_entry "${CONFIGS_DIR}/Nano/.nanorc" "$HOME/.nanorc"
 
 # clang format
-SOURCES_TARGETS_LIST["${CONFIGS_DIR}/Clang/.clang-format"]="$HOME/.clang-format"
+sources_targets_add_entry "${CONFIGS_DIR}/Clang/.clang-format" "$HOME/.clang-format"
 
 # ruff
-SOURCES_TARGETS_LIST["${CONFIGS_DIR}/Ruff"]="$HOME/.config/ruff"
+sources_targets_add_entry "${CONFIGS_DIR}/Ruff" "$HOME/.config/ruff"
 
 # samba
-SOURCES_TARGETS_LIST["${CONFIGS_DIR}/Samba/smb.conf"]="/etc/samba/smb.conf"
-SOURCES_TARGETS_LIST["${CONFIGS_DIR}/Samba/user_specific"]="/etc/samba/user_specific"
+sources_targets_add_entry "${CONFIGS_DIR}/Samba/smb.conf" "/etc/samba/smb.conf"
+sources_targets_add_entry "${CONFIGS_DIR}/Samba/user_specific" "/etc/samba/user_specific"
 
 # nginx
-SOURCES_TARGETS_LIST["${CONFIGS_DIR}/Nginx/nginx.conf"]="/etc/nginx/nginx.conf"
-SOURCES_TARGETS_LIST["${CONFIGS_DIR}/Nginx/sites-available"]="/etc/nginx/sites-available"
+sources_targets_add_entry "${CONFIGS_DIR}/Nginx/nginx.conf" "/etc/nginx/nginx.conf"
+sources_targets_add_entry "${CONFIGS_DIR}/Nginx/sites-available" "/etc/nginx/sites-available"
 
 # hyprland
-SOURCES_TARGETS_LIST["${CONFIGS_DIR}/Hyprland"]="$HOME/.config/hypr"
-SOURCES_TARGETS_LIST["${CONFIGS_DIR}/Waybar"]="$HOME/.config/waybar"
+sources_targets_add_entry "${CONFIGS_DIR}/Hyprland" "$HOME/.config/hypr"
+sources_targets_add_entry "${CONFIGS_DIR}/Waybar" "$HOME/.config/waybar"
 
 # mimeapps list
-SOURCES_TARGETS_LIST["${CONFIGS_DIR}/MimeAppsList/mimeapps.list"]="$HOME/.config/mimeapps.list"
+sources_targets_add_entry "${CONFIGS_DIR}/MimeAppsList/mimeapps.list" "$HOME/.config/mimeapps.list"
 
 # mangohud
-SOURCES_TARGETS_LIST["${CONFIGS_DIR}/MangoHud"]="$HOME/.config/MangoHud"
+sources_targets_add_entry "${CONFIGS_DIR}/MangoHud" "$HOME/.config/MangoHud"
