@@ -1,7 +1,5 @@
 source "$ZSH/custom/colors.zsh"
 
-alias quit-hyprland='command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch exit'
-
 alias start-waybar='start_waybar'
 function start_waybar
 {
