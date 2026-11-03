@@ -22,7 +22,6 @@ sources_targets_add_entry "${CONFIGS_DIR}/Refind/refind.conf" "/boot/EFI/refind/
 sources_targets_add_entry "${CONFIGS_DIR}/Refind/background.png" "/boot/EFI/refind/background.png"
 
 # kernel
-sources_targets_add_entry "${CONFIGS_DIR}/Kernel-cmdline/cmdline" "/etc/kernel/cmdline"
 shopt -s nullglob
 for config in "$CONFIGS_DIR"/KernelPresets/*; do
 	config_name="$(basename "$config")"

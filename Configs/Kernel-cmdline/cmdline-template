@@ -1,0 +1,1 @@
+cryptdevice=PARTUUID=<partuuid of the root partition>:root root=/dev/mapper/root zswap.enabled=0 rootflags=subvol=@ rw rootfstype=btrfs quiet loglevel=3 rd.udev.log_level=3 systemd.show_status=auto
