@@ -80,12 +80,6 @@ function print_git_diff
 	git diff "$@" | bat
 }
 
-alias gdh='git-diff-head'
-alias git-diff-head='git diff HEAD'
-
-alias pgdh='print-git-diff-head'
-alias print-git-diff-head='git-diff-head | bat'
-
 alias gcd='git-compare-develop'
 alias git-compare-develop='git_compare_branches $(git_develop_branch) $(git rev-parse --abbrev-ref HEAD)'
 
