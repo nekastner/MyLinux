@@ -1,7 +1,7 @@
 {
 	"clock": {
 
-		"format": "{:%d.%m.%Y %H:%M}",
+		"format": "{:%Y.%m.%d %H:%M}",
 
 		"interval": 15,
 
