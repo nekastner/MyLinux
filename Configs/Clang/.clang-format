@@ -74,7 +74,8 @@ BraceWrapping:
   AfterStruct: true
   BeforeElse: true
   BeforeWhile: true
-  #BreakBeforeCloseBracketBracedList: true
+BreakAfterOpenBracketBracedList: true
+BreakBeforeCloseBracketBracedList: true
 BreakBeforeCloseBracketFunction: true
 BreakBeforeCloseBracketIf: true
 BreakBeforeCloseBracketLoop: true
