@@ -7,6 +7,7 @@ x-scheme-handler/https=librewolf.desktop
 application/pdf=librewolf.desktop
 application/x-extension-ics=thunderbird.desktop;
 image/jpeg=org.gnome.Loupe.desktop;
+image/png=org.gnome.Loupe.desktop;
 image/webp=librewolf.desktop;
 message/rfc822=thunderbird.desktop;
 text/calendar=thunderbird.desktop;
