@@ -22,8 +22,9 @@ sources_targets_add_entry "${CONFIGS_DIR}/Refind/refind.conf" "/boot/EFI/refind/
 sources_targets_add_entry "${CONFIGS_DIR}/Refind/background.png" "/boot/EFI/refind/background.png"
 
 # kernel
+sources_targets_add_entry "${CONFIGS_DIR}/mkinitcpio/mkinitcpio.conf" "/etc/mkinitcpio.conf"
 shopt -s nullglob
-for config in "$CONFIGS_DIR"/KernelPresets/*; do
+for config in "$CONFIGS_DIR"/mkinitcpio/mkinitcpio.d/*; do
 	config_name="$(basename "$config")"
 	sources_targets_add_entry "$config" "/etc/mkinitcpio.d/$config_name"
 done
