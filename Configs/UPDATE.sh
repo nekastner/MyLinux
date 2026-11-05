@@ -6,7 +6,7 @@ source "$SCRIPT_DIR/UTILS.sh"
 
 # pull new stand
 if ! git -C "$CONFIGS_DIR" pull --rebase; then
-	printf "${COLOR_RED}Error ==> Unable to git pull!${COLOR_NEUTRAL}"
+	printf "${COLOR_RED}%s${COLOR_NEUTRAL}" "Error ==> Unable to git pull!"
 	exit 1
 fi
 

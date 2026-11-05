@@ -10,22 +10,22 @@ function reverse_deploy
 	local TARGET_PATH="$2"
 
 	if ! [[ -e "$TARGET_PATH" ]]; then
-		printf "${COLOR_RED}'$TARGET_PATH' does not exist!${COLOR_NEUTRAL}\n"
+		printf "${COLOR_RED}%s${COLOR_NEUTRAL}\n" "'$TARGET_PATH' does not exist!"
 		return 1
 	fi
 
 	if is_target_equal_to_source "$TARGET_PATH" "$SOURCE_PATH"; then
-		printf "${COLOR_GREEN}'$SOURCE_PATH' is already equal to '$TARGET_PATH'${COLOR_NEUTRAL}\n"
+		printf "${COLOR_GREEN}%s${COLOR_NEUTRAL}\n" "'$SOURCE_PATH' is already equal to '$TARGET_PATH'."
 		return 0
 	fi
 
 	if is_target_linked_to_source "$TARGET_PATH" "$SOURCE_PATH"; then
-		printf "${COLOR_GREEN}'$SOURCE_PATH' is already linked to '$TARGET_PATH'${COLOR_NEUTRAL}\n"
+		printf "${COLOR_GREEN}%s${COLOR_NEUTRAL}\n" "'$SOURCE_PATH' is already linked to '$TARGET_PATH'."
 		return 0
 	fi
 
 	if ! ask_user_default_no "Overwrite '$SOURCE_PATH' by '$TARGET_PATH'?"; then
-		printf "${COLOR_RED}Aborted overwriting!${COLOR_NEUTRAL}\n"
+		printf "${COLOR_RED}%s${COLOR_NEUTRAL}\n" "Aborted overwriting."
 		return 1
 	fi
 
@@ -36,7 +36,7 @@ function reverse_deploy
 	rm -rf "$SOURCE_PATH"
 
 	cp -rf "$TARGET_PATH" "$SOURCE_PATH"
-	printf "${COLOR_GREEN}Copied '$TARGET_PATH' to '$SOURCE_PATH'.${COLOR_NEUTRAL}\n"
+	printf "${COLOR_GREEN}%s${COLOR_NEUTRAL}\n" "Copied '$TARGET_PATH' to '$SOURCE_PATH'."
 }
 
 for source_path in "${!SOURCES_TARGETS_LIST[@]}"; do
