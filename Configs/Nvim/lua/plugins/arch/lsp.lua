@@ -12,7 +12,7 @@ return {
 		require("mason").setup({
 			registries = {
 				"github:mason-org/mason-registry",
-				"github:Crashdummyy/masonn-registry",
+				"github:Crashdummyy/mason-registry",
 			}
 		})
 
@@ -36,7 +36,8 @@ return {
 				"bashls",
 				-- [[ markdown ]]
 				"marksman",
-			}
+			},
+			automatic_enable = false,
 		})
 
 		local capabilities = require('blink.cmp').get_lsp_capabilities()
@@ -129,7 +130,10 @@ return {
 			marksman = {},
 		}
 
-		local no_enable = { roslyn = true }
+		local no_enable = {
+			roslyn = true,
+			jdtls = true,
+		}
 
 		for server_name, server_opts in pairs(configs) do
 			vim.lsp.config(server_name, server_opts)

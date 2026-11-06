@@ -29,3 +29,6 @@ map("n", "gd", vim.lsp.buf.definition, { desc = "Go to Definition" })
 map("n", "gD", vim.lsp.buf.declaration, { desc = "Go to Declaration" })
 
 map({ "n", "i" }, "<F2>", vim.lsp.buf.rename, { desc = "Rename" })
+
+map("n", "<leader>jd", function() require("jdtls").test_nearest_method() end, { desc = "Debug Test-Methode" })
+map("n", "<leader>jD", function() require("jdtls").test_class() end, { desc = "Debug Test-Klasse" })
