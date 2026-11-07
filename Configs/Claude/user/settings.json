@@ -1,0 +1,19 @@
+{
+	"theme": "dark",
+	"permissions": {
+		"defaultMode": "default",
+		"disableBypassPermissionsMode": "disable",
+		"blockReadsOutsideWorkingDirectories": true,
+		"blockWritesOutsideWorkingDirectories": true,
+		"deny": [
+			"Read(//etc/**)",
+			"Read(//root/**)",
+			"Read(//proc/**)",
+			"Read(//sys/**)",
+			"Read(~/.ssh/**)",
+			"Read(~/.aws/**)",
+			"Read(~/.config/**)",
+			"Read(**/.env)"
+		]
+	}
+}

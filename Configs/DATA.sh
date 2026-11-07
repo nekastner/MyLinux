@@ -18,15 +18,15 @@ function sources_targets_add_entry
 }
 
 # refind
-sources_targets_add_entry "${CONFIGS_DIR}/Refind/refind.conf" "/boot/EFI/refind/refind.conf"
-sources_targets_add_entry "${CONFIGS_DIR}/Refind/background.png" "/boot/EFI/refind/background.png"
+sources_targets_add_entry "$CONFIGS_DIR"/Refind/refind.conf    /boot/EFI/refind/refind.conf
+sources_targets_add_entry "$CONFIGS_DIR"/Refind/background.png /boot/EFI/refind/background.png
 
 # kernel
-sources_targets_add_entry "${CONFIGS_DIR}/mkinitcpio/mkinitcpio.conf" "/etc/mkinitcpio.conf"
+sources_targets_add_entry "$CONFIGS_DIR"/mkinitcpio/mkinitcpio.conf /etc/mkinitcpio.conf
 shopt -s nullglob
 for config in "$CONFIGS_DIR"/mkinitcpio/mkinitcpio.d/*; do
 	config_name="$(basename "$config")"
-	sources_targets_add_entry "$config" "/etc/mkinitcpio.d/$config_name"
+	sources_targets_add_entry "$config" /etc/mkinitcpio.d/"$config_name"
 done
 shopt -u nullglob
 
@@ -66,7 +66,15 @@ sources_targets_add_entry "${CONFIGS_DIR}/Nano/.nanorc" "$HOME/.nanorc"
 sources_targets_add_entry "${CONFIGS_DIR}/Clang/.clang-format" "$HOME/.clang-format"
 
 # ruff
-sources_targets_add_entry "${CONFIGS_DIR}/Ruff" "$HOME/.config/ruff"
+sources_targets_add_entry "$CONFIGS_DIR"/Ruff "$HOME"/.config/ruff
+
+# claude
+shopt -s nullglob
+for config in "$CONFIGS_DIR"/Claude/user/*; do
+	config_name="$(basename "$config")"
+	sources_targets_add_entry "$config" "$HOME"/.claude/"$config_name"
+done
+shopt -u nullglob
 
 # samba
 sources_targets_add_entry "${CONFIGS_DIR}/Samba/smb.conf" "/etc/samba/smb.conf"
