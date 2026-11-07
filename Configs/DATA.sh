@@ -34,36 +34,36 @@ shopt -u nullglob
 shopt -s nullglob
 for config in "$CONFIGS_DIR"/Locale/*; do
 	config_name="$(basename "$config")"
-	sources_targets_add_entry "$config" "/usr/share/i18n/locales/$config_name"
+	sources_targets_add_entry "$config" /usr/share/i18n/locales/"$config_name"
 done
 shopt -u nullglob
 
 # bash
-sources_targets_add_entry  "${CONFIGS_DIR}/Bash/.bashrc" "$HOME/.bashrc"
+sources_targets_add_entry "$CONFIGS_DIR"/Bash/.bashrc "$HOME"/.bashrc
 
 # oh my zsh
-sources_targets_add_entry "${CONFIGS_DIR}/OhMyZsh/.zshrc" "$HOME/.zshrc"
+sources_targets_add_entry "$CONFIGS_DIR"/OhMyZsh/.zshrc "$HOME"/.zshrc
 shopt -s nullglob
 for config in "$CONFIGS_DIR"/OhMyZsh/*; do
 	config_name="$(basename "$config")"
-	sources_targets_add_entry "$config" "$HOME/.oh-my-zsh/custom/$config_name"
+	sources_targets_add_entry "$config" "$HOME"/.oh-my-zsh/custom/"$config_name"
 done
 shopt -u nullglob
 
 # git
-sources_targets_add_entry "${CONFIGS_DIR}/Git/.gitconfig" "$HOME/.gitconfig"
+sources_targets_add_entry "$CONFIGS_DIR"/Git/.gitconfig "$HOME"/.gitconfig
 
 # nvim
-sources_targets_add_entry "${CONFIGS_DIR}/Nvim" "$HOME/.config/nvim"
+sources_targets_add_entry "$CONFIGS_DIR"/Nvim "$HOME"/.config/nvim
 
 # vim
-sources_targets_add_entry "${CONFIGS_DIR}/Vim/.vimrc" "$HOME/.vimrc"
+sources_targets_add_entry "$CONFIGS_DIR"/Vim/.vimrc "$HOME"/.vimrc
 
 # nano
-sources_targets_add_entry "${CONFIGS_DIR}/Nano/.nanorc" "$HOME/.nanorc"
+sources_targets_add_entry "$CONFIGS_DIR"/Nano/.nanorc "$HOME"/.nanorc
 
 # clang format
-sources_targets_add_entry "${CONFIGS_DIR}/Clang/.clang-format" "$HOME/.clang-format"
+sources_targets_add_entry "$CONFIGS_DIR"/Clang/.clang-format "$HOME"/.clang-format
 
 # ruff
 sources_targets_add_entry "$CONFIGS_DIR"/Ruff "$HOME"/.config/ruff
@@ -77,19 +77,19 @@ done
 shopt -u nullglob
 
 # samba
-sources_targets_add_entry "${CONFIGS_DIR}/Samba/smb.conf" "/etc/samba/smb.conf"
-sources_targets_add_entry "${CONFIGS_DIR}/Samba/user_specific" "/etc/samba/user_specific"
+sources_targets_add_entry "$CONFIGS_DIR"/Samba/smb.conf      /etc/samba/smb.conf
+sources_targets_add_entry "$CONFIGS_DIR"/Samba/user_specific /etc/samba/user_specific
 
 # nginx
-sources_targets_add_entry "${CONFIGS_DIR}/Nginx/nginx.conf" "/etc/nginx/nginx.conf"
-sources_targets_add_entry "${CONFIGS_DIR}/Nginx/sites-available" "/etc/nginx/sites-available"
+sources_targets_add_entry "$CONFIGS_DIR"/Nginx/nginx.conf      /etc/nginx/nginx.conf
+sources_targets_add_entry "$CONFIGS_DIR"/Nginx/sites-available /etc/nginx/sites-available
 
 # hyprland
-sources_targets_add_entry "${CONFIGS_DIR}/Hyprland" "$HOME/.config/hypr"
-sources_targets_add_entry "${CONFIGS_DIR}/Waybar" "$HOME/.config/waybar"
+sources_targets_add_entry "$CONFIGS_DIR"/Hyprland "$HOME"/.config/hypr
+sources_targets_add_entry "$CONFIGS_DIR"/Waybar   "$HOME"/.config/waybar
 
 # mimeapps list
-sources_targets_add_entry "${CONFIGS_DIR}/MimeAppsList/mimeapps.list" "$HOME/.config/mimeapps.list"
+sources_targets_add_entry "$CONFIGS_DIR"/MimeAppsList/mimeapps.list "$HOME"/.config/mimeapps.list
 
 # mangohud
-sources_targets_add_entry "${CONFIGS_DIR}/MangoHud" "$HOME/.config/MangoHud"
+sources_targets_add_entry "$CONFIGS_DIR"/MangoHud "$HOME"/.config/MangoHud
