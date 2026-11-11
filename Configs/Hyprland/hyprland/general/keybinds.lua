@@ -67,7 +67,7 @@ hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("pkill -USR1 waybar"))
 
 -- WINDOW MOVEMENT --
 
-hl.bind(mainMod .. " + W", hl.dsp.submap("window_movement"))
+hl.bind(mainMod .. " + I", hl.dsp.submap("window_movement"))
 
 hl.define_submap("window_movement", function()
 	-- move window to directions
