@@ -4,7 +4,7 @@ local mainMod = "SUPER"
 
 local applications = {
 	terminal = "kitty",
-	webbrowser = "firefox",
+	webbrowser = "librewolf",
 	filebrowser = "dolphin",
 	launcher = "hyprlauncher",
 }
