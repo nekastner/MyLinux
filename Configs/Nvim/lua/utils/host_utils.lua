@@ -1,3 +1,7 @@
+local function strip_quotes(s)
+	return (s:gsub('^"', ""):gsub('"$', ""))
+end
+
 local function get_linux_distro()
 	local file = io.open("/etc/os-release", "r")
 
@@ -5,20 +9,32 @@ local function get_linux_distro()
 		return nil
 	end
 
-	for line in file:lines() do
-		local id = line:match("^ID_LIKE=(.*)")
+	local id = nil
+	local id_like = nil
 
-		if not id then
-			id = line:match("^ID=(.*)")
+	for line in file:lines() do
+
+		local v = line:match("^ID=(.*)")
+		if v then
+			id = strip_quotes(v)
 		end
 
-		if id then
-			file:close()
-			return id:gsub('^"', ""):gsub('"$', "")
+		v = line:match("^ID_LIKE=(.*)")
+		if v then
+			id_like = strip_quotes(v)
 		end
 	end
 
 	file:close()
+
+	if id_like and id_like ~= "" then
+		return id_like
+	end
+
+	if id and id ~= "" then
+		return id
+	end
+
 	return nil
 end
 
