@@ -11,7 +11,7 @@ local applications = {
 
 -- SESSION CONTROL --
 
-hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd("hyprshutdown"))
+--hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd("hyprshutdown"))
 hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
 
 -- START APPLICATIONS --
