@@ -6,7 +6,12 @@ local function get_linux_distro()
 	end
 
 	for line in file:lines() do
-		local id = line:match("^ID=(.*)")
+		local id = line:match("^ID_LIKE=(.*)")
+
+		if not id then
+			id = line:match("^ID=(.*)")
+		end
+
 		if id then
 			file:close()
 			return id:gsub('^"', ""):gsub('"$', "")
