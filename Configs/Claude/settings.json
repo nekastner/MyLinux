@@ -1,0 +1,37 @@
+{
+  "permissions": {
+    "deny": [
+      "Read(~/.ssh/**)",
+      "Read(~/.aws/**)",
+      "Read(~/.gnupg/**)",
+      "Read(~/.config/gh/**)",
+      "Read(~/.git-credentials)",
+      "Read(~/.netrc)",
+      "Read(**/.env)",
+      "Read(**/.env.*)"
+    ],
+    "disableBypassPermissionsMode": "disable",
+    "blockReadsOutsideWorkingDirectories": true
+  },
+  "theme": "dark",
+  "enabledPlugins": {
+    "clangd-lsp@claude-plugins-official": true
+  },
+  "sandbox": {
+    "enabled": true,
+    "failIfUnavailable": true,
+    "allowUnsandboxedCommands": false,
+    "network": {
+      "allowedDomains": [
+        "github.com", "api.github.com", "codeload.github.com", "*.githubusercontent.com",
+        "crates.io", "index.crates.io", "static.crates.io", "static.rust-lang.org",
+        "pypi.org", "files.pythonhosted.org",
+        "registry.npmjs.org", "registry.yarnpkg.com", "repo.yarnpkg.com", "nodejs.org",
+        "api.nuget.org", "builds.dotnet.microsoft.com", "dotnetcli.azureedge.net",
+        "repo.maven.apache.org", "repo1.maven.org", "plugins.gradle.org", "services.gradle.org", "downloads.gradle.org", "api.foojay.io", "api.adoptium.net",
+        "download.processing.org",
+        "center2.conan.io"
+      ]
+    }
+  }
+}

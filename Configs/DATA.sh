@@ -70,7 +70,7 @@ sources_targets_add_entry "$CONFIGS_DIR"/Ruff "$HOME"/.config/ruff
 
 # claude
 shopt -s nullglob
-for config in "$CONFIGS_DIR"/Claude/user/*; do
+for config in "$CONFIGS_DIR"/Claude/*; do
 	config_name="$(basename "$config")"
 	sources_targets_add_entry "$config" "$HOME"/.claude/"$config_name"
 done
