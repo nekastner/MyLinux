@@ -23,6 +23,11 @@ map("x", "<S-Tab>", "<gv", { desc = "Dedent" })
 map("n", "<leader>tc", "<cmd>tabclose<CR>", { desc = "Close Tab" })
 map("n", "<leader>to", "<cmd>tabonly<CR>", { desc = "Close all other Tabs" })
 
+-- JUMPLIST --
+
+map("n", "gb", "<C-o>", { desc = "Backward in Jumplist" })
+map("n", "gf", "<C-i>", { desc = "Forward in der Jumplist" })
+
 -- LSP --
 
 map("n", "gd", vim.lsp.buf.definition, { desc = "Go to Definition" })
